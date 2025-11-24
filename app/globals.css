@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+
+    body {
+        @apply bg-black text-white antialiased;
+    }
+}
+
+@layer utilities {
+    .animate-gradient {
+        animation: gradient 15s ease infinite;
+        background-size: 200% 200%;
+    }
+
+    @keyframes gradient {
+        0%, 100% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+    }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    @apply bg-zinc-950;
+}
+
+::-webkit-scrollbar-thumb {
+    @apply bg-orange-600 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    @apply bg-orange-500;
+}

@@ -1,0 +1,40 @@
+# git ls-files --others --exclude-from=.git/info/exclude
+# ---------------------------------------------
+# This file lists untracked files that Git should ignore
+# WITHOUT committing them to .gitignore.
+# Useful for local-only ignores.
+# ---------------------------------------------
+
+# IDE / Editor files
+.idea/
+.vscode/
+*.iml
+
+# Node / Next.js
+node_modules/
+.next/
+dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# macOS / Windows system files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Other caches
+.cache/
+.flutter-plugins
+.flutter-plugins-deps
+/node_modules/
