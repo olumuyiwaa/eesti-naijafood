@@ -3,10 +3,60 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
-import { FaCalendarAlt, FaUtensils, FaMusic, FaTruck, FaStar, FaPlay } from 'react-icons/fa';
+import {FaCalendarAlt, FaUtensils, FaMusic, FaTruck, FaStar, FaPlay, FaLeaf, FaFire} from 'react-icons/fa';
 import TestimonialsCarousel from '@/components/TestimonialsCarousel';
+import {useEffect, useState} from "react";
+import axios from "axios";
+import {toast} from "react-toastify";
+interface MenuItem {
+    id: number;
+    name: string;
+    description: string;
+    price: number;
+    image: string;
+    isVegetarian?: boolean;
+    isSpicy?: boolean;
+    isDishOfWeek?: boolean;
+}
 
+interface MenuData {
+    starters: MenuItem[];
+    mains: MenuItem[];
+    sides: MenuItem[];
+    desserts: MenuItem[];
+    nonAlcoholic: MenuItem[];
+    alcoholic: MenuItem[];
+}
 export default function Home() {
+    const [menu, setMenu] = useState<MenuData | null>(null);
+    const [activeCategory, setActiveCategory] = useState('starters');
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        fetchMenu();
+    }, []);
+
+    const fetchMenu = async () => {
+        try {
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/menu`);
+            setMenu(response.data.menu);
+        } catch (error) {
+            toast.error('Failed to load menu');
+            console.error(error);
+        } finally {
+            setLoading(false);
+        }
+    };
+    const [dishOfTheWeek, setDishOfTheWeek] = useState<MenuItem | null>(null);
+
+    useEffect(() => {
+        if (menu) {
+            // Flatten all categories into one array and find the dish of the week
+            const allItems = Object.values(menu).flat();
+            const specialDish = allItems.find(item => item.isDishOfWeek);
+            setDishOfTheWeek(specialDish || null);
+        }
+    }, [menu]);
     return (
         <div className="min-h-screen bg-gradient-to-b from-zinc-950 via-zinc-900 to-black">
             {/* Hero Section - Full Screen with Video Background Effect */}
@@ -258,7 +308,10 @@ export default function Home() {
                         >
                             <div className="relative h-[600px] rounded-3xl overflow-hidden shadow-2xl">
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10" />
-                                <div className="absolute inset-0 bg-[url('/api/placeholder/800/600')] bg-cover bg-center" />
+                                <div
+                                    className="absolute inset-0 bg-cover bg-center"
+                                    style={{ backgroundImage: "url('/images/about-story.webp')" }}
+                                />
 
                                 {/* Stats Overlay */}
                                 <div className="absolute bottom-8 left-8 right-8 z-20 grid grid-cols-3 gap-4">
@@ -348,47 +401,69 @@ export default function Home() {
                         viewport={{ once: true }}
                         className="relative bg-gradient-to-br from-zinc-900 to-zinc-950 rounded-[3rem] overflow-hidden border border-white/10"
                     >
-                        <div className="grid lg:grid-cols-2">
-                            <div className="relative h-96 lg:h-auto">
-                                <div className="absolute inset-0 bg-[url('/api/placeholder/800/600')] bg-cover bg-center" />
-                                <div className="absolute inset-0 bg-gradient-to-r from-transparent to-zinc-950/90 lg:to-zinc-950" />
-
-                                <motion.div
-                                    className="absolute top-8 left-8 px-6 py-3 bg-gradient-to-r from-orange-500 to-red-600 rounded-full text-white font-black shadow-xl"
-                                    animate={{ scale: [1, 1.05, 1] }}
-                                    transition={{ duration: 2, repeat: Infinity }}
-                                >
-                                    ⭐ DISH OF THE WEEK
-                                </motion.div>
-                            </div>
-
-                            <div className="p-12 lg:p-16 flex flex-col justify-center">
-                                <h3 className="text-5xl font-black text-white mb-4 leading-tight">
-                                    Asaro (Yam Porridge)
-                                </h3>
-
-                                <p className="text-xl text-white/70 mb-6 leading-relaxed">
-                                    Creamy yam porridge with vegetables and smoked fish. Experience the warmth and
-                                    comfort of authentic Nigerian home cooking.
-                                </p>
-
-                                <div className="flex items-baseline gap-4 mb-8">
-                                  <span className="text-6xl font-black bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">
-                                    $19.50
-                                  </span>
-                                    <span className="text-white/50 line-through text-2xl">$25.00</span>
+                        {dishOfTheWeek ? (
+                            <div className="grid lg:grid-cols-2">
+                                <div className="relative h-96 lg:h-auto">
+                                    <Image
+                                        src={dishOfTheWeek.image}
+                                        alt={dishOfTheWeek.name}
+                                        fill
+                                        className="object-cover object-center"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-r from-transparent to-zinc-950/90 lg:to-zinc-950" />
+                                    <motion.div
+                                        className="absolute top-8 left-8 px-6 py-3 bg-gradient-to-r from-orange-500 to-red-600 rounded-full text-white font-black shadow-xl"
+                                        animate={{ scale: [1, 1.05, 1] }}
+                                        transition={{ duration: 2, repeat: Infinity }}
+                                    >
+                                        ⭐ DISH OF THE WEE
+                                    </motion.div>
+                                    <motion.div
+                                        className="absolute bottom-8 left-8 px-6 py-3 bg-gradient-to-r from-orange-500 to-red-600 rounded-full text-white font-black shadow-xl"
+                                        animate={{ scale: [1, 1.05, 1] }}
+                                        transition={{ duration: 2, repeat: Infinity }}
+                                    >
+                                        {dishOfTheWeek.isVegetarian && (
+                                            <div className="inline-flex items-center gap-1 bg-green-600 text-white px-3 py-1 rounded-full text-sm mb-2 mr-2">
+                                                <FaLeaf /> Vegetarian
+                                            </div>
+                                        )}
+                                        {dishOfTheWeek.isSpicy && (
+                                            <div className="inline-flex items-center gap-1 bg-white text-red-600 px-3 py-1 rounded-full text-sm mb-2 ml-2">
+                                                <FaFire /> Spicy
+                                            </div>
+                                        )}
+                                    </motion.div>
                                 </div>
 
-                                <Link href="/menu">
-                                    <motion.button
-                                        className="px-10 py-5 bg-gradient-to-r from-orange-500 to-red-600 rounded-full text-white text-lg font-bold shadow-lg shadow-orange-500/30 w-fit"
-                                        whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(251, 146, 60, 0.4)" }}
-                                    >
-                                        Order Now →
-                                    </motion.button>
-                                </Link>
+                                <div className="p-12 lg:p-16 flex flex-col justify-center">
+                                    <h3 className="text-5xl font-black text-white mb-4 leading-tight">
+                                        {dishOfTheWeek.name}
+                                    </h3>
+
+                                    <p className="text-xl text-white/70 mb-6 leading-relaxed">
+                                        {dishOfTheWeek.description}
+                                    </p>
+
+                                    <div className="flex items-baseline gap-4 mb-8">
+                                    <span className="text-6xl font-black bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">
+                                        ${dishOfTheWeek.price}
+                                    </span>
+                                    </div>
+
+                                    <Link href="/menu">
+                                        <motion.button
+                                            className="px-10 py-5 bg-gradient-to-r from-orange-500 to-red-600 rounded-full text-white text-lg font-bold shadow-lg shadow-orange-500/30 w-fit"
+                                            whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(251, 146, 60, 0.4)" }}
+                                        >
+                                            Order Now →
+                                        </motion.button>
+                                    </Link>
+                                </div>
                             </div>
-                        </div>
+                        ) : (
+                            <p className="text-xl text-gray-200">No Dish of the Week available.</p>
+                        )}
                     </motion.div>
                 </div>
             </section>

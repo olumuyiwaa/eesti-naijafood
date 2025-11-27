@@ -6,7 +6,8 @@ import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import axios from 'axios';
-import { FaPlus, FaEdit, FaTrash, FaStar } from 'react-icons/fa';
+import {FaPlus, FaEdit, FaTrash, FaStar, FaLeaf, FaFire} from 'react-icons/fa';
+import Image from "next/image";
 
 interface MenuItem {
     id: number;
@@ -198,15 +199,21 @@ export default function AdminMenu() {
                         animate={{ opacity: 1, y: 0 }}
                         className="bg-gray-900 rounded-2xl overflow-hidden"
                     >
-                        <div className="relative h-48 bg-gray-800">
-                            {item.isDishOfWeek && (
-                                <div className="absolute top-3 left-3 bg-yellow-600 text-white px-3 py-1 rounded-full text-sm font-bold flex items-center gap-1">
-                                    <FaStar /> Dish of Week
+                        <div className="relative h-48">
+                            <Image
+                                src={item.image}
+                                alt={item.name}
+                                fill
+                                className="object-cover"
+                            />
+                            {item.isVegetarian && (
+                                <div className="absolute top-3 left-3 bg-green-600 text-white px-3 py-1 rounded-full text-sm flex items-center gap-1">
+                                    <FaLeaf /> Vegetarian
                                 </div>
                             )}
-                            {!item.isAvailable && (
-                                <div className="absolute top-3 right-3 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-bold">
-                                    Unavailable
+                            {item.isSpicy && (
+                                <div className="absolute top-3 right-3 bg-red-600 text-white px-3 py-1 rounded-full text-sm flex items-center gap-1">
+                                    <FaFire /> Spicy
                                 </div>
                             )}
                         </div>

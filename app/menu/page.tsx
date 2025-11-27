@@ -7,6 +7,7 @@ import axios from 'axios';
 import Image from 'next/image';
 import { FaLeaf, FaFire, FaDownload } from 'react-icons/fa';
 import { toast } from 'react-toastify';
+import Link from "next/link";
 
 interface MenuItem {
     id: number;
@@ -195,43 +196,77 @@ export default function MenuPage() {
             </section>
 
             {/* Dish of the Week */}
-            <section className="py-16 bg-gray-900">
+            <section className="py-32 relative">
                 <div className="max-w-7xl mx-auto px-4">
                     <motion.div
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
-                        className="bg-gradient-to-r from-orange-600 to-red-700 rounded-3xl p-12 text-center"
+                        className="relative bg-gradient-to-br from-zinc-900 to-zinc-950 rounded-[3rem] overflow-hidden border border-white/10"
                     >
-                        <div className="max-w-3xl mx-auto">
-                            <div className="text-yellow-300 text-xl font-bold mb-4">⭐ DISH OF THE WEEK ⭐</div>
-                            {dishOfTheWeek ? (
-                                <div>
-                                    <div className="relative h-64 mb-6">
-                                        <Image src={dishOfTheWeek.image} alt={dishOfTheWeek.name} fill className="object-cover rounded-2xl"/>
-                                    </div>
-                                    <h2 className="text-5xl font-bold mb-4">{dishOfTheWeek.name}</h2>
-                                    <p className="text-xl mb-6">{dishOfTheWeek.description}</p>
-                                    <div className="text-4xl font-bold mb-6">${dishOfTheWeek.price.toFixed(2)}</div>
-                                    {dishOfTheWeek.isVegetarian && (
-                                        <div className="inline-flex items-center gap-1 bg-green-600 text-white px-3 py-1 rounded-full text-sm mb-2 mr-2">
-                                            <FaLeaf /> Vegetarian
-                                        </div>
-                                    )}
-                                    {dishOfTheWeek.isSpicy && (
-                                        <div className="inline-flex items-center gap-1 bg-white text-red-600 px-3 py-1 rounded-full text-sm mb-2 ml-2">
-                                            <FaFire /> Spicy
-                                        </div>
-                                    )}
-                                    <p className="text-lg mb-8">Available until November 20, 2025</p>
+                        {dishOfTheWeek ? (
+                            <div className="grid lg:grid-cols-2">
+                                <div className="relative h-96 lg:h-auto">
+                                    <Image
+                                        src={dishOfTheWeek.image}
+                                        alt={dishOfTheWeek.name}
+                                        fill
+                                        className="object-cover object-center"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-r from-transparent to-zinc-950/90 lg:to-zinc-950" />
+                                    <motion.div
+                                        className="absolute top-8 left-8 px-6 py-3 bg-gradient-to-r from-orange-500 to-red-600 rounded-full text-white font-black shadow-xl"
+                                        animate={{ scale: [1, 1.05, 1] }}
+                                        transition={{ duration: 2, repeat: Infinity }}
+                                    >
+                                        ⭐ DISH OF THE WEE
+                                    </motion.div>
+                                    <motion.div
+                                        className="absolute bottom-8 left-8 px-6 py-3 bg-gradient-to-r from-orange-500 to-red-600 rounded-full text-white font-black shadow-xl"
+                                        animate={{ scale: [1, 1.05, 1] }}
+                                        transition={{ duration: 2, repeat: Infinity }}
+                                    >
+                                        {dishOfTheWeek.isVegetarian && (
+                                            <div className="inline-flex items-center gap-1 bg-green-600 text-white px-3 py-1 rounded-full text-sm mb-2 mr-2">
+                                                <FaLeaf /> Vegetarian
+                                            </div>
+                                        )}
+                                        {dishOfTheWeek.isSpicy && (
+                                            <div className="inline-flex items-center gap-1 bg-white text-red-600 px-3 py-1 rounded-full text-sm mb-2 ml-2">
+                                                <FaFire /> Spicy
+                                            </div>
+                                        )}
+                                    </motion.div>
                                 </div>
-                            ) : (
-                                <p className="text-xl text-gray-200">No Dish of the Week available.</p>
-                            )}
-                            <button className="bg-white text-orange-600 hover:bg-gray-100 px-8 py-4 rounded-full text-lg font-semibold transition-all">
-                                Order Special Dish
-                            </button>
-                        </div>
+
+                                <div className="p-12 lg:p-16 flex flex-col justify-center">
+                                    <h3 className="text-5xl font-black text-white mb-4 leading-tight">
+                                        {dishOfTheWeek.name}
+                                    </h3>
+
+                                    <p className="text-xl text-white/70 mb-6 leading-relaxed">
+                                        {dishOfTheWeek.description}
+                                    </p>
+
+                                    <div className="flex items-baseline gap-4 mb-8">
+                                    <span className="text-6xl font-black bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">
+                                        ${dishOfTheWeek.price}
+                                    </span>
+                                    </div>
+
+                                    <Link href="/menu">
+                                        <motion.button
+                                            className="px-10 py-5 bg-gradient-to-r from-orange-500 to-red-600 rounded-full text-white text-lg font-bold shadow-lg shadow-orange-500/30 w-fit"
+                                            whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(251, 146, 60, 0.4)" }}
+                                        >
+                                            Order Now →
+                                        </motion.button>
+                                    </Link>
+                                </div>
+                            </div>
+                        ) : (
+                            <p className="text-xl text-gray-200">No Dish of the Week available.</p>
+                        )}
                     </motion.div>
                 </div>
             </section>
