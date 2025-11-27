@@ -11,6 +11,18 @@ export default function Home() {
         <div className="min-h-screen bg-gradient-to-b from-zinc-950 via-zinc-900 to-black">
             {/* Hero Section - Full Screen with Video Background Effect */}
             <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+                {/* Background Image */}
+                <div className="absolute inset-0">
+                    <Image
+                        src="/images/hero-bg.png"
+                        alt="Afro Flavours Background"
+                        fill
+                        className="object-cover"
+                        priority
+                    />
+                </div>
+                <div className="absolute inset-0 bg-black/50" />
+
                 {/* Animated Background Gradient */}
                 <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 via-red-600/20 to-yellow-500/20 animate-gradient" />
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(251,146,60,0.1),transparent_50%)]" />
