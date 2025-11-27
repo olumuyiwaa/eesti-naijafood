@@ -31,8 +31,7 @@ export default function AboutPage() {
                 {/* Background Image */}
                 <div className="absolute inset-0">
                     <Image
-                        height={120}
-                        src="/images/background.png"
+                        src="/images/background.jpg"
                         alt="Afro Flavours Background"
                         fill
                         className="object-cover"
