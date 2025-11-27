@@ -24,7 +24,6 @@ export default function Home() {
                 <div className="absolute inset-0 bg-black/50" />
 
                 {/* Animated Background Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 via-red-600/20 to-yellow-500/20 animate-gradient" />
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(251,146,60,0.1),transparent_50%)]" />
 
                 {/* Floating Elements */}

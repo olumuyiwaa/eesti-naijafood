@@ -6,7 +6,8 @@ import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { FaUsers, FaUtensils, FaCheckCircle, FaUpload } from 'react-icons/fa';
+import {FaUsers, FaUtensils, FaCheckCircle, FaUpload, FaDownload} from 'react-icons/fa';
+import Image from "next/image";
 
 interface CateringFormData {
     name: string;
@@ -126,8 +127,24 @@ export default function CateringPage() {
     return (
         <div className="min-h-screen bg-black text-white pt-24">
             {/* Header */}
-            <section className="py-16 bg-gradient-to-br from-orange-600 to-red-700 text-center">
-                <div className="max-w-7xl mx-auto px-4">
+            <section className="relative py-16 bg-gradient-to-br from-orange-600 to-red-700 text-center overflow-hidden">
+
+                {/* Background Image */}
+                <div className="absolute inset-0 h-full">
+                    <div className="absolute inset-0">
+                        <Image
+                            src="/images/background.jpg"
+                            alt="Afro Flavours Background"
+                            width={500}
+                            height={300}
+                            style={{ height: "380px", width: "100%", objectFit: "cover" }}
+                            priority
+                        />
+
+                    </div>
+                </div>
+
+                <div className="relative z-10">
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}

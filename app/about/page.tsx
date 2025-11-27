@@ -27,32 +27,43 @@ export default function AboutPage() {
     return (
         <div className="min-h-screen bg-black text-white pt-24">
             {/* Header */}
-            <section className="py-16 bg-gradient-to-br from-orange-600 to-red-700 text-center">
+            <section className="relative py-16 bg-gradient-to-br from-orange-600 to-red-700 text-center overflow-hidden">
+
                 {/* Background Image */}
-                <div className="absolute inset-0">
-                    <Image
-                        src="/images/background.jpg"
-                        alt="Afro Flavours Background"
-                        priority
-                    />
+                <div className="absolute inset-0 h-full">
+                    <div className="absolute inset-0">
+                        <Image
+                            src="/images/background.jpg"
+                            alt="Afro Flavours Background"
+                            width={500}
+                            height={300}
+                            style={{ height: "380px", width: "100%", objectFit: "cover" }}
+                            priority
+                        />
+
+                    </div>
                 </div>
-                <div className="absolute inset-0 bg-black/50" />
-                <motion.h1
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="text-6xl font-bold mb-4"
-                >
-                    Our Story
-                </motion.h1>
-                <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2 }}
-                    className="text-2xl"
-                >
-                    A journey of flavor, culture, and community
-                </motion.p>
+
+                <div className="relative z-10">
+                    <motion.h1
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="text-6xl font-bold mb-4"
+                    >
+                        Our Story
+                    </motion.h1>
+
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2 }}
+                        className="text-2xl"
+                    >
+                        A journey of flavor, culture, and community
+                    </motion.p>
+                </div>
             </section>
+
 
             {/* Story Section */}
             <section className="py-20 bg-black">

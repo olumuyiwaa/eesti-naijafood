@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaClock, FaFacebook, FaInstagram, FaTiktok, FaYoutube } from 'react-icons/fa';
+import Image from "next/image";
 
 interface ContactFormData {
     name: string;
@@ -59,22 +60,40 @@ export default function ContactPage() {
     return (
         <div className="min-h-screen bg-black text-white pt-24">
             {/* Header */}
-            <section className="py-16 bg-gradient-to-br from-orange-600 to-red-700 text-center">
-                <motion.h1
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="text-6xl font-bold mb-4"
-                >
-                    Get in Touch
-                </motion.h1>
-                <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2 }}
-                    className="text-2xl"
-                >
-                    We'd love to hear from you
-                </motion.p>
+            <section className="relative py-16 bg-gradient-to-br from-orange-600 to-red-700 text-center overflow-hidden">
+
+                {/* Background Image */}
+                <div className="absolute inset-0 h-full">
+                    <div className="absolute inset-0">
+                        <Image
+                            src="/images/background.jpg"
+                            alt="Afro Flavours Background"
+                            width={500}
+                            height={300}
+                            style={{ height: "380px", width: "100%", objectFit: "cover" }}
+                            priority
+                        />
+
+                    </div>
+                </div>
+
+                <div className="relative z-10">
+                    <motion.h1
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="text-6xl font-bold mb-4"
+                    >
+                        Get in Touch
+                    </motion.h1>
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2 }}
+                        className="text-2xl"
+                    >
+                        We'd love to hear from you
+                    </motion.p>
+                </div>
             </section>
 
             {/* Contact Info & Form */}
