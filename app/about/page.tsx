@@ -28,6 +28,18 @@ export default function AboutPage() {
         <div className="min-h-screen bg-black text-white pt-24">
             {/* Header */}
             <section className="py-16 bg-gradient-to-br from-orange-600 to-red-700 text-center">
+                {/* Background Image */}
+                <div className="absolute inset-0">
+                    <Image
+                        height={120}
+                        src="/images/background.png"
+                        alt="Afro Flavours Background"
+                        fill
+                        className="object-cover"
+                        priority
+                    />
+                </div>
+                <div className="absolute inset-0 bg-black/50" />
                 <motion.h1
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
