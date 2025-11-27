@@ -33,8 +33,6 @@ export default function AboutPage() {
                     <Image
                         src="/images/background.jpg"
                         alt="Afro Flavours Background"
-                        fill
-                        className="object-cover"
                         priority
                     />
                 </div>
