@@ -15,33 +15,40 @@ interface Event {
     date: string;
     time: string;
     type: string;
-    image: string;
+    imageUrl: string;
+    isPublished: boolean;
+}
+
+interface GalleryImage {
+    url: string;
+    publicId: string;
 }
 
 export default function AfricanExperiencePage() {
     const [upcomingEvents, setUpcomingEvents] = useState<Event[]>([]);
-    const [gallery, setGallery] = useState<any[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [images, setImages] = useState<GalleryImage[]>([]);
 
     useEffect(() => {
         fetchEvents();
         fetchGallery();
     }, []);
 
-    const fetchEvents = async () => {
+    const fetchGallery = async () => {
         try {
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/events/upcoming`);
-            setUpcomingEvents(response.data.events);
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/gallery`);
+            setImages(response.data.images || []);
         } catch (error) {
-            console.error('Failed to fetch events:', error);
+            console.error('Error fetching images:', error);
         }
     };
 
-    const fetchGallery = async () => {
+    const fetchEvents = async () => {
         try {
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/events/gallery`);
-            setGallery(response.data.gallery);
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/events/upcoming`);
+            setUpcomingEvents(response.data.events.filter(event => event.isPublished) || []);
         } catch (error) {
-            console.error('Failed to fetch gallery:', error);
+            console.error('Failed to fetch events:', error);
         }
     };
 
@@ -231,7 +238,7 @@ export default function AfricanExperiencePage() {
                             >
                                 <div className="relative h-48">
                                     <Image
-                                        src={event.image}
+                                        src={event.imageUrl}
                                         alt={event.title}
                                         fill
                                         className="object-cover"
@@ -275,9 +282,9 @@ export default function AfricanExperiencePage() {
                     </motion.h2>
 
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                        {gallery.map((item, index) => (
+                        {images.map((item, index) => (
                             <motion.div
-                                key={item.id}
+                                key={item.publicId}
                                 initial={{ opacity: 0, scale: 0.8 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}
@@ -285,16 +292,16 @@ export default function AfricanExperiencePage() {
                                 className="relative h-64 rounded-2xl overflow-hidden cursor-pointer group"
                             >
                                 <Image
-                                    src={item.image}
-                                    alt={item.title}
+                                    src={item.url}
+                                    alt=""
                                     fill
                                     className="object-cover group-hover:scale-110 transition-transform duration-300"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                                    <div>
+                                    {/* <div>
                                         <h3 className="font-bold">{item.title}</h3>
                                         <p className="text-sm text-gray-300">{new Date(item.date).toLocaleDateString()}</p>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </motion.div>
                         ))}

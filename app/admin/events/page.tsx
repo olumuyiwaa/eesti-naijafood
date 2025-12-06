@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 import { FaPlus, FaEdit, FaTrash, FaToggleOn, FaToggleOff, FaCalendarAlt, FaClock, FaMusic } from 'react-icons/fa';
 import axios from "axios";
 
+
 interface Event {
     id: string;
     title: string;
@@ -29,6 +30,10 @@ export default function AdminEvents() {
     const [editingEvent, setEditingEvent] = useState<Event | null>(null);
     const [filter, setFilter] = useState('all');
 
+    // image file + preview state for the form
+    const [imageFile, setImageFile] = useState<File | null>(null);
+    const [imagePreview, setImagePreview] = useState<string | null>(null);
+
     const { register, handleSubmit, reset, setValue, formState: { errors } } = useForm<Event>();
 
     useEffect(() => {
@@ -45,10 +50,11 @@ export default function AdminEvents() {
                 `${process.env.NEXT_PUBLIC_API_URL}/api/events/upcoming`
             );
 
-            // map _id to id
+            // map _id to id and imageUrl to image
             const eventsData = response.data.events.map(e => ({
                 ...e,
-                id: e._id
+                id: e._id,
+                image: e.imageUrl || null
             }));
 
             setEvents(eventsData);
@@ -63,16 +69,42 @@ export default function AdminEvents() {
 
     const onSubmit = async (data: Event) => {
         try {
+            // build FormData so file can be uploaded
+            const formData = new FormData();
+            formData.append('title', data.title as string);
+            formData.append('description', data.description as string);
+            formData.append('date', data.date as string);
+            formData.append('time', data.time as string);
+            formData.append('type', data.type as string);
+            if (data.genre) formData.append('genre', data.genre);
+            if (data.capacity !== undefined && data.capacity !== null && data.capacity !== 0) formData.append('capacity', String(data.capacity));
+            formData.append('isPublished', String(Boolean((data as any).isPublished)));
+
+            if (imageFile) {
+                formData.append('image', imageFile);
+            }
+
             if (editingEvent) {
-                await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/events/${editingEvent.id}`, data);
+                await axios.put(
+                    `${process.env.NEXT_PUBLIC_API_URL}/api/events/${editingEvent.id}`,
+                    formData,
+                    { headers: { 'Content-Type': 'multipart/form-data' } }
+                );
                 toast.success('Event updated successfully');
             } else {
-                await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/events`, data);
+                await axios.post(
+                    `${process.env.NEXT_PUBLIC_API_URL}/api/events`,
+                    formData,
+                    { headers: { 'Content-Type': 'multipart/form-data' } }
+                );
                 toast.success('Event created successfully');
             }
+
             setShowModal(false);
             reset();
             setEditingEvent(null);
+            setImageFile(null);
+            setImagePreview(null);
             fetchEvents();
         } catch (error: unknown) {
             if (axios.isAxiosError(error)) {
@@ -86,8 +118,14 @@ export default function AdminEvents() {
     const handleEdit = (event: Event) => {
         setEditingEvent(event);
         Object.entries(event).forEach(([key, value]) => {
-            setValue(key as any, value);
+            // avoid trying to set file input via setValue
+            if (key !== 'image') {
+                setValue(key as any, value);
+            }
         });
+        // set image preview from existing event image if present
+        setImagePreview(event.image || null);
+        setImageFile(null); // user can replace image by selecting a new file
         setShowModal(true);
     };
 
@@ -115,6 +153,18 @@ export default function AdminEvents() {
         }
     };
 
+    // handle file select and preview
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0] ?? null;
+        setImageFile(file);
+        if (file) {
+            const url = URL.createObjectURL(file);
+            setImagePreview(url);
+        } else {
+            setImagePreview(null);
+        }
+    };
+
     const filteredEvents = filter === 'all'
         ? events
         : filter === 'published'
@@ -138,6 +188,8 @@ export default function AdminEvents() {
                     onClick={() => {
                         setEditingEvent(null);
                         reset();
+                        setImageFile(null);
+                        setImagePreview(null);
                         setShowModal(true);
                     }}
                     className="bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-lg font-semibold flex items-center gap-2 transition-all"
@@ -193,8 +245,13 @@ export default function AdminEvents() {
                         animate={{ opacity: 1, y: 0 }}
                         className="bg-gray-900 rounded-2xl overflow-hidden"
                     >
+                        {/* show event image if available else placeholder */}
                         <div className="relative h-48 bg-gradient-to-br from-orange-600 to-red-700 flex items-center justify-center">
-                            <FaMusic className="text-8xl text-white/30" />
+                            {event.image ? (
+                                <img src={event.image} alt={event.title} className="w-full h-full object-cover" />
+                            ) : (
+                                <FaMusic className="text-8xl text-white/30" />
+                            )}
                             {!event.isPublished && (
                                 <div className="absolute top-3 right-3 bg-yellow-600 text-white px-3 py-1 rounded-full text-sm font-bold">
                                     Draft
@@ -290,7 +347,7 @@ export default function AdminEvents() {
                             {editingEvent ? 'Edit Event' : 'Create Event'}
                         </h2>
 
-                        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" encType="multipart/form-data">
                             <div>
                                 <label className="block text-white font-semibold mb-2">Event Title *</label>
                                 <input
@@ -389,6 +446,23 @@ export default function AdminEvents() {
                                 </label>
                             </div>
 
+                            {/* Image input + preview */}
+                            <div>
+                                <label className="block text-white font-semibold mb-2">Event Image (optional)</label>
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={handleFileChange}
+                                    className="w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:bg-orange-600 file:text-white"
+                                />
+                                {imagePreview && (
+                                    <div className="mt-3">
+                                        <p className="text-sm text-gray-300 mb-2">Preview:</p>
+                                        <img src={imagePreview} alt="preview" className="w-48 h-32 object-cover rounded-lg" />
+                                    </div>
+                                )}
+                            </div>
+
                             <div className="flex gap-3 pt-4">
                                 <button
                                     type="submit"
@@ -402,6 +476,8 @@ export default function AdminEvents() {
                                         setShowModal(false);
                                         reset();
                                         setEditingEvent(null);
+                                        setImageFile(null);
+                                        setImagePreview(null);
                                     }}
                                     className="flex-1 bg-gray-700 hover:bg-gray-600 text-white px-6 py-3 rounded-lg font-semibold transition-all"
                                 >

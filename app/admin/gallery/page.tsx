@@ -47,10 +47,10 @@ export default function AdminGallery() {
         try {
             const formData = new FormData();
             if (data.title) {
-                formData.append('title', data.title);
+                formData.append('title', data.title[0]);
             }
             if (data.image) {
-                formData.append('image', data.image);
+                formData.append('image', data.image[0]);
             } else {
                 toast.error('Please select an image to upload');
                 return;
@@ -75,7 +75,7 @@ export default function AdminGallery() {
         if (!confirm('Are you sure you want to delete this image?')) return;
 
         try {
-            await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/gallery/${publicId}`);
+            await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/${publicId}`);
             toast.success('Image deleted successfully');
             fetchImages();
         } catch (error) {
