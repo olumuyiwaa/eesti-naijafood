@@ -219,7 +219,7 @@ export default function MenuPage() {
                                         animate={{ scale: [1, 1.05, 1] }}
                                         transition={{ duration: 2, repeat: Infinity }}
                                     >
-                                        ⭐ DISH OF THE WEE
+                                        ⭐ DISH OF THE WEEK
                                     </motion.div>
                                     <motion.div
                                         className="absolute bottom-8 left-8 px-6 py-3 bg-gradient-to-r from-orange-500 to-red-600 rounded-full text-white font-black shadow-xl"

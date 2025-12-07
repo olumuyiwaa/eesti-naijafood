@@ -205,7 +205,7 @@ export default function Home() {
                                 icon: FaTruck,
                                 title: 'Delivery Available',
                                 description: 'Order via DoorDash & Uber Eats',
-                                link: '/order',
+                                link: '/menu',
                                 gradient: 'from-pink-500 to-purple-500'
                             },
                             {
@@ -348,10 +348,23 @@ export default function Home() {
             </section>
 
             {/* African Experience - Bold Section */}
-            <section className="py-32 relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-orange-600 via-red-600 to-pink-600" />
-                <div className="absolute inset-0 bg-[url('/api/placeholder/1920/1080')] bg-cover bg-center opacity-20 mix-blend-overlay" />
+            <section className="relative py-32 group-happy-black-hipsters-enjoying-rooftop-party_441990-40341.jpgflex items-center justify-center overflow-hidden">
+                {/* Background Image */}
+                <div className="absolute inset-0">
+                    <Image
+                        src="/images/experience1.jpg"
+                        alt="Afro Flavours Background"
+                        fill
+                        className="object-cover"
+                        priority
+                    />
+                </div>
+                <div className="absolute inset-0 bg-black/50" />
 
+                {/* Animated Background Gradient */}
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(251,146,60,0.1),transparent_50%)]" />
+
+                {/* Floating Elements */}
                 <div className="max-w-7xl mx-auto px-4 relative z-10">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
@@ -416,7 +429,7 @@ export default function Home() {
                                         animate={{ scale: [1, 1.05, 1] }}
                                         transition={{ duration: 2, repeat: Infinity }}
                                     >
-                                        ⭐ DISH OF THE WEE
+                                        ⭐ DISH OF THE WEEK
                                     </motion.div>
                                     <motion.div
                                         className="absolute bottom-8 left-8 px-6 py-3 bg-gradient-to-r from-orange-500 to-red-600 rounded-full text-white font-black shadow-xl"
@@ -492,7 +505,20 @@ export default function Home() {
 
             {/* Final CTA */}
             <section className="py-32 relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-b from-black via-zinc-950 to-black" />
+                {/* Background Image */}
+                <div className="absolute inset-0">
+                    <Image
+                        src="/images/experience.jpg"
+                        alt="Afro Flavours Background"
+                        fill
+                        className="object-cover"
+                        priority
+                    />
+                </div>
+                <div className="absolute inset-0 bg-black/50" />
+
+                {/* Animated Background Gradient */}
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(251,146,60,0.1),transparent_50%)]" />
 
                 <div className="max-w-5xl mx-auto px-4 text-center relative z-10">
                     <motion.div
