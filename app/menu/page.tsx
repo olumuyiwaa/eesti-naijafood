@@ -63,7 +63,7 @@ export default function MenuPage() {
     const categories = [
         { id: 'starters', name: 'Starters', icon: '🥟' },
         { id: 'mains', name: 'Main Courses', icon: '🍛' },
-        { id: 'sides', name: 'Sides', icon: '🍠' },
+        { id: 'sides', name: 'Sides', icon: '🥗' },
         { id: 'desserts', name: 'Desserts', icon: '🍰' },
         { id: 'nonAlcoholic', name: 'Soft Drinks', icon: '🥤' },
         { id: 'alcoholic', name: 'Alcoholic Drinks', icon: '🍺' },
