@@ -178,8 +178,15 @@ export default function ContactPage() {
                             </div>
 
                             {/* Map Placeholder */}
-                            <div className="bg-gray-800 rounded-2xl h-64 flex items-center justify-center">
-                                <p className="text-gray-500">Map Integration Coming Soon</p>
+                            <div className="bg-gray-800 rounded-2xl h-64 flex items-center justify-center overflow-hidden">
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3187.476802156153!2d174.76448827621793!3d-36.85233807228033!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d0d47fb254457db%3A0x360c00d98b1f9a53!2sThe%20University%20of%20Auckland!5e0!3m2!1sen!2snz!4v1714214047337!5m2!1sen!2snz"
+                                    width="100%"
+                                    height="100%"
+                                    style={{ border: 0 }}
+                                    loading="lazy"
+                                    referrerPolicy="no-referrer-when-downgrade"
+                                ></iframe>
                             </div>
                         </motion.div>
 
