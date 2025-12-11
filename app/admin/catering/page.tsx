@@ -8,6 +8,7 @@ import { FaEye, FaCheck, FaTimes, FaUsers, FaCalendarAlt, FaDollarSign, FaEnvelo
 import axios from "axios";
 
 interface CateringRequest {
+    id: string;
     quoteRef: string;
     name: string;
     email: string;
@@ -46,7 +47,7 @@ export default function AdminCatering() {
             // map _id to id
             const requestsData = response.data.requests.map(e => ({
                 ...e,
-                quoteRef: e._id
+                id: e._id
             }));
 
             setRequests(requestsData);

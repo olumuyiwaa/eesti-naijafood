@@ -43,6 +43,7 @@ export default function AdminPayments() {
     const [filter, setFilter] = useState('all');
     const [selectedPayment, setSelectedPayment] = useState<Payment | null>(null);
     const [showRefundModal, setShowRefundModal] = useState(false);
+    const [showViewModal, setShowViewModal] = useState(false);
     const [refundAmount, setRefundAmount] = useState('');
     const [loading, setLoading] = useState(true);
 
@@ -54,6 +55,8 @@ export default function AdminPayments() {
     const fetchPayments = async () => {
         try {
             const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/payments/admin/payments`);
+            console.log('Raw payments data:', response.data.payments); // Add this line
+            toast(response.data.payments); // Add this line
             setPayments(response.data.payments);
         } catch (error) {
             console.error('Failed to fetch payments:', error);
@@ -62,6 +65,7 @@ export default function AdminPayments() {
             setLoading(false);
         }
     };
+
 
     const fetchStats = async () => {
         try {
@@ -266,7 +270,7 @@ export default function AdminPayments() {
                                     </div>
                                 </td>
                                 <td className="px-6 py-4 text-white font-mono text-sm">
-                                    {payment.reference}
+                                    {payment.id}
                                 </td>
                                 <td className="px-6 py-4">
                     <span className="bg-purple-600 px-3 py-1 rounded-full text-sm text-white capitalize">
@@ -287,7 +291,10 @@ export default function AdminPayments() {
                                 <td className="px-6 py-4">
                                     <div className="flex gap-2">
                                         <button
-                                            onClick={() => setSelectedPayment(payment)}
+                                            onClick={() => {
+                                                setSelectedPayment(payment);
+                                                setShowViewModal(true);
+                                            }}
                                             className="p-2 bg-blue-600 hover:bg-blue-700 rounded-lg text-white transition-colors"
                                             title="View Details"
                                         >
@@ -297,6 +304,7 @@ export default function AdminPayments() {
                                             <button
                                                 onClick={() => {
                                                     setSelectedPayment(payment);
+                                                    setRefundAmount('');
                                                     setShowRefundModal(true);
                                                 }}
                                                 className="p-2 bg-red-600 hover:bg-red-700 rounded-lg text-white transition-colors"
@@ -313,6 +321,62 @@ export default function AdminPayments() {
                     </table>
                 </div>
             </motion.div>
+
+            {/* View Modal */}
+            {showViewModal && selectedPayment && (
+                <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className="bg-gray-900 rounded-2xl p-8 max-w-md w-full"
+                    >
+                        <h2 className="text-3xl font-bold text-white mb-6">Payment Details</h2>
+
+                        <div className="space-y-4 mb-6">
+                            <div>
+                                <p className="text-gray-400 mb-1">Customer</p>
+                                <p className="text-white font-semibold">{selectedPayment.customer}</p>
+                            </div>
+                            <div>
+                                <p className="text-gray-400 mb-1">Email</p>
+                                <p className="text-white font-semibold">{selectedPayment.email}</p>
+                            </div>
+                            <div>
+                                <p className="text-gray-400 mb-1">Amount</p>
+                                <p className="text-white text-2xl font-bold">${selectedPayment.amount.toFixed(2)}</p>
+                            </div>
+                            <div>
+                                <p className="text-gray-400 mb-1">Status</p>
+                                <p className="text-white font-semibold capitalize">{selectedPayment.status}</p>
+                            </div>
+                            <div>
+                                <p className="text-gray-400 mb-1">Type</p>
+                                <p className="text-white font-semibold capitalize">{selectedPayment.type.replace('_', ' ')}</p>
+                            </div>
+                            <div>
+                                <p className="text-gray-400 mb-1">Date</p>
+                                <p className="text-white font-semibold">{new Date(selectedPayment.created).toLocaleString()}</p>
+                            </div>
+                            <div>
+                                <p className="text-gray-400 mb-1">Payment ID</p>
+                                <p className="text-white font-mono text-sm">{selectedPayment.id}</p>
+                            </div>
+                        </div>
+
+                        <div className="flex justify-end">
+                            <button
+                                onClick={() => {
+                                    setShowViewModal(false);
+                                    setSelectedPayment(null);
+                                }}
+                                className="bg-gray-700 hover:bg-gray-600 text-white px-6 py-3 rounded-lg font-semibold transition-all"
+                            >
+                                Close
+                            </button>
+                        </div>
+                    </motion.div>
+                </div>
+            )}
 
             {/* Refund Modal */}
             {showRefundModal && selectedPayment && (

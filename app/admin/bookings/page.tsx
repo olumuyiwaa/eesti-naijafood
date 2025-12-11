@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 import { FaCheck, FaTimes, FaEye, FaCalendarAlt, FaClock, FaUsers } from 'react-icons/fa';
 
 interface Booking {
+    id: string;
     bookingRef: string;
     name: string;
     email: string;
@@ -40,7 +41,7 @@ export default function AdminBookings() {
             // map _id to bookingRef
             const requestsData = response.data.bookings.map(e => ({
                 ...e,
-                bookingRef: e._id
+                id: e._id
             }));
 
             setBookings(requestsData);
@@ -53,10 +54,10 @@ export default function AdminBookings() {
         }
     };
 
-    const handleStatusChange = async (quoteRef: string, newStatus: string) => {
+    const handleStatusChange = async (bookingRef: string, newStatus: string) => {
         try {
-            await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/bookings/update-status`, { quoteRef, status: newStatus });
-            toast.success(`Request ${newStatus}`);
+            await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/bookings/update-status`, { bookingRef, status: newStatus });
+            toast.success(`Booking ${newStatus}`);
             fetchBookings();
         } catch (error: any) {
             toast.error(error.response?.data?.message || 'Failed to update booking');

@@ -41,12 +41,14 @@ function CheckoutForm({
     const stripe = useStripe();
     const elements = useElements();
     const [isProcessing, setIsProcessing] = useState(false);
+    const [isReady, setIsReady] = useState(false);
+    const [loadError, setLoadError] = useState<string | null>(null);
     const [message, setMessage] = useState('');
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        if (!stripe || !elements) {
+        if (!stripe || !elements || loadError) {
             return;
         }
 
@@ -99,8 +101,28 @@ function CheckoutForm({
             </div>
 
             <div className="bg-gray-800 rounded-lg p-4">
-                <PaymentElement />
+                <PaymentElement
+                    onReady={() => {
+                        console.log('PaymentElement ready');
+                        setIsReady(true);
+                    }}
+                    onLoadError={(event) => {
+                        console.error('PaymentElement load error:', event);
+                        let errorMessage = 'Failed to load payment form. Please try again later.';
+                        if (event.error && event.error.message) {
+                            errorMessage = event.error.message;
+                        }
+                        setLoadError(errorMessage);
+                        toast.error(errorMessage);
+                    }}
+                />
             </div>
+
+            {loadError && (
+                <div className="bg-red-600/20 border border-red-600 text-red-400 rounded-lg p-4">
+                    {loadError}
+                </div>
+            )}
 
             {message && (
                 <div className="bg-red-600/20 border border-red-600 text-red-400 rounded-lg p-4">
@@ -116,7 +138,7 @@ function CheckoutForm({
             <div className="flex gap-3">
                 <button
                     type="submit"
-                    disabled={!stripe || isProcessing}
+                    disabled={!stripe || !elements || !isReady || isProcessing || !!loadError}
                     className="flex-1 bg-orange-600 hover:bg-orange-700 disabled:bg-gray-600 text-white px-6 py-4 rounded-lg text-lg font-semibold transition-all flex items-center justify-center gap-2"
                 >
                     {isProcessing ? (
@@ -193,10 +215,20 @@ export default function PaymentModal({
                 payload
             );
 
+            console.log('Payment intent response:', response.data);
+            if (!response.data.clientSecret) {
+                throw new Error('No client secret received from server');
+            }
             setClientSecret(response.data.clientSecret);
-        } catch (error) {
+        } catch (error: any) {
             console.error('Payment intent creation failed:', error);
-            toast.error('Failed to initialize payment');
+            let errorMessage = 'Failed to initialize payment';
+            if (error.response?.data?.message) {
+                errorMessage += `: ${error.response.data.message}`;
+            } else if (error.message) {
+                errorMessage += `: ${error.message}`;
+            }
+            toast.error(errorMessage);
             onClose();
         } finally {
             setLoading(false);
