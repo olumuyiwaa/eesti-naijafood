@@ -271,8 +271,8 @@ NEXT_PUBLIC_SITE_URL=http://localhost:3000
 
 ### Production
 ```env
-NEXT_PUBLIC_API_URL=https://api.afroflavours.com
-NEXT_PUBLIC_SITE_URL=https://afroflavours.com
+NEXT_PUBLIC_API_URL=https://api.afroflavours.co.nz
+NEXT_PUBLIC_SITE_URL=https://afroflavours.co.nz
 ```
 
 ## Performance Optimization
@@ -356,8 +356,8 @@ npm run lint     # Run ESLint
 ## Support
 
 For issues or questions:
-- Email: dev@afroflavours.com
-- Documentation: [Docs](https://docs.afroflavours.com)
+- Email: oladoyinemmanuel@gmail.com
+- Documentation: [Docs](https://docs.afroflavours.co.nz)
 
 ## License
 
@@ -365,4 +365,4 @@ MIT License
 
 ---
 
-**Built with ❤️ for Afroflavours - Taste Africa in Auckland**# afroflavours-frontend
+**Built with ❤️ for Afroflavours - Taste Africa in Auckland**# Emnac Tech

@@ -23,7 +23,7 @@ export default function AdminLogin() {
         try {
             // TODO: Implement actual authentication
             // For now, using simple check
-            if (data.email === 'admin@afroflavours.com' && data.password === 'admin123') {
+            if (data.email === 'admin@afroflavours.co.nz' && data.password === 'admin123') {
                 localStorage.setItem('adminToken', 'demo-token');
                 toast.success('Login successful!');
                 router.push('/admin/dashboard');
@@ -91,7 +91,7 @@ export default function AdminLogin() {
                     </form>
 
                     {/*<p className="text-center text-gray-500 mt-6">*/}
-                    {/*    Demo credentials: admin@afroflavours.com / admin123*/}
+                    {/*    Demo credentials: admin@afroflavours.co.nz / admin123*/}
                     {/*</p>*/}
                 </div>
             </motion.div>

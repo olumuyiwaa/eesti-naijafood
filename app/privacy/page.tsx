@@ -98,8 +98,8 @@ export default function PrivacyPage() {
                         <p className="text-gray-300 mb-6 leading-relaxed">
                             You have the right to access, update, or request deletion of your personal information. You may also
                             withdraw consent to marketing communications at any time. To exercise your rights, please contact us at
-                            <strong> <a href="mailto:info@afroflavours.com" className="hover:text-orange-500 transition-colors">
-                                info@afroflavours.com
+                            <strong> <a href="mailto:info@afroflavours.co.nz" className="hover:text-orange-500 transition-colors">
+                                info@afroflavours.co.nz
                             </a> </strong>.
                         </p>
 

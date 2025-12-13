@@ -134,7 +134,7 @@ export default function ContactPage() {
                                         <FaEnvelope className="text-3xl text-orange-500 mt-1" />
                                         <div>
                                             <h3 className="text-xl font-bold mb-1">Email</h3>
-                                            <p className="text-gray-400">{contactInfo?.email || 'info@afroflavours.com'}</p>
+                                            <p className="text-gray-400">{contactInfo?.email || 'info@afroflavours.co.nz'}</p>
                                         </div>
                                     </div>
 

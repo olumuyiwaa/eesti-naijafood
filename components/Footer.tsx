@@ -100,8 +100,8 @@ export default function Footer() {
                                 <div className="w-10 h-10 bg-orange-500/10 rounded-xl flex items-center justify-center">
                                     <FaEnvelope className="text-orange-500" />
                                 </div>
-                                <a href="mailto:info@afroflavours.com" className="hover:text-orange-500 transition-colors">
-                                    info@afroflavours.com
+                                <a href="mailto:info@afroflavours.co.nz" className="hover:text-orange-500 transition-colors">
+                                    info@afroflavours.co.nz
                                 </a>
                             </li>
                         </ul>
