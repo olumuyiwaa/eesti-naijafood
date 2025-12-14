@@ -1,4 +1,3 @@
-// app/admin/login/page.tsx
 'use client';
 
 import { useState } from 'react';
@@ -13,6 +12,8 @@ interface LoginFormData {
     password: string;
 }
 
+type LoginResponse = { token: string };
+
 export default function AdminLogin() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const router = useRouter();
@@ -21,15 +22,36 @@ export default function AdminLogin() {
     const onSubmit = async (data: LoginFormData) => {
         setIsSubmitting(true);
         try {
-            // TODO: Implement actual authentication
-            // For now, using simple check
-            if (data.email === 'admin@afroflavours.co.nz' && data.password === 'admin123') {
-                localStorage.setItem('adminToken', 'demo-token');
-                toast.success('Login successful!');
-                router.push('/admin/dashboard');
-            } else {
-                toast.error('Invalid credentials');
+            const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+            if (!baseUrl) {
+                toast.error('Missing Configuration');
+                return;
             }
+
+            const res = await fetch(`${baseUrl}/api/admin/login`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                // Backend expects { username, password }. We map email -> username here.
+                body: JSON.stringify({ username: data.email, password: data.password }),
+            });
+
+            const payload = (await res.json().catch(() => ({}))) as Partial<LoginResponse> & { message?: string };
+
+            if (!res.ok) {
+                toast.error(payload.message || 'Invalid credentials');
+                return;
+            }
+
+            if (!payload.token) {
+                toast.error('Login failed: missing token');
+                return;
+            }
+
+            // Note: localStorage is convenient but not the most secure place for JWTs.
+            localStorage.setItem('adminToken', payload.token);
+
+            toast.success('Login successful!');
+            router.push('/admin/dashboard');
         } catch (error) {
             toast.error('Login failed');
         } finally {
@@ -54,14 +76,15 @@ export default function AdminLogin() {
                 <div className="bg-gray-900 rounded-3xl p-8">
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 mb-6">
                         <div>
-                            <label className="block text-white text-lg font-semibold mb-2">Email</label>
+                            <label className="block text-white text-lg font-semibold mb-2">Email / Username</label>
                             <div className="relative">
                                 <FaUser className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" />
                                 <input
-                                    type="email"
-                                    {...register('email', { required: 'Email is required' })}
+                                    type="text"
+                                    {...register('email', { required: 'Email / username is required' })}
                                     className="w-full pl-12 pr-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-orange-500 focus:outline-none text-white"
-                                    placeholder="test@server.com"
+                                    placeholder="<ADMIN_USERNAME>"
+                                    autoComplete="username"
                                 />
                             </div>
                             {errors.email && <p className="text-red-500 mt-1">{errors.email.message}</p>}
@@ -76,6 +99,7 @@ export default function AdminLogin() {
                                     {...register('password', { required: 'Password is required' })}
                                     className="w-full pl-12 pr-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-orange-500 focus:outline-none text-white"
                                     placeholder="••••••••"
+                                    autoComplete="current-password"
                                 />
                             </div>
                             {errors.password && <p className="text-red-500 mt-1">{errors.password.message}</p>}
@@ -89,10 +113,6 @@ export default function AdminLogin() {
                             {isSubmitting ? 'Logging in...' : 'Login'}
                         </button>
                     </form>
-
-                    {/*<p className="text-center text-gray-500 mt-6">*/}
-                    {/*    Demo credentials: admin@afroflavours.co.nz / admin123*/}
-                    {/*</p>*/}
                 </div>
             </motion.div>
         </div>
