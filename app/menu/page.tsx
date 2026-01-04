@@ -378,7 +378,6 @@ export default function MenuPage() {
                     </motion.div>
                 </div>
             </section>
-
             {/* Order Online Section */}
             <section className="py-16 bg-black">
                 <div className="max-w-7xl mx-auto px-4 text-center">
