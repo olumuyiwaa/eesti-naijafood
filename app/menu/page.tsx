@@ -111,7 +111,7 @@ export default function MenuPage() {
 
                 // Create table data
                 const tableData = items.map(item => {
-                    const badges = [];
+                    const badges: string[] = [];
                     if (item.isVegetarian) badges.push('[Vegetarian]');
                     if (item.isSpicy) badges.push('[Spicy]');
                     if (item.isDishOfWeek) badges.push('[Dish of the Week]');
