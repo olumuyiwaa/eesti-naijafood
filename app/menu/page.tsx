@@ -8,6 +8,8 @@ import Image from 'next/image';
 import { FaLeaf, FaFire, FaDownload } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import Link from "next/link";
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
 
 interface MenuItem {
     id: number;
@@ -49,6 +51,7 @@ export default function MenuPage() {
             setLoading(false);
         }
     };
+
     const [dishOfTheWeek, setDishOfTheWeek] = useState<MenuItem | null>(null);
 
     useEffect(() => {
@@ -59,6 +62,112 @@ export default function MenuPage() {
             setDishOfTheWeek(specialDish || null);
         }
     }, [menu]);
+
+    const generatePDF = () => {
+        if (!menu) {
+            toast.error('Menu data not available');
+            return;
+        }
+
+        const doc = new jsPDF();
+        const pageWidth = doc.internal.pageSize.getWidth();
+
+        // Title
+        doc.setFontSize(24);
+        doc.setTextColor(234, 88, 12); // Orange color
+        doc.text('Afro Flavours Menu', pageWidth / 2, 20, { align: 'center' });
+
+        // Subtitle
+        doc.setFontSize(12);
+        doc.setTextColor(100, 100, 100);
+        doc.text('Authentic African Flavors Crafted With Love', pageWidth / 2, 28, { align: 'center' });
+
+        let yPosition = 40;
+
+        const categories = [
+            { id: 'starters', name: 'Starters' },
+            { id: 'mains', name: 'Main Courses' },
+            { id: 'sides', name: 'Sides' },
+            { id: 'desserts', name: 'Desserts' },
+            { id: 'nonAlcoholic', name: 'Soft Drinks' },
+            { id: 'alcoholic', name: 'Alcoholic Drinks' },
+        ];
+
+        categories.forEach((category) => {
+            const items = menu[category.id as keyof MenuData];
+
+            if (items && items.length > 0) {
+                // Check if we need a new page
+                if (yPosition > 250) {
+                    doc.addPage();
+                    yPosition = 20;
+                }
+
+                // Category Header
+                doc.setFontSize(16);
+                doc.setTextColor(234, 88, 12);
+                doc.text(category.name, 14, yPosition);
+                yPosition += 8;
+
+                // Create table data
+                const tableData = items.map(item => {
+                    const badges = [];
+                    if (item.isVegetarian) badges.push('[Vegetarian]');
+                    if (item.isSpicy) badges.push('[Spicy]');
+                    if (item.isDishOfWeek) badges.push('[Dish of the Week]');
+
+                    return [
+                        item.name + (badges.length > 0 ? '\n' + badges.join(' ') : ''),
+                        item.description,
+                        `${item.price.toFixed(2)}`
+                    ];
+                });
+
+                // Add table
+                autoTable(doc, {
+                    startY: yPosition,
+                    head: [['Item', 'Description', 'Price']],
+                    body: tableData,
+                    theme: 'striped',
+                    headStyles: {
+                        fillColor: [234, 88, 12],
+                        textColor: 255,
+                        fontStyle: 'bold'
+                    },
+                    styles: {
+                        fontSize: 10,
+                        cellPadding: 5,
+                    },
+                    columnStyles: {
+                        0: { cellWidth: 50 },
+                        1: { cellWidth: 90 },
+                        2: { cellWidth: 30, halign: 'right', fontStyle: 'bold' }
+                    },
+                    margin: { left: 14, right: 14 }
+                });
+
+                yPosition = (doc as any).lastAutoTable.finalY + 10;
+            }
+        });
+
+        // Footer
+        const totalPages = doc.getNumberOfPages();
+        for (let i = 1; i <= totalPages; i++) {
+            doc.setPage(i);
+            doc.setFontSize(8);
+            doc.setTextColor(150, 150, 150);
+            doc.text(
+                `Page ${i} of ${totalPages} | Afro Flavours Restaurant | www.afroflavours.com`,
+                pageWidth / 2,
+                doc.internal.pageSize.getHeight() - 10,
+                { align: 'center' }
+            );
+        }
+
+        // Save the PDF
+        doc.save('Afro-Flavours-Menu.pdf');
+        toast.success('Menu downloaded successfully!');
+    };
 
     const categories = [
         { id: 'starters', name: 'Starters', icon: '🥟' },
@@ -81,7 +190,6 @@ export default function MenuPage() {
         <div className="min-h-screen bg-black text-white pt-24">
             {/* Header */}
             <section className="relative py-16 bg-gradient-to-br from-orange-600 to-red-700 text-center overflow-hidden">
-
                 {/* Background Image */}
                 <div className="absolute inset-0 h-full">
                     <div className="absolute inset-0">
@@ -93,7 +201,6 @@ export default function MenuPage() {
                             style={{ height: "380px", width: "100%", objectFit: "cover" }}
                             priority
                         />
-
                     </div>
                 </div>
 
@@ -117,6 +224,7 @@ export default function MenuPage() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.4 }}
+                        onClick={generatePDF}
                         className="bg-white text-orange-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all flex items-center gap-2 mx-auto"
                         whileHover={{ scale: 1.05 }}
                     >
