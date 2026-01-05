@@ -3,44 +3,60 @@
 @tailwind utilities;
 
 @layer base {
+    :root {
+        --brand-orange: 249 115 22; /* Tailwind orange-500 */
+        --brand-gold: 234 179 8;   /* Tailwind yellow-500 */
+        --brand-terracotta: 153 27 27; /* Tailwind red-800 */
+    }
+
     * {
-        @apply border-border;
+        @apply border-zinc-800;
     }
 
     body {
-        @apply bg-black text-white antialiased;
+        @apply bg-[#050505] text-zinc-100 antialiased selection:bg-orange-500/30 selection:text-orange-200;
+    }
+
+    h1, h2, h3, h4 {
+        @apply tracking-tight font-bold text-white;
+    }
+}
+
+@layer components {
+    .glass-panel {
+        @apply bg-zinc-900/50 backdrop-blur-md border border-white/10;
+    }
+    
+    .btn-primary {
+        @apply px-6 py-3 bg-orange-600 hover:bg-orange-500 text-white font-medium rounded-full transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg shadow-orange-900/20;
     }
 }
 
 @layer utilities {
+    .text-gradient {
+        @apply bg-clip-text text-transparent bg-gradient-to-r from-orange-500 via-yellow-500 to-red-600;
+    }
+
     .animate-gradient {
         animation: gradient 15s ease infinite;
         background-size: 200% 200%;
     }
 
     @keyframes gradient {
-        0%, 100% {
-            background-position: 0% 50%;
-        }
-        50% {
-            background-position: 100% 50%;
-        }
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
     }
 }
 
-/* Scrollbar Styling */
+/* Custom Scrollbar - The "Chef's Kiss" */
 ::-webkit-scrollbar {
-    width: 5px;
+    width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-    @apply bg-zinc-950;
+    @apply bg-black;
 }
 
 ::-webkit-scrollbar-thumb {
-    @apply bg-orange-600 rounded-full;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    @apply bg-orange-500;
+    @apply bg-zinc-800 rounded-full border-2 border-black hover:bg-orange-600 transition-colors;
 }
