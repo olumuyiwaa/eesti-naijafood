@@ -154,14 +154,14 @@ export default function Home() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.8 }}
                         >
-                            <Link href="/bookings">
+                            <Link href="/catering">
                                 <motion.button
                                     className="group relative px-10 py-5 bg-gradient-to-r from-orange-500 to-red-600 rounded-full text-white text-lg font-bold overflow-hidden shadow-2xl shadow-orange-500/50"
                                     whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(251, 146, 60, 0.4)" }}
                                     whileTap={{ scale: 0.95 }}
                                 >
                   <span className="relative z-10 flex items-center gap-2">
-                    <FaCalendarAlt /> Book Your Table
+                    <FaCalendarAlt /> Book Our Service
                   </span>
                                     <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-red-700 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
                                 </motion.button>
@@ -207,7 +207,7 @@ export default function Home() {
                                 icon: FaCalendarAlt,
                                 title: 'Reserve Your Spot',
                                 description: 'Instant booking confirmation',
-                                link: '/bookings',
+                                link: '/catering',
                                 gradient: 'from-orange-500 to-red-500'
                             },
                             {
@@ -526,7 +526,7 @@ export default function Home() {
                         </p>
 
                         <div className="flex flex-wrap gap-6 justify-center">
-                            <Link href="/bookings">
+                            <Link href="/catering">
                                 <motion.button
                                     className="px-12 py-6 bg-gradient-to-r from-orange-500 to-red-600 rounded-full text-white text-xl font-bold shadow-2xl shadow-orange-500/50"
                                     whileHover={{ scale: 1.05, boxShadow: "0 25px 50px rgba(251, 146, 60, 0.5)" }}
