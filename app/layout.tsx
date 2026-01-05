@@ -9,8 +9,8 @@ import 'react-toastify/dist/ReactToastify.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-    title: 'Afroflavours - Authentic African Cuisine in Auckland',
-    description: 'Experience authentic African cuisine, live music, and cultural events in Auckland.',
+    title: 'Eesti-NaijaFood - Authentic African Cuisine in Estonia',
+    description: 'Experience authentic African cuisine, live music, and cultural events in Estonia.',
 };
 
 export default function RootLayout({

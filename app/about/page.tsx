@@ -20,7 +20,7 @@ export default function AboutPage() {
         {
             icon: FaGlobeAfrica,
             title: 'Authentic Experience',
-            description: 'Bringing genuine African flavors and vibes to Auckland'
+            description: 'Bringing genuine African flavors and vibes to Estonia'
         }
     ];
 
@@ -34,7 +34,7 @@ export default function AboutPage() {
                     <div className="absolute inset-0">
                         <Image
                             src="/images/background.jpg"
-                            alt="Afro Flavours Background"
+                            alt="Eesti NaijaFood Background"
                             width={500}
                             height={300}
                             style={{ height: "380px", width: "100%", objectFit: "cover" }}
@@ -74,9 +74,9 @@ export default function AboutPage() {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                         >
-                            <h2 className="text-5xl font-bold mb-6">Welcome to Afroflavours</h2>
+                            <h2 className="text-5xl font-bold mb-6">Welcome to Eesti-NaijaFood</h2>
                             <p className="text-xl text-gray-300 mb-4 leading-relaxed">
-                                Afroflavours was born from a passion to share the incredible diversity of African cuisine with Auckland.
+                                Eesti-NaijaFood was born from a passion to share the incredible diversity of African cuisine with Estonia.
                                 Our journey began with a simple mission: to create a space where authentic African flavors meet modern
                                 dining experiences.
                             </p>
@@ -86,7 +86,7 @@ export default function AboutPage() {
                                 African hospitality.
                             </p>
                             <p className="text-xl text-gray-300 leading-relaxed">
-                                Today, Afroflavours is more than a restaurant—it's a cultural hub where food, music, and community
+                                Today, Eesti-NaijaFood is more than a restaurant—it's a cultural hub where food, music, and community
                                 come together to celebrate the soul of Africa.
                             </p>
                         </motion.div>
@@ -99,7 +99,7 @@ export default function AboutPage() {
                         >
                             <Image
                                 src="/images/about-story.webp"
-                                alt="Afroflavours Story"
+                                alt="Eesti-NaijaFood Story"
                                 fill
                                 className="object-cover"
                             />
@@ -149,7 +149,7 @@ export default function AboutPage() {
                     >
                         <h2 className="text-5xl font-bold mb-8">Our Mission</h2>
                         <p className="text-2xl text-gray-300 leading-relaxed">
-                            To be Auckland's premier destination for authentic African cuisine and cultural experiences,
+                            To be Estonia's premier destination for authentic African cuisine and cultural experiences,
                             creating memorable moments through exceptional food, vibrant entertainment, and genuine hospitality
                             that honors the rich traditions of the African continent.
                         </p>

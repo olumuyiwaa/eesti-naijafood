@@ -1,6 +1,6 @@
-# Afroflavours Frontend - Next.js
+# Eesti-NaijaFood Frontend - Next.js
 
-Modern, responsive frontend for Afroflavours African restaurant built with Next.js 14, TypeScript, and Tailwind CSS.
+Modern, responsive frontend for Eesti-NaijaFood African restaurant built with Next.js 14, TypeScript, and Tailwind CSS.
 
 ## Features
 
@@ -60,7 +60,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 ## Project Structure
 
 ```
-afroflavours-frontend/
+Eesti-NaijaFood-frontend/
 ├── app/
 │   ├── page.tsx                    # Home page
 │   ├── layout.tsx                  # Root layout
@@ -271,8 +271,8 @@ NEXT_PUBLIC_SITE_URL=http://localhost:3000
 
 ### Production
 ```env
-NEXT_PUBLIC_API_URL=https://api.afroflavours.co.nz
-NEXT_PUBLIC_SITE_URL=https://afroflavours.co.nz
+NEXT_PUBLIC_API_URL=https://api.Eesti-NaijaFood.co.nz
+NEXT_PUBLIC_SITE_URL=https://Eesti-NaijaFood.co.nz
 ```
 
 ## Performance Optimization
@@ -357,7 +357,7 @@ npm run lint     # Run ESLint
 
 For issues or questions:
 - Email: oladoyinemmanuel@gmail.com
-- Documentation: [Docs](https://docs.afroflavours.co.nz)
+- Documentation: [Docs](https://docs.Eesti-NaijaFood.co.nz)
 
 ## License
 
@@ -365,4 +365,4 @@ MIT License
 
 ---
 
-**Built with ❤️ for Afroflavours - Taste Africa in Auckland**# Emnac Tech
+**Built with ❤️ for Eesti-NaijaFood - Taste Africa in Auckland**# Emnac Tech

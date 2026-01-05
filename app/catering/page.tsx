@@ -32,17 +32,23 @@ interface Package {
     includes: string[];
 }
 
+interface GalleryImage {
+    url: string;
+    publicId: string;
+}
 export default function CateringPage() {
     const [packages, setPackages] = useState<Package[]>([]);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [quoteSuccess, setQuoteSuccess] = useState(false);
     const [quoteRef, setQuoteRef] = useState('');
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
+    const [images, setImages] = useState<GalleryImage[]>([]);
 
     const { register, handleSubmit, formState: { errors }, reset } = useForm<CateringFormData>();
 
     useEffect(() => {
         fetchPackages();
+        fetchGallery();
     }, []);
 
     const fetchPackages = async () => {
@@ -51,6 +57,15 @@ export default function CateringPage() {
             setPackages(response.data.packages);
         } catch (error) {
             console.error('Failed to fetch packages:', error);
+        }
+    };
+
+    const fetchGallery = async () => {
+        try {
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/gallery`);
+            setImages(response.data.images || []);
+        } catch (error) {
+            console.error('Error fetching images:', error);
         }
     };
 
@@ -134,7 +149,7 @@ export default function CateringPage() {
                     <div className="absolute inset-0">
                         <Image
                             src="/images/background.jpg"
-                            alt="Afro Flavours Background"
+                            alt="Eesti NaijaFood Background"
                             width={500}
                             height={300}
                             style={{ height: "380px", width: "100%", objectFit: "cover" }}
@@ -243,6 +258,47 @@ export default function CateringPage() {
                                 <button className="w-full bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-full font-semibold transition-all">
                                     Request Quote
                                 </button>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+
+            {/* Gallery */}
+            <section className="py-20 bg-black">
+                <div className="max-w-7xl mx-auto px-4">
+                    <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="text-5xl font-bold text-center mb-16"
+                    >
+                        Experience Gallery
+                    </motion.h2>
+
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        {images.map((item, index) => (
+                            <motion.div
+                                key={item.publicId}
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.05 }}
+                                className="relative h-64 rounded-2xl overflow-hidden cursor-pointer group"
+                            >
+                                <Image
+                                    src={item.url}
+                                    alt=""
+                                    fill
+                                    className="object-cover group-hover:scale-110 transition-transform duration-300"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                                    {/* <div>
+                                        <h3 className="font-bold">{item.title}</h3>
+                                        <p className="text-sm text-gray-300">{new Date(item.date).toLocaleDateString()}</p>
+                                    </div> */}
+                                </div>
                             </motion.div>
                         ))}
                     </div>

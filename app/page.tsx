@@ -27,13 +27,21 @@ interface MenuData {
     nonAlcoholic: MenuItem[];
     alcoholic: MenuItem[];
 }
+
+interface GalleryImage {
+    url: string;
+    publicId: string;
+}
+
 export default function Home() {
     const [menu, setMenu] = useState<MenuData | null>(null);
     const [activeCategory, setActiveCategory] = useState('starters');
+        const [images, setImages] = useState<GalleryImage[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         fetchMenu();
+        fetchGallery();
     }, []);
 
     const fetchMenu = async () => {
@@ -49,6 +57,14 @@ export default function Home() {
     };
     const [dishOfTheWeek, setDishOfTheWeek] = useState<MenuItem | null>(null);
 
+    const fetchGallery = async () => {
+        try {
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/gallery`);
+            setImages(response.data.images || []);
+        } catch (error) {
+            console.error('Error fetching images:', error);
+        }
+    };
     useEffect(() => {
         if (menu) {
             // Flatten all categories into one array and find the dish of the week
@@ -65,7 +81,7 @@ export default function Home() {
                 <div className="absolute inset-0">
                     <Image
                         src="/images/hero-bg.png"
-                        alt="Afro Flavours Background"
+                        alt="Eesti NaijaFood Background"
                         fill
                         className="object-cover"
                         priority
@@ -109,7 +125,7 @@ export default function Home() {
                             transition={{ duration: 0.8, delay: 0.2 }}
                         >
               <span className="bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 bg-clip-text text-transparent">
-                Afro Flavours
+                Eesti NaijaFood
               </span>
                         </motion.h1>
 
@@ -185,7 +201,7 @@ export default function Home() {
             {/* Features Grid */}
             <section className="py-32 relative">
                 <div className="max-w-7xl mx-auto px-4">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {[
                             {
                                 icon: FaCalendarAlt,
@@ -208,13 +224,6 @@ export default function Home() {
                                 link: '/menu',
                                 gradient: 'from-pink-500 to-purple-500'
                             },
-                            {
-                                icon: FaMusic,
-                                title: 'Live Entertainment',
-                                description: 'Thu-Sun, 9pm-11:30pm',
-                                link: '/african-experience',
-                                gradient: 'from-purple-500 to-indigo-500'
-                            }
                         ].map((item, index) => (
                             <Link href={item.link} key={index}>
                                 <motion.div
@@ -271,13 +280,13 @@ export default function Home() {
                             </h2>
 
                             <p className="text-xl text-white/70 mb-6 leading-relaxed">
-                                Afroflavours isn't just a restaurant—it's a journey. Every dish tells a story, every flavor
+                                Eesti-NaijaFood isn't just a restaurant—it's a journey. Every dish tells a story, every flavor
                                 carries tradition, and every meal brings people together.
                             </p>
 
                             <p className="text-lg text-white/60 mb-8 leading-relaxed">
-                                From our signature Jollof Rice to live Afrobeat nights, we're bringing the vibrant energy
-                                and authentic taste of West Africa to Auckland.
+                                From our signature Jollof Rice to Top quality baked cakes, we're bringing the vibrant energy
+                                and authentic taste of West Africa to Estonia.
                             </p>
 
                             <div className="flex flex-wrap gap-4">
@@ -344,64 +353,6 @@ export default function Home() {
                             </motion.div>
                         </motion.div>
                     </div>
-                </div>
-            </section>
-
-            {/* African Experience - Bold Section */}
-            <section className="relative py-32 group-happy-black-hipsters-enjoying-rooftop-party_441990-40341.jpgflex items-center justify-center overflow-hidden">
-                {/* Background Image */}
-                <div className="absolute inset-0">
-                    <Image
-                        src="/images/experience1.jpg"
-                        alt="Afro Flavours Background"
-                        fill
-                        className="object-cover"
-                        priority
-                    />
-                </div>
-                <div className="absolute inset-0 bg-black/50" />
-
-                {/* Animated Background Gradient */}
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(251,146,60,0.1),transparent_50%)]" />
-
-                {/* Floating Elements */}
-                <div className="max-w-7xl mx-auto px-4 relative z-10">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-center"
-                    >
-                        <motion.div
-                            animate={{ rotate: [0, 10, -10, 0], scale: [1, 1.1, 1] }}
-                            transition={{ duration: 2, repeat: Infinity }}
-                        >
-                            <FaMusic className="text-8xl text-white mx-auto mb-8 drop-shadow-2xl" />
-                        </motion.div>
-
-                        <h2 className="text-6xl md:text-8xl font-black text-white mb-6">
-                            The African Experience
-                        </h2>
-
-                        <p className="text-2xl md:text-3xl text-white/90 mb-4 font-light">
-                            Thursday - Sunday | 9:00 PM - 11:30 PM
-                        </p>
-
-                        <p className="text-xl text-white/80 max-w-3xl mx-auto mb-12 leading-relaxed">
-                            Live DJs, Afrobeat rhythms, traditional drumming, and an atmosphere that transports
-                            you straight to the heart of Africa. This isn't just dinner—it's an experience.
-                        </p>
-
-                        <Link href="/african-experience">
-                            <motion.button
-                                className="px-12 py-6 bg-white text-orange-600 rounded-full text-xl font-black shadow-2xl hover:shadow-white/50 transition-all"
-                                whileHover={{ scale: 1.05, y: -5 }}
-                                whileTap={{ scale: 0.95 }}
-                            >
-                                Experience the Magic →
-                            </motion.button>
-                        </Link>
-                    </motion.div>
                 </div>
             </section>
 
@@ -481,6 +432,46 @@ export default function Home() {
                 </div>
             </section>
 
+            {/* Gallery */}
+            <section className="py-20 bg-black">
+                <div className="max-w-7xl mx-auto px-4">
+                    <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="text-5xl font-bold text-center mb-16"
+                    >
+                        Experience Gallery
+                    </motion.h2>
+
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        {images.map((item, index) => (
+                            <motion.div
+                                key={item.publicId}
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.05 }}
+                                className="relative h-64 rounded-2xl overflow-hidden cursor-pointer group"
+                            >
+                                <Image
+                                    src={item.url}
+                                    alt=""
+                                    fill
+                                    className="object-cover group-hover:scale-110 transition-transform duration-300"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                                    {/* <div>
+                                        <h3 className="font-bold">{item.title}</h3>
+                                        <p className="text-sm text-gray-300">{new Date(item.date).toLocaleDateString()}</p>
+                                    </div> */}
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
             {/* Testimonials Section */}
               <section className="py-20 bg-black">
                 <div className="max-w-7xl mx-auto px-4">
@@ -509,7 +500,7 @@ export default function Home() {
                 <div className="absolute inset-0">
                     <Image
                         src="/images/experience.jpg"
-                        alt="Afro Flavours Background"
+                        alt="Eesti NaijaFood Background"
                         fill
                         className="object-cover"
                         priority

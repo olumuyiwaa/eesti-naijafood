@@ -37,9 +37,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
     const navigation = [
         { name: 'Dashboard', href: '/admin/dashboard', icon: FaHome },
-        { name: 'Bookings', href: '/admin/bookings', icon: FaCalendarAlt },
         { name: 'Menu', href: '/admin/menu', icon: FaUtensils },
-        { name: 'Events', href: '/admin/events', icon: FaMusic },
         { name: 'Catering', href: '/admin/catering', icon: FaTruck },
         { name: 'Payments', href: '/admin/payments', icon: FaDollarSign },
         { name: 'Contact Messages', href: '/admin/messages', icon: FaEnvelope },
@@ -59,7 +57,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                     <div className="flex items-center justify-between mb-8">
                         {isSidebarOpen && (
                             <h1 className="text-2xl font-bold bg-gradient-to-r from-orange-400 to-red-600 bg-clip-text text-transparent">
-                                Afroflavours
+                                Eesti-NaijaFood
                             </h1>
                         )}
                         <button

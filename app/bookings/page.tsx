@@ -195,7 +195,7 @@ export default function BookingsPage() {
                     <div className="absolute inset-0">
                         <Image
                             src="/images/hero-bg.png"
-                            alt="Afro Flavours Background"
+                            alt="Eesti NaijaFood Background"
                             width={500}
                             height={300}
                             style={{ height: "680px", width: "100%", objectFit: "cover" }}

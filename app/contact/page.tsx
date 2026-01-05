@@ -67,7 +67,7 @@ export default function ContactPage() {
                     <div className="absolute inset-0">
                         <Image
                             src="/images/background.jpg"
-                            alt="Afro Flavours Background"
+                            alt="Eesti NaijaFood Background"
                             width={500}
                             height={300}
                             style={{ height: "380px", width: "100%", objectFit: "cover" }}
@@ -117,7 +117,7 @@ export default function ContactPage() {
                                             <h3 className="text-xl font-bold mb-1">Address</h3>
                                             <p className="text-gray-400">
                                                 {contactInfo?.address.street || 'TBC'}<br />
-                                                {contactInfo?.address.city || 'Auckland'}, {contactInfo?.address.country || 'New Zealand'}
+                                                {contactInfo?.address.city || 'Tallin'}, {contactInfo?.address.country || 'Estonia'}
                                             </p>
                                         </div>
                                     </div>
@@ -134,7 +134,7 @@ export default function ContactPage() {
                                         <FaEnvelope className="text-3xl text-orange-500 mt-1" />
                                         <div>
                                             <h3 className="text-xl font-bold mb-1">Email</h3>
-                                            <p className="text-gray-400">{contactInfo?.email || 'info@afroflavours.co.nz'}</p>
+                                            <p className="text-gray-400">{contactInfo?.email || 'info@eestifood.com'}</p>
                                         </div>
                                     </div>
 
@@ -145,9 +145,7 @@ export default function ContactPage() {
                                             <div className="text-gray-400 space-y-1">
                                                 <p>Mon - Wed: 11:00 AM - 10:00 PM</p>
                                                 <p>Thu - Sun: 11:00 AM - 11:30 PM</p>
-                                                <p className="text-orange-500 font-semibold mt-2">
-                                                    African Experience: Thu-Sun, 9:00 PM - 11:30 PM
-                                                </p>
+
                                             </div>
                                         </div>
                                     </div>

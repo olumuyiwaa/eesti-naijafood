@@ -75,7 +75,7 @@ export default function MenuPage() {
         // Title
         doc.setFontSize(24);
         doc.setTextColor(234, 88, 12); // Orange color
-        doc.text('Afro Flavours Menu', pageWidth / 2, 20, { align: 'center' });
+        doc.text('Eesti NaijaFood Menu', pageWidth / 2, 20, { align: 'center' });
 
         // Subtitle
         doc.setFontSize(12);
@@ -157,7 +157,7 @@ export default function MenuPage() {
             doc.setFontSize(8);
             doc.setTextColor(150, 150, 150);
             doc.text(
-                `Page ${i} of ${totalPages} | Afro Flavours Restaurant | www.afroflavours.com`,
+                `Page ${i} of ${totalPages} | Eesti-NaijaFood | www.eestifoods.com`,
                 pageWidth / 2,
                 doc.internal.pageSize.getHeight() - 10,
                 { align: 'center' }
@@ -195,7 +195,7 @@ export default function MenuPage() {
                     <div className="absolute inset-0">
                         <Image
                             src="/images/background.jpg"
-                            alt="Afro Flavours Background"
+                            alt="Eesti NaijaFood Background"
                             width={500}
                             height={300}
                             style={{ height: "380px", width: "100%", objectFit: "cover" }}

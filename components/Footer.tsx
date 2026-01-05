@@ -15,11 +15,11 @@ export default function Footer() {
                     <div>
                         <h3 className="text-3xl font-black mb-4">
               <span className="bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">
-                Afroflavours
+                Eesti-NaijaFood
               </span>
                         </h3>
                         <p className="text-white/60 mb-6 leading-relaxed">
-                            Bringing the soul of Africa to Auckland through authentic cuisine, vibrant music, and unforgettable experiences.
+                            Bringing the soul of Africa to Estonia through authentic cuisine, vibrant music, and unforgettable experiences.
                         </p>
                         <div className="flex gap-3">
                             {[
@@ -46,7 +46,7 @@ export default function Footer() {
                     <div>
                         <h4 className="text-xl font-bold mb-6 text-white">Quick Links</h4>
                         <ul className="space-y-3">
-                            {['Menu', 'Bookings', 'Catering', 'African Experience', 'About', 'Contact'].map((link) => (
+                            {['Menu', 'Bookings', 'Catering', 'About', 'Contact'].map((link) => (
                                 <li key={link}>
                                     <Link href={`/${link.toLowerCase().replace(' ', '-')}`}>
                     <span className="text-white/60 hover:text-orange-500 transition-colors cursor-pointer flex items-center gap-2">
@@ -71,10 +71,6 @@ export default function Footer() {
                                 <span>Thu - Sun</span>
                                 <span className="font-semibold">11am - 11:30pm</span>
                             </div>
-                            <div className="mt-4 p-4 bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/20 rounded-2xl">
-                                <p className="text-orange-400 font-bold mb-1">African Experience</p>
-                                <p className="text-sm">Thu - Sun: 9pm - 11:30pm</p>
-                            </div>
                         </div>
                     </div>
 
@@ -86,7 +82,7 @@ export default function Footer() {
                                 <div className="w-10 h-10 bg-orange-500/10 rounded-xl flex items-center justify-center flex-shrink-0">
                                     <FaMapMarkerAlt className="text-orange-500" />
                                 </div>
-                                <span>Auckland, New Zealand</span>
+                                <span>Tallin, Estonia</span>
                             </li>
                             <li className="flex items-center gap-3">
                                 <div className="w-10 h-10 bg-orange-500/10 rounded-xl flex items-center justify-center">
@@ -100,8 +96,8 @@ export default function Footer() {
                                 <div className="w-10 h-10 bg-orange-500/10 rounded-xl flex items-center justify-center">
                                     <FaEnvelope className="text-orange-500" />
                                 </div>
-                                <a href="mailto:info@afroflavours.co.nz" className="hover:text-orange-500 transition-colors">
-                                    info@afroflavours.co.nz
+                                <a href="mailto:info@eestifood.com" className="hover:text-orange-500 transition-colors">
+                                    info@eestifood.com
                                 </a>
                             </li>
                         </ul>
@@ -137,7 +133,7 @@ export default function Footer() {
                 <div className="pt-8 border-t border-white/5">
                     <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-white/40 text-sm">
                         <p className="flex items-center gap-2">
-                            © 2025 Afroflavours. Made with <FaHeart className="text-red-500" /> in Auckland
+                            © 2025 Eesti-NaijaFood. Made with <FaHeart className="text-red-500" /> in Estonia
                         </p>
                         <div className="flex gap-6">
                             <Link href="/privacy" className="hover:text-orange-500 transition-colors">Privacy Policy</Link>

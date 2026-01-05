@@ -68,7 +68,7 @@ export default function AdminLogin() {
             >
                 <div className="text-center mb-8">
                     <h1 className="text-5xl font-bold bg-gradient-to-r from-orange-400 to-red-600 bg-clip-text text-transparent mb-2">
-                        Afroflavours
+                        Eesti-NaijaFood
                     </h1>
                     <p className="text-2xl text-white">Admin Portal</p>
                 </div>

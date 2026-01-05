@@ -20,7 +20,6 @@ export default function Navbar() {
     const navLinks = [
         { name: 'Home', href: '/' },
         { name: 'Menu', href: '/menu' },
-        { name: 'African Experience', href: '/african-experience' },
         { name: 'Catering', href: '/catering' },
         { name: 'About', href: '/about' },
         { name: 'Contact', href: '/contact' },
@@ -46,7 +45,7 @@ export default function Navbar() {
                         >
                             <h1 className="text-3xl md:text-4xl font-black">
                 <span className="bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 bg-clip-text text-transparent">
-                  Afroflavours
+                  Eesti-NaijaFood
                 </span>
                             </h1>
                         </motion.div>
@@ -65,7 +64,7 @@ export default function Navbar() {
                                 </motion.span>
                             </Link>
                         ))}
-
+                    {/*
                         <Link href="/bookings">
                             <motion.button
                                 className="relative px-8 py-3 bg-gradient-to-r from-orange-500 to-red-600 rounded-full text-white font-bold overflow-hidden group shadow-lg shadow-orange-500/30"
@@ -76,6 +75,7 @@ export default function Navbar() {
                                 <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-red-700 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
                             </motion.button>
                         </Link>
+                        */}
 
                         <a href="tel:+64211234567">
                             <motion.button
@@ -87,7 +87,7 @@ export default function Navbar() {
                         </a>
                     </div>
 
-                    {/* Mobile Menu Button */}
+                    {/* Mobile Menu Button*/}
                     <motion.button
                         className="lg:hidden p-3 bg-white/5 backdrop-blur border border-white/10 rounded-xl"
                         onClick={() => setIsOpen(!isOpen)}
@@ -121,6 +121,7 @@ export default function Navbar() {
                                             </motion.span>
                                         </Link>
                                     ))}
+                                {/*
                                     <Link href="/bookings">
                                         <motion.button
                                             initial={{ opacity: 0, y: 20 }}
@@ -132,6 +133,7 @@ export default function Navbar() {
                                             Book Now
                                         </motion.button>
                                     </Link>
+                                    */}
                                 </div>
                             </div>
                         </motion.div>

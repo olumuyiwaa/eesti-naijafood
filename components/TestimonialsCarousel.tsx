@@ -32,14 +32,6 @@ export default function TestimonialsCarousel() {
                 visitDate: '2025-11-10'
             },
             {
-                id: 2,
-                name: 'John K.',
-                rating: 5,
-                title: 'Best Night Out in Auckland',
-                comment: 'Came for the Afrobeat night and was blown away. Great food, amazing music, and the staff were so welcoming. This is THE place to experience African culture.',
-                visitDate: '2025-11-08'
-            },
-            {
                 id: 3,
                 name: 'Aisha T.',
                 rating: 5,
@@ -47,14 +39,6 @@ export default function TestimonialsCarousel() {
                 comment: 'As someone from West Africa, this place brings back wonderful memories. The egusi soup is authentic and delicious. Finally found a place that tastes like home!',
                 visitDate: '2025-11-05'
             },
-            {
-                id: 4,
-                name: 'Michael R.',
-                rating: 4,
-                title: 'Fantastic Experience',
-                comment: 'The live drumming session on Sunday was incredible. Food was delicious, service was excellent. A must-visit for anyone who loves African cuisine.',
-                visitDate: '2025-11-03'
-            }
         ]);
     }, []);
 
