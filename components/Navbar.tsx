@@ -3,11 +3,16 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaBars, FaTimes, FaPhone ,FaShoppingCart} from 'react-icons/fa';
+import { FaBars, FaTimes, FaPhone, FaShoppingCart } from 'react-icons/fa';
+import { useCart } from '@/context/CartContext';
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+
+    // ✅ Move the hook call INSIDE the component
+    const { getItemCount } = useCart();
+    const itemCount = getItemCount();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -45,9 +50,9 @@ export default function Navbar() {
                             whileHover={{ scale: 1.05 }}
                         >
                             <h1 className="text-3xl md:text-4xl font-black">
-                <span className="bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 bg-clip-text text-transparent">
-                  Eesti-NaijaFood
-                </span>
+                                <span className="bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 bg-clip-text text-transparent">
+                                    Eesti-NaijaFood
+                                </span>
                             </h1>
                         </motion.div>
                     </Link>
@@ -65,26 +70,23 @@ export default function Navbar() {
                                 </motion.span>
                             </Link>
                         ))}
-                    {/*
-                        <Link href="/bookings">
-                            <motion.button
-                                className="relative px-8 py-3 bg-gradient-to-r from-orange-500 to-red-600 rounded-full text-white font-bold overflow-hidden group shadow-lg shadow-orange-500/30"
-                                whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(251, 146, 60, 0.4)" }}
-                                whileTap={{ scale: 0.95 }}
-                            >
-                                <span className="relative z-10">Book Now</span>
-                                <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-red-700 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
-                            </motion.button>
-                        </Link>
-                        */}
-
 
                         <a href="/cart">
                             <motion.button
-                                className="p-3 bg-white/5 backdrop-blur border border-white/10 rounded-full hover:bg-white/10 transition-all"
+                                className="p-3 bg-white/5 backdrop-blur border border-white/10 rounded-full hover:bg-white/10 transition-all relative"
                                 whileHover={{ scale: 1.1 }}
                             >
                                 <FaShoppingCart className="text-orange-500" />
+
+                                {itemCount > 0 && (
+                                    <motion.span
+                                        initial={{ scale: 0 }}
+                                        animate={{ scale: 1 }}
+                                        className="absolute -top-1 -right-1 bg-orange-600 text-white text-[10px] font-bold h-5 w-5 flex items-center justify-center rounded-full border-2 border-black"
+                                    >
+                                        {itemCount}
+                                    </motion.span>
+                                )}
                             </motion.button>
                         </a>
 
@@ -132,19 +134,6 @@ export default function Navbar() {
                                             </motion.span>
                                         </Link>
                                     ))}
-                                {/*
-                                    <Link href="/bookings">
-                                        <motion.button
-                                            initial={{ opacity: 0, y: 20 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            transition={{ delay: 0.6 }}
-                                            className="w-full bg-gradient-to-r from-orange-500 to-red-600 text-white px-6 py-4 rounded-full font-bold shadow-lg"
-                                            onClick={() => setIsOpen(false)}
-                                        >
-                                            Book Now
-                                        </motion.button>
-                                    </Link>
-                                    */}
                                 </div>
                             </div>
                         </motion.div>
