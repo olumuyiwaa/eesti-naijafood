@@ -198,65 +198,6 @@ export default function Home() {
                 </motion.div>
             </section>
 
-            {/* Features Grid */}
-            <section className="py-32 relative">
-                <div className="max-w-7xl mx-auto px-4">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {[
-                            {
-                                icon: FaCalendarAlt,
-                                title: 'Reserve Your Spot',
-                                description: 'Instant booking confirmation',
-                                link: '/catering',
-                                gradient: 'from-orange-500 to-red-500'
-                            },
-                            {
-                                icon: FaUtensils,
-                                title: 'Authentic Flavors',
-                                description: 'Traditional African cuisine',
-                                link: '/menu',
-                                gradient: 'from-red-500 to-pink-500'
-                            },
-                            {
-                                icon: FaTruck,
-                                title: 'Delivery Available',
-                                description: 'Order via DoorDash & Uber Eats',
-                                link: '/menu',
-                                gradient: 'from-pink-500 to-purple-500'
-                            },
-                        ].map((item, index) => (
-                            <Link href={item.link} key={index}>
-                                <motion.div
-                                    initial={{ opacity: 0, y: 30 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: index * 0.1 }}
-                                    whileHover={{ y: -10, scale: 1.02 }}
-                                    className="group relative bg-gradient-to-br from-zinc-900 to-zinc-950 p-8 rounded-3xl cursor-pointer overflow-hidden border border-white/5 hover:border-white/20 transition-all"
-                                >
-                                    <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-10 transition-opacity`} />
-
-                                    <div className={`w-16 h-16 bg-gradient-to-br ${item.gradient} rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-orange-500/20 group-hover:shadow-orange-500/40 transition-all group-hover:scale-110`}>
-                                        <item.icon className="text-2xl text-white" />
-                                    </div>
-
-                                    <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-orange-400 transition-colors">
-                                        {item.title}
-                                    </h3>
-                                    <p className="text-white/60 group-hover:text-white/80 transition-colors">
-                                        {item.description}
-                                    </p>
-
-                                    <div className="absolute top-4 right-4 text-white/20 group-hover:text-orange-500/50 transition-all transform group-hover:translate-x-1">
-                                        →
-                                    </div>
-                                </motion.div>
-                            </Link>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
             {/* About Section - Two Column */}
             <section className="py-32 relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-b from-black via-orange-950/10 to-black" />
@@ -472,28 +413,6 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* Testimonials Section */}
-              <section className="py-20 bg-black">
-                <div className="max-w-7xl mx-auto px-4">
-                  <motion.h2
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="text-5xl font-bold text-center mb-16"
-                  >
-                    What Our Customers Say
-                  </motion.h2>
-                  <TestimonialsCarousel />
-                  <div className="text-center mt-12">
-                    <Link href="/reviews">
-                      <button className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all">
-                        Read More Reviews
-                      </button>
-                    </Link>
-                  </div>
-                </div>
-              </section>
-
             {/* Final CTA */}
             <section className="py-32 relative overflow-hidden">
                 {/* Background Image */}
@@ -512,39 +431,81 @@ export default function Home() {
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(251,146,60,0.1),transparent_50%)]" />
 
                 <div className="max-w-5xl mx-auto px-4 text-center relative z-10">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {[
+                            {
+                                icon: FaCalendarAlt,
+                                title: 'Reserve Your Spot',
+                                description: 'Instant booking confirmation',
+                                link: '/catering',
+                                gradient: 'from-orange-500 to-red-500'
+                            },
+                            {
+                                icon: FaUtensils,
+                                title: 'Authentic Flavors',
+                                description: 'Traditional African cuisine',
+                                link: '/menu',
+                                gradient: 'from-red-500 to-pink-500'
+                            },
+                            {
+                                icon: FaTruck,
+                                title: 'Delivery Available',
+                                description: 'Order via DoorDash & Uber Eats',
+                                link: '/menu',
+                                gradient: 'from-pink-500 to-purple-500'
+                            },
+                        ].map((item, index) => (
+                            <Link href={item.link} key={index}>
+                                <motion.div
+                                    initial={{ opacity: 0, y: 30 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: index * 0.1 }}
+                                    whileHover={{ y: -10, scale: 1.02 }}
+                                    className="group relative bg-gradient-to-br from-zinc-900 to-zinc-950 p-8 rounded-3xl cursor-pointer overflow-hidden border border-white/5 hover:border-white/20 transition-all"
+                                >
+                                    <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-10 transition-opacity`} />
+
+                                    <div className={`w-16 h-16 bg-gradient-to-br ${item.gradient} rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-orange-500/20 group-hover:shadow-orange-500/40 transition-all group-hover:scale-110`}>
+                                        <item.icon className="text-2xl text-white" />
+                                    </div>
+
+                                    <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-orange-400 transition-colors">
+                                        {item.title}
+                                    </h3>
+                                    <p className="text-white/60 group-hover:text-white/80 transition-colors">
+                                        {item.description}
+                                    </p>
+
+                                    <div className="absolute top-4 right-4 text-white/20 group-hover:text-orange-500/50 transition-all transform group-hover:translate-x-1">
+                                        →
+                                    </div>
+                                </motion.div>
+                            </Link>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Testimonials Section */}
+            <section className="py-20 bg-black">
+                <div className="max-w-7xl mx-auto px-4">
+                    <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
+                        className="text-5xl font-bold text-center mb-16"
                     >
-                        <h2 className="text-5xl md:text-7xl font-black text-white mb-8 leading-tight">
-                            Ready to <span className="bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">Experience Africa?</span>
-                        </h2>
-
-                        <p className="text-2xl text-white/70 mb-12">
-                            Book your table now or order online. The flavors of Africa are waiting.
-                        </p>
-
-                        <div className="flex flex-wrap gap-6 justify-center">
-                            <Link href="/catering">
-                                <motion.button
-                                    className="px-12 py-6 bg-gradient-to-r from-orange-500 to-red-600 rounded-full text-white text-xl font-bold shadow-2xl shadow-orange-500/50"
-                                    whileHover={{ scale: 1.05, boxShadow: "0 25px 50px rgba(251, 146, 60, 0.5)" }}
-                                >
-                                    Make a Reservation
-                                </motion.button>
-                            </Link>
-
-                            <Link href="/catering">
-                                <motion.button
-                                    className="px-12 py-6 bg-white/5 backdrop-blur border-2 border-white/20 rounded-full text-white text-xl font-bold hover:bg-white/10 transition-all"
-                                    whileHover={{ scale: 1.05, borderColor: "rgba(255,255,255,0.4)" }}
-                                >
-                                    Catering Services
-                                </motion.button>
-                            </Link>
-                        </div>
-                    </motion.div>
+                        What Our Customers Say
+                    </motion.h2>
+                    <TestimonialsCarousel />
+                    <div className="text-center mt-12">
+                        <Link href="/reviews">
+                            <button className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all">
+                                Read More Reviews
+                            </button>
+                        </Link>
+                    </div>
                 </div>
             </section>
         </div>

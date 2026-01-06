@@ -10,6 +10,8 @@ import { toast } from 'react-toastify';
 import Link from "next/link";
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
+import { useCart } from '@/context/CartContext';
+
 
 interface MenuItem {
     id: number;
@@ -32,6 +34,7 @@ interface MenuData {
 }
 
 export default function MenuPage() {
+    const { addToCart } = useCart();
     const [menu, setMenu] = useState<MenuData | null>(null);
     const [activeCategory, setActiveCategory] = useState('starters');
     const [loading, setLoading] = useState(true);
@@ -292,9 +295,13 @@ export default function MenuPage() {
                     <span className="text-3xl font-bold text-orange-500">
                       ${item.price.toFixed(2)}
                     </span>
-                                        <button className="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-full font-semibold transition-all">
-                                            Order
+                                        <button
+                                            onClick={() => addToCart(item)}
+                                            className="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-full font-semibold transition-all"
+                                        >
+                                            Add To Cart
                                         </button>
+
                                     </div>
                                 </div>
                             </motion.div>
@@ -362,12 +369,13 @@ export default function MenuPage() {
                                     </span>
                                     </div>
 
-                                    <Link href="/menu">
+                                    <Link href="#">
                                         <motion.button
+                                            onClick={() => addToCart(dishOfTheWeek)}
                                             className="px-10 py-5 bg-gradient-to-r from-orange-500 to-red-600 rounded-full text-white text-lg font-bold shadow-lg shadow-orange-500/30 w-fit"
                                             whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(251, 146, 60, 0.4)" }}
                                         >
-                                            Order Now →
+                                            Add To Cart →
                                         </motion.button>
                                     </Link>
                                 </div>
@@ -376,29 +384,6 @@ export default function MenuPage() {
                             <p className="text-xl text-gray-200">No Dish of the Week available.</p>
                         )}
                     </motion.div>
-                </div>
-            </section>
-            {/* Order Online Section */}
-            <section className="py-16 bg-black">
-                <div className="max-w-7xl mx-auto px-4 text-center">
-                    <h2 className="text-5xl font-bold mb-8">Order for Takeaway</h2>
-                    <p className="text-xl text-gray-400 mb-8">
-                        Craving African flavors at home? Order through our delivery partners!
-                    </p>
-                    <div className="flex flex-wrap gap-6 justify-center">
-                        <motion.button
-                            whileHover={{ scale: 1.05 }}
-                            className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all"
-                        >
-                            Order on DoorDash
-                        </motion.button>
-                        <motion.button
-                            whileHover={{ scale: 1.05 }}
-                            className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all"
-                        >
-                            Order on Uber Eats
-                        </motion.button>
-                    </div>
                 </div>
             </section>
         </div>

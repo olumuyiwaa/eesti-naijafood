@@ -140,8 +140,23 @@ export default function AboutPage() {
             </section>
 
             {/* Mission */}
-            <section className="py-20 bg-black">
-                <div className="max-w-5xl mx-auto px-4 text-center">
+            <section className="py-32 relative overflow-hidden">
+                {/* Background Image */}
+                <div className="absolute inset-0">
+                    <Image
+                        src="/images/experience.jpg"
+                        alt="Eesti NaijaFood Background"
+                        fill
+                        className="object-cover"
+                        priority
+                    />
+                </div>
+                <div className="absolute inset-0 bg-black/50" />
+
+                {/* Animated Background Gradient */}
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(251,146,60,0.1),transparent_50%)]" />
+
+                <div className="max-w-5xl mx-auto px-4 text-center relative z-10">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}

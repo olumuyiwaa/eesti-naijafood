@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaBars, FaTimes, FaPhone } from 'react-icons/fa';
+import { FaBars, FaTimes, FaPhone ,FaShoppingCart} from 'react-icons/fa';
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -23,6 +23,7 @@ export default function Navbar() {
         { name: 'Catering', href: '/catering' },
         { name: 'About', href: '/about' },
         { name: 'Contact', href: '/contact' },
+        { name: 'Cart', href: '/cart' },
     ];
 
     return (
@@ -76,6 +77,16 @@ export default function Navbar() {
                             </motion.button>
                         </Link>
                         */}
+
+
+                        <a href="/cart">
+                            <motion.button
+                                className="p-3 bg-white/5 backdrop-blur border border-white/10 rounded-full hover:bg-white/10 transition-all"
+                                whileHover={{ scale: 1.1 }}
+                            >
+                                <FaShoppingCart className="text-orange-500" />
+                            </motion.button>
+                        </a>
 
                         <a href="tel:+64211234567">
                             <motion.button
