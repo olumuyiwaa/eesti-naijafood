@@ -5,7 +5,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { FaHome, FaCalendarAlt, FaUtensils, FaMusic, FaTruck, FaEnvelope, FaStar,FaImages, FaBars, FaTimes, FaSignOutAlt ,FaDollarSign} from 'react-icons/fa';
+import { FaHome, FaBook, FaUtensils, FaTruck, FaEnvelope, FaStar,FaImages, FaBars, FaTimes, FaSignOutAlt ,FaDollarSign} from 'react-icons/fa';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -37,6 +37,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
     const navigation = [
         { name: 'Dashboard', href: '/admin/dashboard', icon: FaHome },
+        { name: 'Site Detail', href: '/admin/details', icon: FaBook },
         { name: 'Menu', href: '/admin/menu', icon: FaUtensils },
         { name: 'Catering', href: '/admin/catering', icon: FaTruck },
         { name: 'Payments', href: '/admin/payments', icon: FaDollarSign },

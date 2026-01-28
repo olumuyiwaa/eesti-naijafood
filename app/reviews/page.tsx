@@ -18,7 +18,6 @@ interface ReviewStats {
     categories: {
         food: number;
         service: number;
-        ambience: number;
         value: number;
     };
 }
@@ -105,7 +104,9 @@ export default function ReviewsPage() {
                             </motion.div>
 
                             {/* Category Ratings */}
-                            {Object.entries(stats.categories).map(([category, rating], index) => (
+                            {Object.entries(stats.categories)
+                                .filter(([category]) => category !== 'ambience')
+                                .map(([category, rating], index) => (
                                 <motion.div
                                     key={category}
                                     initial={{ opacity: 0, y: 20 }}
@@ -218,9 +219,9 @@ export default function ReviewsPage() {
                             Join our happy customers and discover authentic African flavors!
                         </p>
                         <div className="flex flex-wrap gap-4 justify-center">
-                            <a href="/bookings">
+                            <a href="/catering">
                                 <button className="bg-white text-orange-600 hover:bg-gray-100 px-8 py-4 rounded-full text-lg font-semibold transition-all">
-                                    Book a Table
+                                    Book Our Service
                                 </button>
                             </a>
                             <a href="/menu">

@@ -1,11 +1,24 @@
 // app/about/page.tsx
 'use client';
 
+
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { FaHeart, FaUsers, FaGlobeAfrica } from 'react-icons/fa';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
+type SiteDetails = {
+    about?: {
+        text?: string;
+        image?: string;
+    };
+    missionStatement?: string;
+};
 export default function AboutPage() {
+    const [data, setData] = useState<SiteDetails | null>(null);
+    const [loading, setLoading] = useState(true);
+
     const values = [
         {
             icon: FaHeart,
@@ -20,9 +33,27 @@ export default function AboutPage() {
         {
             icon: FaGlobeAfrica,
             title: 'Authentic Experience',
-            description: 'Bringing genuine African flavors and vibes to Estonia'
+            description: 'Bringing genuine African flavors and vibes to Auckland'
         }
     ];
+
+    useEffect(() => {
+        const fetchDetails = async () => {
+            try {
+                const res = await axios.get(
+                    `${process.env.NEXT_PUBLIC_API_URL}/api/site-details`
+                );
+                setData(res.data.data);
+            } catch (err) {
+                console.error('Failed to fetch site details', err);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchDetails();
+    }, []);
+
 
     return (
         <div className="min-h-screen bg-black text-white pt-24">
@@ -75,19 +106,10 @@ export default function AboutPage() {
                             viewport={{ once: true }}
                         >
                             <h2 className="text-5xl font-bold mb-6">Welcome to Eesti-NaijaFood</h2>
-                            <p className="text-xl text-gray-300 mb-4 leading-relaxed">
-                                Eesti-NaijaFood was born from a passion to share the incredible diversity of African cuisine with Estonia.
-                                Our journey began with a simple mission: to create a space where authentic African flavors meet modern
-                                dining experiences.
-                            </p>
-                            <p className="text-xl text-gray-300 mb-4 leading-relaxed">
-                                From the bustling streets of Lagos to the vibrant markets of Accra, we've brought together recipes
-                                passed down through generations. Each dish tells a story of heritage, community, and the warmth of
-                                African hospitality.
-                            </p>
-                            <p className="text-xl text-gray-300 leading-relaxed">
-                                Today, Eesti-NaijaFood is more than a restaurant—it's a cultural hub where food, music, and community
-                                come together to celebrate the soul of Africa.
+                            <p className="text-xl text-gray-300 mb-4 leading-relaxed whitespace-pre-line">
+                                {loading
+                                    ? 'Loading story...'
+                                    : data?.about?.text || 'Our story will be updated soon.'}
                             </p>
                         </motion.div>
 
@@ -98,8 +120,8 @@ export default function AboutPage() {
                             className="relative h-96 rounded-2xl overflow-hidden"
                         >
                             <Image
-                                src="/images/about-story.webp"
-                                alt="Eesti-NaijaFood Story"
+                                src={data?.about?.image || '/images/about-story.webp'}
+                                alt="Afroflavours Story"
                                 fill
                                 className="object-cover"
                             />
@@ -163,10 +185,10 @@ export default function AboutPage() {
                         viewport={{ once: true }}
                     >
                         <h2 className="text-5xl font-bold mb-8">Our Mission</h2>
-                        <p className="text-2xl text-gray-300 leading-relaxed">
-                            To be Estonia's premier destination for authentic African cuisine and cultural experiences,
-                            creating memorable moments through exceptional food, vibrant entertainment, and genuine hospitality
-                            that honors the rich traditions of the African continent.
+                        <p className="text-2xl text-gray-300 leading-relaxed whitespace-pre-line">
+                            {loading
+                                ? 'Loading mission...'
+                                : data?.missionStatement || 'Our mission will be updated soon.'}
                         </p>
                     </motion.div>
                 </div>

@@ -130,19 +130,19 @@ export default function Home() {
                         </motion.h1>
 
                         <motion.p
-                            className="text-3xl md:text-5xl font-light text-white/90 mb-4"
+                            className="text-3xl md:text-6xl font-light text-white/90 mb-4"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            transition={{ delay: 0.4 }}
+                            transition={{ delay: 0.2 }}
                         >
                             Where Africa Comes Alive
                         </motion.p>
 
                         <motion.p
-                            className="text-lg md:text-xl text-white/70 max-w-3xl mx-auto mb-12 leading-relaxed"
+                            className="text-lg md:text-2xl text-white/70 max-w-3xl mx-auto mb-12 leading-relaxed"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            transition={{ delay: 0.6 }}
+                            transition={{ delay: 0.4 }}
                         >
                             Authentic African cuisine meets vibrant culture. Experience the rhythm, taste the tradition,
                             feel the soul of Africa in every bite.
