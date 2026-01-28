@@ -26,11 +26,19 @@ interface ContactFormData {
     message: string;
 }
 
+interface OpeningHour {
+    open: string;
+    close: string;
+}
+
 interface SiteDetails {
     phoneNumber?: string;
     email?: string;
     location?: string;
-    openingHours?: Record<string, string>;
+    openingHours?: {
+        mondayWednesday?: OpeningHour;
+        thursdaySunday?: OpeningHour;
+    };
     socialMedia?: {
         facebook?: string;
         instagram?: string;
@@ -38,6 +46,7 @@ interface SiteDetails {
         youtube?: string;
     };
 }
+
 
 export default function ContactPage() {
     const [site, setSite] = useState<SiteDetails | null>(null);
@@ -152,19 +161,27 @@ export default function ContactPage() {
                                         <div>
                                             <h3 className="text-xl font-bold mb-2">Opening Hours</h3>
                                             <div className="text-gray-400 space-y-1">
-                                                {site?.openingHours
-                                                    ? Object.entries(site.openingHours).map(([day, time]) => (
-                                                        <p key={day}>
-                                                            {day}: {time.open} - {time.close}
-                                                        </p>
-                                                    ))
-                                                    : (
-                                                        <>
-                                                            <p>Mon - Wed: 11:00 AM - 10:00 PM</p>
-                                                            <p>Thu - Sun: 11:00 AM - 11:30 PM</p>
-                                                        </>
-                                                    )
-                                                }
+                                                {site?.openingHours ? (
+                                                    <>
+                                                        {site.openingHours.mondayWednesday && (
+                                                            <p>
+                                                                Mon - Wed: {site.openingHours.mondayWednesday.open} -{" "}
+                                                                {site.openingHours.mondayWednesday.close}
+                                                            </p>
+                                                        )}
+                                                        {site.openingHours.thursdaySunday && (
+                                                            <p>
+                                                                Thu - Sun: {site.openingHours.thursdaySunday.open} -{" "}
+                                                                {site.openingHours.thursdaySunday.close}
+                                                            </p>
+                                                        )}
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <p>Mon - Wed: 11:00 AM - 10:00 PM</p>
+                                                        <p>Thu - Sun: 11:00 AM - 11:30 PM</p>
+                                                    </>
+                                                )}
                                             </div>
                                         </div>
                                     </div>
