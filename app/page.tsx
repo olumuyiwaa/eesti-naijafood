@@ -373,6 +373,38 @@ export default function Home() {
                 </div>
             </section>
 
+            {/* Order Online Section */}
+            <section className="py-16 bg-black">
+                <div className="max-w-7xl mx-auto px-4 text-center">
+                    <h2 className="text-5xl font-bold mb-8">Order for Takeaway</h2>
+                    <p className="text-xl text-gray-400 mb-8">
+                        Craving African flavors at home? Order through our delivery partners!
+                    </p>
+
+                    <div className="flex flex-wrap gap-6 justify-center">
+                        {/* Bolt Food */}
+                        <motion.a
+                            href="https://food.bolt.eu/en-US/1/p/175185-eesti-naijafoods?utm_source=share_provider&utm_medium=product&utm_content=menu_header"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            whileHover={{ scale: 1.05 }}
+                            className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all inline-block"
+                        >
+                            Order on Bolt Food
+                        </motion.a>
+
+                        {/* Myros (placeholder until you add link) */}
+                        <motion.a
+                            href="#"
+                            whileHover={{ scale: 1.05 }}
+                            className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all inline-block"
+                        >
+                            Order on Myros Delivery
+                        </motion.a>
+                    </div>
+                </div>
+            </section>
+
             {/* Gallery */}
             <section className="py-20 bg-black">
                 <div className="max-w-7xl mx-auto px-4">
@@ -450,7 +482,7 @@ export default function Home() {
                             {
                                 icon: FaTruck,
                                 title: 'Delivery Available',
-                                description: 'Order via DoorDash & Uber Eats',
+                                description: 'Order via Bolt Food',
                                 link: '/menu',
                                 gradient: 'from-pink-500 to-purple-500'
                             },
