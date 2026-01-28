@@ -393,13 +393,15 @@ export default function Home() {
                             Order on Bolt Food
                         </motion.a>
 
-                        {/* Myros (placeholder until you add link) */}
+                        {/* wolt*/}
                         <motion.a
-                            href="#"
+                            href="https://wolt.com/et/est/tallinn/restaurant/eesti-naijafoods"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             whileHover={{ scale: 1.05 }}
                             className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all inline-block"
                         >
-                            Order on Myros Delivery
+                            Order on Wolt Delivery
                         </motion.a>
                     </div>
                 </div>
