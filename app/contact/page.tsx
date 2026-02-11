@@ -135,7 +135,7 @@ export default function ContactPage() {
                                         <div>
                                             <h3 className="text-xl font-bold mb-1">Address</h3>
                                             <p className="text-gray-400">
-                                                {site?.location || 'Auckland, New Zealand'}
+                                                {site?.location || 'Talin, Estonia'}
                                             </p>
                                         </div>
                                     </div>
@@ -144,7 +144,7 @@ export default function ContactPage() {
                                         <FaPhone className="text-3xl text-orange-500 mt-1" />
                                         <div>
                                             <h3 className="text-xl font-bold mb-1">Phone</h3>
-                                            <p className="text-gray-400">{site?.phoneNumber || '+64 21 XXX XXXX'}</p>
+                                            <p className="text-gray-400">{site?.phoneNumber || '+37 25 XXX XXXX'}</p>
                                         </div>
                                     </div>
 
@@ -215,16 +215,20 @@ export default function ContactPage() {
                                 </div>
                             )}
 
-                            {/* Map Placeholder */}
+                            {/* Map */}
                             <div className="bg-gray-800 rounded-2xl h-64 flex items-center justify-center overflow-hidden">
-                                <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3187.476802156153!2d174.76448827621793!3d-36.85233807228033!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d0d47fb254457db%3A0x360c00d98b1f9a53!2sThe%20University%20of%20Auckland!5e0!3m2!1sen!2snz!4v1714214047337!5m2!1sen!2snz"
-                                    width="100%"
-                                    height="100%"
-                                    style={{ border: 0 }}
-                                    loading="lazy"
-                                    referrerPolicy="no-referrer-when-downgrade"
-                                />
+                                {site?.location ? (
+                                    <iframe
+                                        src={`https://www.google.com/maps?q=${encodeURIComponent(site.location)}&output=embed`}
+                                        width="100%"
+                                        height="100%"
+                                        style={{ border: 0 }}
+                                        loading="lazy"
+                                        referrerPolicy="no-referrer-when-downgrade"
+                                    />
+                                ) : (
+                                    <p className="text-gray-400">Location not available</p>
+                                )}
                             </div>
                         </motion.div>
 
