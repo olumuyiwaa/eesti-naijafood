@@ -14,6 +14,7 @@ import {
 } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import Image from "next/image";
 
 type SiteDetails = {
     phoneNumber?: string;
@@ -63,11 +64,28 @@ export default function Footer() {
 
                     {/* Brand */}
                     <div>
-                        <h3 className="text-3xl font-black mb-4">
-              <span className="bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">
+                        <Link href="/">
+                            <motion.div
+                                className="flex items-center gap-3 cursor-pointer"
+                                whileHover={{ scale: 1.05 }}
+                            >
+                                {/* Logo Image */}
+                                <Image
+                                    src="/images/eestifood.png"
+                                    alt="Eesti-NaijaFood Logo"
+                                    width={50}
+                                    height={50}
+                                    className="object-contain"
+                                />
+
+                                {/* Logo Text */}
+                                <h1 className="text-2xl md:text-2xl font-black">
+            <span className="bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 bg-clip-text text-transparent">
                 Eesti-NaijaFood
-              </span>
-                        </h3>
+            </span>
+                                </h1>
+                            </motion.div>
+                        </Link>
 
                         <p className="text-white/60 mb-6 leading-relaxed">
                             Bringing the soul of Africa to Estonia through authentic cuisine, vibrant music, and unforgettable experiences.

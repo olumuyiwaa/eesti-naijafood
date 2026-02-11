@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaBars, FaTimes, FaPhone, FaShoppingCart } from 'react-icons/fa';
@@ -46,16 +47,27 @@ export default function Navbar() {
                     {/* Logo */}
                     <Link href="/">
                         <motion.div
-                            className="relative"
+                            className="flex items-center gap-3 cursor-pointer"
                             whileHover={{ scale: 1.05 }}
                         >
-                            <h1 className="text-3xl md:text-4xl font-black">
-                                <span className="bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 bg-clip-text text-transparent">
-                                    Eesti-NaijaFood
-                                </span>
+                            {/* Logo Image */}
+                            <Image
+                                src="/images/eestifood.png"
+                                alt="Eesti-NaijaFood Logo"
+                                width={50}
+                                height={50}
+                                className="object-contain"
+                            />
+
+                            {/* Logo Text */}
+                            <h1 className="text-2xl md:text-2xl font-black">
+            <span className="bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 bg-clip-text text-transparent">
+                Eesti-NaijaFood
+            </span>
                             </h1>
                         </motion.div>
                     </Link>
+
 
                     {/* Desktop Navigation */}
                     <div className="hidden lg:flex items-center gap-8">
