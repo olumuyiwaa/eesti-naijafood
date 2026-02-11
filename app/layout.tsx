@@ -22,6 +22,10 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en" className="scroll-smooth">
+        <head>
+            <link rel="icon" href="/images/eestifood.png" />
+            <title>Eesti NaijaFood</title>
+        </head>
         <body className={`${inter.variable} ${playfair.variable} font-sans bg-[#050505] text-white antialiased`}>
         {/* Subtle Background Glow */}
         <div className="fixed inset-0 -z-10 overflow-hidden">
