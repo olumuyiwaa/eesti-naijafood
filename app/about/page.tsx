@@ -33,7 +33,7 @@ export default function AboutPage() {
         {
             icon: FaGlobeAfrica,
             title: 'Authentic Experience',
-            description: 'Bringing genuine African flavors and vibes to Auckland'
+            description: 'Bringing genuine African flavors and vibes to Estonia'
         }
     ];
 

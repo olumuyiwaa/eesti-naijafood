@@ -365,4 +365,4 @@ MIT License
 
 ---
 
-**Built with ❤️ for Eesti-NaijaFood - Taste Africa in Auckland**# Emnac Tech
+**Built with ❤️ for Eesti-NaijaFood - Taste Africa in Estonia**# Emnac Tech
