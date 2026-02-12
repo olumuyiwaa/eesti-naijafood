@@ -10,7 +10,6 @@ Modern, responsive frontend for Eesti-NaijaFood African restaurant built with Ne
 - 🎭 **Smooth Animations** - Framer Motion for engaging transitions
 - 📅 **Online Booking** - Real-time table reservation system
 - 🍽️ **Dynamic Menu** - Interactive menu with categories and filters
-- 🎵 **African Experience** - Dedicated section for music events
 - 📧 **Contact Forms** - Easy communication with validation
 - 🎉 **Catering Quotes** - Request catering services online
 - 📰 **Newsletter** - Subscription management

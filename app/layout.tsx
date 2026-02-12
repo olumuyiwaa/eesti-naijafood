@@ -12,7 +12,7 @@ const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfa
 
 export const metadata: Metadata = {
     title: 'Eesti-NaijaFood - Authentic African Cuisine in Estonia',
-    description: 'Experience authentic African cuisine, live music, and cultural events in Estonia.',
+    description: 'Experience authentic African cuisine and cultural events in Estonia.',
 };
 
 export default function RootLayout({

@@ -28,7 +28,7 @@ export default function AboutPage() {
         {
             icon: FaUsers,
             title: 'Community First',
-            description: 'Building connections through food, music, and shared experiences'
+            description: 'Building connections through food and shared experiences'
         },
         {
             icon: FaGlobeAfrica,

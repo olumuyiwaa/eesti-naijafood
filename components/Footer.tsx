@@ -88,7 +88,7 @@ export default function Footer() {
                         </Link>
 
                         <p className="text-white/60 mb-6 leading-relaxed">
-                            Bringing the soul of Africa to Estonia through authentic cuisine, vibrant music, and unforgettable experiences.
+                            Bringing the soul of Africa to Estonia through authentic cuisine and unforgettable experiences.
                         </p>
 
                         <div className="flex gap-3">
