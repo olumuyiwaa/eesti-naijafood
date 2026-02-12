@@ -216,7 +216,7 @@ export default function ContactPage() {
                             )}
 
                             {/* Map */}
-                            <div className="bg-gray-800 rounded-2xl h-64 flex items-center justify-center overflow-hidden">
+                            <div className="bg-gray-800 rounded-2xl h-72 flex items-center justify-center overflow-hidden">
                                 {site?.location ? (
                                     <iframe
                                         src={`https://www.google.com/maps?q=${encodeURIComponent(site.location)}&output=embed`}
