@@ -4,7 +4,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 
 interface CartItem {
-    id: number;
+    id: string;
     name: string;
     price: number;
     image: string;
@@ -14,8 +14,8 @@ interface CartItem {
 interface CartContextType {
     cart: CartItem[];
     addToCart: (item: any) => void;
-    removeFromCart: (id: number) => void;
-    updateQuantity: (id: number, delta: number) => void; // Added this
+    removeFromCart: (id: string) => void;
+    updateQuantity: (id: string, delta: number) => void; // Added this
     clearCart: () => void;
     getCartTotal: () => number;
     getItemCount: () => number;
@@ -37,18 +37,32 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     const addToCart = (product: any) => {
         setCart((prevCart) => {
-            const existingItem = prevCart.find((item) => item.id === product.id);
+            const existingItem = prevCart.find((item) => item.id === product._id);
+
             if (existingItem) {
                 return prevCart.map((item) =>
-                    item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+                    item.id === product._id
+                        ? { ...item, quantity: item.quantity + 1 }
+                        : item
                 );
             }
+
             toast.success(`${product.name} added to cart!`);
-            return [...prevCart, { ...product, quantity: 1 }];
+
+            return [
+                ...prevCart,
+                {
+                    id: product._id,
+                    name: product.name,
+                    price: product.price,
+                    image: product.image,
+                    quantity: 1
+                }
+            ];
         });
     };
 
-    const updateQuantity = (id: number, delta: number) => {
+    const updateQuantity = (id: string, delta: number) => {
         setCart((prevCart) =>
             prevCart
                 .map((item) =>
@@ -58,7 +72,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         );
     };
 
-    const removeFromCart = (id: number) => {
+    const removeFromCart = (id: string) => {
         setCart((prevCart) => prevCart.filter((item) => item.id !== id));
         toast.info("Item removed from cart");
     };
