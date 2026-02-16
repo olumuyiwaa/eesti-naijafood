@@ -9,6 +9,42 @@ import { FaTrash, FaPlus, FaMinus, FaArrowLeft, FaShoppingBag } from 'react-icon
 export default function CartPage() {
     const { cart, updateQuantity, removeFromCart, getCartTotal } = useCart();
 
+    const handleCheckout = async () => {
+        try {
+            const response = await fetch(
+                `${process.env.NEXT_PUBLIC_API_URL}/api/orders/checkout`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        customerEmail: "guest@email.com",
+                        items: cart.map(item => ({
+                            productId: item.id,
+                            name: item.name,
+                            price: item.price,
+                            quantity: item.quantity,
+                            image: item.image
+                        }))
+                    })
+                }
+            );
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.message);
+            }
+
+            //Redirect to Stripe
+            window.location.href = data.url;
+
+        } catch (error: any) {
+            alert(error.message);
+        }
+    };
+
     if (cart.length === 0) {
         return (
             <div className="min-h-screen bg-black text-white pt-32 pb-20 px-4 flex flex-col items-center justify-center">
@@ -112,9 +148,13 @@ export default function CartPage() {
                                 </div>
                             </div>
 
-                            <button className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white py-4 rounded-2xl font-bold text-lg shadow-lg shadow-orange-500/20 transition-all active:scale-95">
+                            <button
+                                onClick={handleCheckout}
+                                className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white py-4 rounded-2xl font-bold text-lg shadow-lg shadow-orange-500/20 transition-all active:scale-95"
+                            >
                                 Proceed to Checkout
                             </button>
+
 
                             <Link href="/menu" className="block text-center mt-6 text-gray-400 hover:text-white transition-colors">
                                 Add more items
