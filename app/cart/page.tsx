@@ -1,6 +1,7 @@
 'use client';
 
 import { useCart } from '@/context/CartContext';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -8,9 +9,18 @@ import { FaTrash, FaPlus, FaMinus, FaArrowLeft, FaShoppingBag } from 'react-icon
 
 export default function CartPage() {
     const { cart, updateQuantity, removeFromCart, getCartTotal } = useCart();
+    const [email, setEmail] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const handleCheckout = async () => {
+        if (!email) {
+            alert("Please enter your email");
+            return;
+        }
+
         try {
+            setLoading(true);
+
             const response = await fetch(
                 `${process.env.NEXT_PUBLIC_API_URL}/api/orders/checkout`,
                 {
@@ -19,7 +29,7 @@ export default function CartPage() {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        customerEmail: "guest@email.com",
+                        customerEmail: email,
                         items: cart.map(item => ({
                             productId: item.id,
                             name: item.name,
@@ -37,11 +47,12 @@ export default function CartPage() {
                 throw new Error(data.message);
             }
 
-            //Redirect to Stripe
             window.location.href = data.url;
 
         } catch (error: any) {
             alert(error.message);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -148,12 +159,29 @@ export default function CartPage() {
                                 </div>
                             </div>
 
+                            <div className="mb-6">
+                                <label className="block text-sm mb-2 text-gray-400">
+                                    Email Address
+                                </label>
+                                <input
+                                    type="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    placeholder="Enter your email"
+                                    className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-orange-500"
+                                    required
+                                />
+                            </div>
+
+
                             <button
                                 onClick={handleCheckout}
-                                className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white py-4 rounded-2xl font-bold text-lg shadow-lg shadow-orange-500/20 transition-all active:scale-95"
+                                disabled={loading}
+                                className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white py-4 rounded-2xl font-bold text-lg shadow-lg shadow-orange-500/20 transition-all active:scale-95 disabled:opacity-50"
                             >
-                                Proceed to Checkout
+                                {loading ? "Processing..." : "Proceed to Checkout"}
                             </button>
+
 
 
                             <Link href="/menu" className="block text-center mt-6 text-gray-400 hover:text-white transition-colors">
