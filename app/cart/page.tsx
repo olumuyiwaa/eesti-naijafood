@@ -10,11 +10,21 @@ import { FaTrash, FaPlus, FaMinus, FaArrowLeft, FaShoppingBag } from 'react-icon
 export default function CartPage() {
     const { cart, updateQuantity, removeFromCart, getCartTotal } = useCart();
     const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
+    const [phone, setPhone] = useState('');
     const [loading, setLoading] = useState(false);
 
     const handleCheckout = async () => {
         if (!email) {
             alert("Please enter your email");
+            return;
+        }
+        if (!name) {
+            alert("Please enter your name");
+            return;
+        }
+        if (!phone) {
+            alert("Please enter your phone number");
             return;
         }
 
@@ -30,6 +40,8 @@ export default function CartPage() {
                     },
                     body: JSON.stringify({
                         customerEmail: email,
+                        customerName: name,
+                        customerPhone: phone,
                         items: cart.map(item => ({
                             productId: item.id,
                             name: item.name,
@@ -161,6 +173,20 @@ export default function CartPage() {
 
                             <div className="mb-6">
                                 <label className="block text-sm mb-2 text-gray-400">
+                                    Your Name
+                                </label>
+                                <input
+                                    type="text"
+                                    value={name}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    placeholder="Enter your name"
+                                    className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-orange-500"
+                                    required
+                                />
+                            </div>
+
+                            <div className="mb-6">
+                                <label className="block text-sm mb-2 text-gray-400">
                                     Email Address
                                 </label>
                                 <input
@@ -168,6 +194,20 @@ export default function CartPage() {
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     placeholder="Enter your email"
+                                    className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-orange-500"
+                                    required
+                                />
+                            </div>
+
+                            <div className="mb-6">
+                                <label className="block text-sm mb-2 text-gray-400">
+                                    Phone Number
+                                </label>
+                                <input
+                                    type="number"
+                                    value={phone}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    placeholder="Enter your phone number"
                                     className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-orange-500"
                                     required
                                 />
