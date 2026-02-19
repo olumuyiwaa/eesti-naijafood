@@ -4,10 +4,17 @@ import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { FaCheckCircle } from 'react-icons/fa';
+import { useEffect } from 'react';
+import { useCart } from '@/context/CartContext';
 
 export default function SuccessPage() {
     const searchParams = useSearchParams();
     const orderId = searchParams.get('orderId');
+    const { clearCart } = useCart();
+
+    useEffect(() => {
+        clearCart();
+    }, []);
 
     return (
         <div className="min-h-screen bg-black text-white flex items-center justify-center px-4">
