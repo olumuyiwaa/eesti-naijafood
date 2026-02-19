@@ -178,7 +178,7 @@ export default function CartPage() {
                                 <input
                                     type="text"
                                     value={name}
-                                    onChange={(e) => setEmail(e.target.value)}
+                                    onChange={(e) => setName(e.target.value)}
                                     placeholder="Enter your name"
                                     className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-orange-500"
                                     required
@@ -206,7 +206,7 @@ export default function CartPage() {
                                 <input
                                     type="number"
                                     value={phone}
-                                    onChange={(e) => setEmail(e.target.value)}
+                                    onChange={(e) => setPhone(e.target.value)}
                                     placeholder="Enter your phone number"
                                     className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-orange-500"
                                     required
