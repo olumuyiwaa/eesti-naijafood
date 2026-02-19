@@ -168,7 +168,7 @@ export default function MenuPage() {
         }
 
         // Save the PDF
-        doc.save('Afro-Flavours-Menu.pdf');
+        doc.save('Eesti-naija-food-Menu.pdf');
         toast.success('Menu downloaded successfully!');
     };
 
