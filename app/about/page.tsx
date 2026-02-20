@@ -121,7 +121,7 @@ export default function AboutPage() {
                         >
                             <Image
                                 src={data?.about?.image || '/images/about-story.webp'}
-                                alt="Afroflavours Story"
+                                alt="Eesti Food Story"
                                 fill
                                 className="object-cover"
                             />

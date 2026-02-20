@@ -289,7 +289,7 @@ export default function AdminSiteDetails() {
                                     {...register('email', { required: true })}
                                     type="email"
                                     className="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-orange-500 focus:outline-none text-white"
-                                    placeholder="contact@afroflavours.com"
+                                    placeholder="contact@eestifood.com"
                                 />
                             </div>
                         </div>
@@ -374,7 +374,7 @@ export default function AdminSiteDetails() {
                                     {...register('socialMedia.facebook')}
                                     type="url"
                                     className="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-orange-500 focus:outline-none text-white"
-                                    placeholder="https://facebook.com/afroflavours"
+                                    placeholder="https://facebook.com/eestifood"
                                 />
                             </div>
 
@@ -386,7 +386,7 @@ export default function AdminSiteDetails() {
                                     {...register('socialMedia.instagram')}
                                     type="url"
                                     className="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-orange-500 focus:outline-none text-white"
-                                    placeholder="https://instagram.com/afroflavours"
+                                    placeholder="https://instagram.com/eestifood"
                                 />
                             </div>
 
@@ -398,7 +398,7 @@ export default function AdminSiteDetails() {
                                     {...register('socialMedia.tiktok')}
                                     type="url"
                                     className="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-orange-500 focus:outline-none text-white"
-                                    placeholder="https://tiktok.com/@afroflavours"
+                                    placeholder="https://tiktok.com/@eestifood"
                                 />
                             </div>
 
@@ -410,7 +410,7 @@ export default function AdminSiteDetails() {
                                     {...register('socialMedia.youtube')}
                                     type="url"
                                     className="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-orange-500 focus:outline-none text-white"
-                                    placeholder="https://youtube.com/@afroflavours"
+                                    placeholder="https://youtube.com/@eestifood"
                                 />
                             </div>
                         </div>

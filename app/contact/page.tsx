@@ -87,7 +87,7 @@ export default function ContactPage() {
                 <div className="absolute inset-0 h-full">
                     <Image
                         src="/images/background.jpg"
-                        alt="Afro Flavours Background"
+                        alt="Estee Food Background"
                         width={500}
                         height={300}
                         style={{ height: "380px", width: "100%", objectFit: "cover" }}
@@ -152,7 +152,7 @@ export default function ContactPage() {
                                         <FaEnvelope className="text-3xl text-orange-500 mt-1" />
                                         <div>
                                             <h3 className="text-xl font-bold mb-1">Email</h3>
-                                            <p className="text-gray-400">{site?.email || 'info@afroflavours.co.nz'}</p>
+                                            <p className="text-gray-400">{site?.email || 'info@eestifood.co.nz'}</p>
                                         </div>
                                     </div>
 
