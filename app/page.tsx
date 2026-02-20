@@ -135,7 +135,7 @@ export default function Home() {
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.2 }}
                         >
-                            Where Africa Comes Alive
+                            Catering Beyond Expectations
                         </motion.p>
 
                         <motion.p
@@ -144,8 +144,7 @@ export default function Home() {
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.4 }}
                         >
-                            Authentic African cuisine meets vibrant culture. Experience the rhythm, taste the tradition,
-                            feel the soul of Africa in every bite.
+                            Crafting culinary masterpieces for your most distinguished events. From intimate gatherings to grand celebrations, we bring refined flavors, artistic presentation, and seamless service to your table, ensuring an unforgettable dining experience.
                         </motion.p>
 
                         <motion.div
