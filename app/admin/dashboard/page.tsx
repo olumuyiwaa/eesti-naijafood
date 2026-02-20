@@ -35,7 +35,19 @@ export default function AdminDashboard() {
 
     const [recentOrders, setRecentOrders] = useState<RecentOrder[]>([]);
     const [recentCatering, setRecentCatering] = useState<RecentCatering[]>([]);
-
+    const [filter, setFilter] = useState('all');
+    const getStatusColor = (status: string) => {
+        switch (status) {
+            case 'paid':
+                return 'bg-green-600';
+            case 'pending':
+                return 'bg-yellow-600';
+            case 'cancelled':
+                return 'bg-red-600';
+            default:
+                return 'bg-gray-600';
+        }
+    };
 
     useEffect(() => {
         fetchDashboardData();
@@ -141,7 +153,11 @@ export default function AdminDashboard() {
                                         {new Date(item.eventDate).toLocaleDateString()} - {item.guestCount} guests
                                     </p>
                                 </div>
-                                <span className="bg-orange-600 px-3 py-1 rounded-full text-sm font-semibold text-white">
+                                <span className={`px-4 py-2 rounded-lg font-semibold capitalize transition-all ${
+                                    filter === status
+                                        ? 'bg-orange-600 text-white'
+                                        : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
+                                }`}>
                                     {item.status}
                                 </span>
                             </div>
