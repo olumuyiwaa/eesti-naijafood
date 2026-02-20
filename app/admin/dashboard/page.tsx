@@ -152,7 +152,7 @@ export default function AdminDashboard() {
                                         {new Date(item.eventDate).toLocaleDateString()} - {item.guestCount} guests
                                     </p>
                                 </div>
-                                <span className={`px-4 py-2 rounded-lg font-semibold capitalize transition-all ${getStatusColor}`}>
+                                <span className={`px-4 py-2 rounded-lg font-semibold capitalize transition-all ${getStatusColor(item.status)}`}>
                                     {item.status}
                                 </span>
                             </div>
