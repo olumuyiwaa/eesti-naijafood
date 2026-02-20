@@ -115,7 +115,7 @@ export default function AdminDashboard() {
                                 <div>
                                     <p className="text-white font-semibold">{order.customerName}</p>
                                     <p className="text-gray-400 text-sm">
-                                        {new Date(order.createdAt).toLocaleDateString()} - {order.totalAmount}
+                                        {new Date(order.createdAt).toLocaleDateString()} - ${order.totalAmount}
                                     </p>
                                 </div>
                                 <span className="bg-orange-600 px-3 py-1 rounded-full text-sm font-semibold text-white">
