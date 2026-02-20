@@ -35,7 +35,6 @@ export default function AdminDashboard() {
 
     const [recentOrders, setRecentOrders] = useState<RecentOrder[]>([]);
     const [recentCatering, setRecentCatering] = useState<RecentCatering[]>([]);
-    const [filter, setFilter] = useState('all');
     const getStatusColor = (status: string) => {
         switch (status) {
             case 'paid':
@@ -45,7 +44,7 @@ export default function AdminDashboard() {
             case 'cancelled':
                 return 'bg-red-600';
             default:
-                return 'bg-gray-600';
+                return 'bg-blue-600';
         }
     };
 
@@ -153,11 +152,7 @@ export default function AdminDashboard() {
                                         {new Date(item.eventDate).toLocaleDateString()} - {item.guestCount} guests
                                     </p>
                                 </div>
-                                <span className={`px-4 py-2 rounded-lg font-semibold capitalize transition-all ${
-                                    filter === status
-                                        ? 'bg-orange-600 text-white'
-                                        : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
-                                }`}>
+                                <span className={`px-4 py-2 rounded-lg font-semibold capitalize transition-all ${getStatusColor}`}>
                                     {item.status}
                                 </span>
                             </div>
