@@ -25,20 +25,28 @@ export default function TestimonialsCarousel() {
         setTestimonials([
             {
                 id: 1,
-                name: 'Sarah M.',
+                name: 'Kristiina L.',
                 rating: 5,
-                title: 'Amazing African Cuisine!',
-                comment: 'The jollof rice was absolutely incredible. Authentic flavors and generous portions. The atmosphere during African Experience night was electric! Will definitely be back!',
-                visitDate: '2025-11-10'
+                title: 'Outstanding Catering Service in Tallinn!',
+                comment: 'We hired Eesti-NaijaFood for our corporate event in Tallinn and the experience was exceptional. The Jollof rice and grilled chicken were a huge hit with our guests. Professional service, beautiful presentation, and unforgettable flavors. Highly recommended!',
+                visitDate: '2026-01-18'
+            },
+            {
+                id: 2,
+                name: 'Michael O.',
+                rating: 5,
+                title: 'Authentic Taste Delivered to My Door',
+                comment: 'I ordered online and the food arrived fresh, well-packaged, and full of authentic West African flavor. The egusi soup tasted just like home. So happy to have this in Estonia!',
+                visitDate: '2026-01-10'
             },
             {
                 id: 3,
                 name: 'Aisha T.',
                 rating: 5,
-                title: 'Taste of Home',
-                comment: 'As someone from West Africa, this place brings back wonderful memories. The egusi soup is authentic and delicious. Finally found a place that tastes like home!',
-                visitDate: '2025-11-05'
-            },
+                title: 'Perfect for Celebrations',
+                comment: 'Eesti-NaijaFood catered my birthday party in Tallinn and everything was perfect — from the flavorful dishes to the beautiful custom cake. My guests are still talking about it!',
+                visitDate: '2025-12-22'
+            }
         ]);
     }, []);
 

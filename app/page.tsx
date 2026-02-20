@@ -220,13 +220,17 @@ export default function Home() {
                             </h2>
 
                             <p className="text-xl text-white/70 mb-6 leading-relaxed">
-                                Eesti-NaijaFood isn't just a restaurant—it's a journey. Every dish tells a story, every flavor
-                                carries tradition, and every meal brings people together.
+                                Eesti-NaijaFood isn’t just catering — it’s a culinary experience.
+                                Every menu we create tells a story. Every flavor carries the richness of West African tradition. Every event we serve becomes a celebration of culture and connection.
                             </p>
 
                             <p className="text-lg text-white/60 mb-8 leading-relaxed">
-                                From our signature Jollof Rice to Top quality baked cakes, we're bringing the vibrant energy
-                                and authentic taste of West Africa to Estonia.
+                            From our signature Jollof Rice to beautifully crafted, top-quality cakes, we bring the vibrant taste and energy of West Africa to events across Estonia — weddings, corporate functions, private celebrations, and special occasions.
+                            </p>
+
+                            <p className="text-lg text-white/60 mb-8 leading-relaxed">
+                                We don’t just serve food.
+                                We create unforgettable experiences.
                             </p>
 
                             <div className="flex flex-wrap gap-4">
