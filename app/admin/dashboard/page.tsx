@@ -129,9 +129,9 @@ export default function AdminDashboard() {
                                         {new Date(order.createdAt).toLocaleDateString()} - ${order.totalAmount}
                                     </p>
                                 </div>
-                                <span className="bg-orange-600 px-3 py-1 rounded-full text-sm font-semibold text-white">
-                            {order.status}
-                        </span>
+                                <span className={`px-4 py-2 rounded-lg font-semibold capitalize transition-all ${getStatusColor(order.status)}`}>
+                                    {order.status}
+                                </span>
                             </div>
                         ))}
 
