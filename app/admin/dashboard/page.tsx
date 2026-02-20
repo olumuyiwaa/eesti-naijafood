@@ -10,9 +10,11 @@ import axios from 'axios';
 export default function AdminDashboard() {
 
     interface RecentOrder {
-        name: string;
-        date: string;
-        time: string;
+        customerName: string;
+        customerEmail: string;
+        customerPhone: string;
+        totalAmount: number;
+        createdAt: string;
         status: string;
     }
 
@@ -111,9 +113,9 @@ export default function AdminDashboard() {
                         {recentOrders.map((order, i) => (
                             <div key={i} className="bg-gray-800 p-4 rounded-xl flex items-center justify-between">
                                 <div>
-                                    <p className="text-white font-semibold">{order.name}</p>
+                                    <p className="text-white font-semibold">{order.customerName}</p>
                                     <p className="text-gray-400 text-sm">
-                                        {new Date(order.date).toLocaleDateString()} - {order.time}
+                                        {new Date(order.createdAt).toLocaleDateString()} - {order.totalAmount}
                                     </p>
                                 </div>
                                 <span className="bg-orange-600 px-3 py-1 rounded-full text-sm font-semibold text-white">
