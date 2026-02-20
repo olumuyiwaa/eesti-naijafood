@@ -39,8 +39,12 @@ export default function AdminDashboard() {
         switch (status) {
             case 'paid':
                 return 'bg-green-600';
+            case 'accepted':
+                return 'bg-green-600';
             case 'pending':
                 return 'bg-yellow-600';
+            case 'declined':
+                return 'bg-red-600';
             case 'cancelled':
                 return 'bg-red-600';
             default:
