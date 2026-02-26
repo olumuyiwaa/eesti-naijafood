@@ -131,7 +131,7 @@ export default function Navbar() {
                             exit={{ opacity: 0, height: 0 }}
                             className="lg:hidden overflow-hidden"
                         >
-                            <div className="mt-6 bg-gradient-to-br from-zinc-900 to-zinc-950 rounded-3xl p-6 border border-white/10">
+                            <div className="mt-6 bg-gradient-to-br from-zinc-200 to-zinc-400 rounded-3xl p-6 border border-white/10">
                                 <div className="flex flex-col space-y-4">
                                     {navLinks.map((link, index) => (
                                         <Link key={link.name} href={link.href}>
