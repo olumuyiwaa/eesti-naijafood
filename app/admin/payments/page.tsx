@@ -155,7 +155,7 @@ export default function AdminPayments() {
     return (
         <div className="space-y-6">
             <div className="flex items-center justify-between">
-                <h1 className="text-4xl font-bold text-white">Payment Management</h1>
+                <h1 className="text-4xl font-bold text-black">Payment Management</h1>
                 <button
                     onClick={exportToCSV}
                     className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold flex items-center gap-2 transition-all"

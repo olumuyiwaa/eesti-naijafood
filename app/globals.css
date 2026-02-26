@@ -4,27 +4,27 @@
 
 @layer base {
     :root {
-        --brand-orange: 249 115 22; /* Tailwind orange-500 */
-        --brand-gold: 234 179 8;   /* Tailwind yellow-500 */
-        --brand-terracotta: 153 27 27; /* Tailwind red-800 */
+        --brand-orange: 249 115 22;
+        --brand-gold: 234 179 8;
+        --brand-terracotta: 153 27 27;
     }
 
     * {
-        @apply border-zinc-800;
+        @apply border-zinc-200;
     }
 
     body {
-        @apply bg-[#050505] text-zinc-100 antialiased selection:bg-orange-500/30 selection:text-orange-200;
+        @apply bg-white text-zinc-900 antialiased selection:bg-orange-200 selection:text-orange-900;
     }
 
     h1, h2, h3, h4 {
-        @apply tracking-tight font-bold text-white;
+        @apply tracking-tight font-bold text-zinc-900;
     }
 }
 
 @layer components {
     .glass-panel {
-        @apply bg-zinc-900/50 backdrop-blur-md border border-white/10;
+        @apply bg-white/70 backdrop-blur-md border border-zinc-200;
     }
     
     .btn-primary {

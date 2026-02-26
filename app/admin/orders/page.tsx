@@ -82,7 +82,7 @@ export default function AdminOrders() {
         <div className="space-y-6">
             {/* Header */}
             <div className="flex items-center justify-between">
-                <h1 className="text-4xl font-bold text-white">Orders Management</h1>
+                <h1 className="text-4xl font-bold text-black">Orders Management</h1>
 
                 <div className="flex gap-2">
                     {['all', 'pending', 'paid'].map(status => (

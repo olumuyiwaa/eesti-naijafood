@@ -42,7 +42,7 @@ export default function RootLayout({
         <ToastContainer
             position="bottom-right"
             autoClose={4000}
-            theme="dark"
+            theme="light"
             toastClassName="bg-zinc-900 border border-zinc-800 text-white rounded-xl shadow-2xl"
         />
         </body>

@@ -95,7 +95,7 @@ export default function AdminGallery() {
     return (
         <div className="space-y-6">
             <div className="flex items-center justify-between">
-                <h1 className="text-4xl font-bold text-white">Gallery Management</h1>
+                <h1 className="text-4xl font-bold text-black">Gallery Management</h1>
                 <button
                     onClick={() => {
                         reset();

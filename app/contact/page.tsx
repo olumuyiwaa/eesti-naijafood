@@ -81,7 +81,7 @@ export default function ContactPage() {
     };
 
     return (
-        <div className="min-h-screen bg-black text-white pt-24">
+        <div className="min-h-screen bg-white text-black pt-24">
             {/* Header */}
             <section className="relative py-16 bg-gradient-to-br from-orange-600 to-red-700 text-center overflow-hidden">
                 <div className="absolute inset-0 h-full">
@@ -99,7 +99,7 @@ export default function ContactPage() {
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-6xl font-bold mb-4"
+                        className="text-6xl font-bold mb-4 text-white"
                     >
                         Get in Touch
                     </motion.h1>
@@ -107,7 +107,7 @@ export default function ContactPage() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
-                        className="text-2xl"
+                        className="text-2xl text-white"
                     >
                         We'd love to hear from you
                     </motion.p>
@@ -115,7 +115,7 @@ export default function ContactPage() {
             </section>
 
             {/* Contact Info & Form */}
-            <section className="py-20 bg-black">
+            <section className="py-20 bg-white">
                 <div className="max-w-7xl mx-auto px-4">
                     <div className="grid lg:grid-cols-2 gap-12">
 
@@ -237,7 +237,7 @@ export default function ContactPage() {
                             initial={{ opacity: 0, x: 50 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            className="bg-gray-900 rounded-3xl p-8"
+                            className="bg-white rounded-3xl p-8 md:p-12 border border-zinc-200 shadow-sm"
                         >
                             <h2 className="text-3xl font-bold mb-6">Send Us a Message</h2>
 
@@ -247,7 +247,7 @@ export default function ContactPage() {
                                     <input
                                         type="text"
                                         {...register('name', { required: 'Name is required' })}
-                                        className="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-orange-500 focus:outline-none text-white"
+                                        className="w-full px-4 py-3 rounded-lg bg-gray-200 border border-gray-700 focus:border-orange-500 focus:outline-none text-white"
                                         placeholder="Your name"
                                     />
                                     {errors.name && <p className="text-red-500 mt-1">{errors.name.message}</p>}
@@ -264,7 +264,7 @@ export default function ContactPage() {
                                                 message: 'Invalid email',
                                             },
                                         })}
-                                        className="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-orange-500 focus:outline-none text-white"
+                                        className="w-full px-4 py-3 rounded-lg bg-gray-200 border border-gray-700 focus:border-orange-500 focus:outline-none text-white"
                                         placeholder="your@email.com"
                                     />
                                     {errors.email && <p className="text-red-500 mt-1">{errors.email.message}</p>}
@@ -275,7 +275,7 @@ export default function ContactPage() {
                                     <input
                                         type="tel"
                                         {...register('phone')}
-                                        className="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-orange-500 focus:outline-none text-white"
+                                        className="w-full px-4 py-3 rounded-lg bg-gray-200 border border-gray-700 focus:border-orange-500 focus:outline-none text-white"
                                         placeholder="+64 21 XXX XXXX"
                                     />
                                 </div>
@@ -285,7 +285,7 @@ export default function ContactPage() {
                                     <input
                                         type="text"
                                         {...register('subject', { required: 'Subject is required' })}
-                                        className="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-orange-500 focus:outline-none text-white"
+                                        className="w-full px-4 py-3 rounded-lg bg-gray-200 border border-gray-700 focus:border-orange-500 focus:outline-none text-white"
                                         placeholder="How can we help?"
                                     />
                                     {errors.subject && <p className="text-red-500 mt-1">{errors.subject.message}</p>}
@@ -299,7 +299,7 @@ export default function ContactPage() {
                                             minLength: { value: 10, message: 'Message must be at least 10 characters' },
                                         })}
                                         rows={6}
-                                        className="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-orange-500 focus:outline-none text-white"
+                                        className="w-full px-4 py-3 rounded-lg bg-gray-200 border border-gray-700 focus:border-orange-500 focus:outline-none text-white"
                                         placeholder="Your message..."
                                     />
                                     {errors.message && <p className="text-red-500 mt-1">{errors.message.message}</p>}

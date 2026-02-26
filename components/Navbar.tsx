@@ -36,11 +36,11 @@ export default function Navbar() {
         <motion.nav
             initial={{ y: -100 }}
             animate={{ y: 0 }}
-            className={`fixed w-full z-50 transition-all duration-500 ${
-                scrolled
-                    ? 'bg-black/80 backdrop-blur-2xl border-b border-white/10 py-4'
-                    : 'bg-transparent py-6'
-            }`}
+                    className={`fixed w-full z-50 transition-all duration-500 ${
+            scrolled
+                ? 'bg-white/80 backdrop-blur-2xl border-b border-black/10 py-4'
+                : 'bg-transparent py-6'
+        }`}
         >
             <div className="max-w-7xl mx-auto px-4">
                 <div className="flex justify-between items-center">
@@ -74,7 +74,7 @@ export default function Navbar() {
                         {navLinks.map((link) => (
                             <Link key={link.name} href={link.href}>
                                 <motion.span
-                                    className="text-white/80 hover:text-white font-medium transition-colors relative group cursor-pointer"
+                                    className="text-black/80 hover:text-white font-medium transition-colors relative group cursor-pointer"
                                     whileHover={{ y: -2 }}
                                 >
                                     {link.name}
@@ -85,7 +85,7 @@ export default function Navbar() {
 
                         <a href="/cart">
                             <motion.button
-                                className="p-3 bg-white/5 backdrop-blur border border-white/10 rounded-full hover:bg-white/10 transition-all relative"
+                                className="p-3 bg-black/5 backdrop-blur border border-white/10 rounded-full hover:bg-white/10 transition-all relative"
                                 whileHover={{ scale: 1.1 }}
                             >
                                 <FaShoppingCart className="text-orange-500" />
@@ -104,7 +104,7 @@ export default function Navbar() {
 
                         <a href="tel:+64211234567">
                             <motion.button
-                                className="p-3 bg-white/5 backdrop-blur border border-white/10 rounded-full hover:bg-white/10 transition-all"
+                                className="p-3 bg-black/5 backdrop-blur border border-white/10 rounded-full hover:bg-white/10 transition-all"
                                 whileHover={{ scale: 1.1 }}
                             >
                                 <FaPhone className="text-orange-500" />
@@ -114,7 +114,7 @@ export default function Navbar() {
 
                     {/* Mobile Menu Button*/}
                     <motion.button
-                        className="lg:hidden p-3 bg-white/5 backdrop-blur border border-white/10 rounded-xl"
+                        className="lg:hidden p-3 bg-black/5 backdrop-blur border border-white/10 rounded-xl"
                         onClick={() => setIsOpen(!isOpen)}
                         whileTap={{ scale: 0.95 }}
                     >
@@ -139,7 +139,7 @@ export default function Navbar() {
                                                 initial={{ opacity: 0, x: -20 }}
                                                 animate={{ opacity: 1, x: 0 }}
                                                 transition={{ delay: index * 0.1 }}
-                                                className="text-white hover:text-orange-500 transition-colors block py-3 text-lg font-medium"
+                                                className="text-black hover:text-orange-500 transition-colors block py-3 text-lg font-medium"
                                                 onClick={() => setIsOpen(false)}
                                             >
                                                 {link.name}

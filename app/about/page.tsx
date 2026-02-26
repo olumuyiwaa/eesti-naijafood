@@ -56,7 +56,7 @@ export default function AboutPage() {
 
 
     return (
-        <div className="min-h-screen bg-black text-white pt-24">
+        <div className="min-h-screen bg-white text-zinc-900 pt-24">
             {/* Header */}
             <section className="relative py-16 bg-gradient-to-br from-orange-600 to-red-700 text-center overflow-hidden">
 
@@ -79,7 +79,7 @@ export default function AboutPage() {
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-6xl font-bold mb-4"
+                        className="text-6xl font-bold mb-4 text-white"
                     >
                         Our Story
                     </motion.h1>
@@ -88,7 +88,7 @@ export default function AboutPage() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
-                        className="text-2xl"
+                        className="text-2xl text-white"
                     >
                         A journey of flavor, culture, and community
                     </motion.p>
@@ -97,7 +97,7 @@ export default function AboutPage() {
 
 
             {/* Story Section */}
-            <section className="py-20 bg-black">
+            <section className="py-20 bg-white">
                 <div className="max-w-7xl mx-auto px-4">
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
                         <motion.div
@@ -106,7 +106,7 @@ export default function AboutPage() {
                             viewport={{ once: true }}
                         >
                             <h2 className="text-5xl font-bold mb-6">Welcome to Eesti-NaijaFood</h2>
-                            <p className="text-xl text-gray-300 mb-4 leading-relaxed whitespace-pre-line">
+                            <p className="text-xl text-gray-800 mb-4 leading-relaxed whitespace-pre-line">
                                 {loading
                                     ? 'Loading story...'
                                     : data?.about?.text || 'Our story will be updated soon.'}
@@ -131,13 +131,13 @@ export default function AboutPage() {
             </section>
 
             {/* Values */}
-            <section className="py-20 bg-gray-900">
+            <section className="py-20 bg-zinc-200">
                 <div className="max-w-7xl mx-auto px-4">
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="text-5xl font-bold text-center mb-16"
+                        className="text-5xl font-bold text-center mb-16 text-black"
                     >
                         What We Stand For
                     </motion.h2>
@@ -150,7 +150,7 @@ export default function AboutPage() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.2 }}
-                                className="bg-gray-800 p-8 rounded-2xl text-center"
+                                className="bg-white p-8 rounded-2xl text-center"
                             >
                                 <value.icon className="text-6xl text-orange-500 mx-auto mb-4" />
                                 <h3 className="text-2xl font-bold mb-4">{value.title}</h3>
@@ -184,7 +184,7 @@ export default function AboutPage() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                     >
-                        <h2 className="text-5xl font-bold mb-8">Our Mission</h2>
+                        <h2 className="text-5xl font-bold mb-8 text-white">Our Mission</h2>
                         <p className="text-2xl text-gray-300 leading-relaxed whitespace-pre-line">
                             {loading
                                 ? 'Loading mission...'

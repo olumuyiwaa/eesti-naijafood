@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 export default function PrivacyPage() {
     return (
-        <div className="min-h-screen bg-black text-white pt-24">
+        <div className="min-h-screen bg-white text-black pt-24">
             {/* Header */}
             <section className="relative py-16 bg-gradient-to-br from-orange-600 to-red-700 text-center overflow-hidden">
                 <div className="absolute inset-0 h-full">
@@ -25,7 +25,7 @@ export default function PrivacyPage() {
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-6xl font-bold mb-4"
+                        className="text-6xl font-bold mb-4 text-white"
                     >
                         Privacy Policy
                     </motion.h1>
@@ -33,7 +33,7 @@ export default function PrivacyPage() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
-                        className="text-2xl mb-8"
+                        className="text-2xl mb-8 text-white"
                     >
                         Protecting your privacy at Eesti NaijaFood
                     </motion.p>

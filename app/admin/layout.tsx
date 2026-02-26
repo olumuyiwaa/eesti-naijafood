@@ -48,7 +48,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     ];
 
     return (
-        <div className="min-h-screen bg-black">
+        <div className="min-h-screen bg-zinc-200 text-black">
             {/* Sidebar */}
             <aside
                 className={`fixed left-0 top-0 h-full bg-gray-900 border-r border-gray-800 transition-all duration-300 z-50 ${

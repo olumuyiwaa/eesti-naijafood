@@ -70,8 +70,8 @@ export default function AdminDashboard() {
     return (
         <div className="space-y-8">
             <div>
-                <h1 className="text-4xl font-bold text-white mb-2">Dashboard Overview</h1>
-                <p className="text-gray-400">Welcome back! Here's what's happening today.</p>
+                <h1 className="text-4xl font-bold text-black mb-2">Dashboard Overview</h1>
+                <p className="text-gray-800">Welcome back! Here's what's happening today.</p>
             </div>
 
             {/* Stats Grid */}
@@ -115,7 +115,7 @@ export default function AdminDashboard() {
                 />
             </div>
 
-            <h2 className="text-xl font-bold text-white mt-16">Recent Activity</h2>
+            <h2 className="text-xl font-bold text-black mt-16">Recent Activity</h2>
             <div className="grid lg:grid-cols-2 gap-6">
                 {/* Recent Orders */}
                 <motion.div

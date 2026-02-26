@@ -185,7 +185,7 @@ export default function AdminSiteDetails() {
     return (
         <div className="space-y-6">
             <div className="flex items-center justify-between">
-                <h1 className="text-4xl font-bold text-white">Site Details Management</h1>
+                <h1 className="text-4xl font-bold text-black">Site Details Management</h1>
             </div>
 
             <motion.div

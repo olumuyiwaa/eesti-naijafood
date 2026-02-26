@@ -74,7 +74,7 @@ export default function Home() {
         }
     }, [menu]);
     return (
-        <div className="min-h-screen bg-gradient-to-b from-zinc-950 via-zinc-900 to-black">
+        <div className="min-h-screen bg-white text-zinc-900">
             {/* Hero Section - Full Screen with Video Background Effect */}
             <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
                 {/* Background Image */}
@@ -199,7 +199,7 @@ export default function Home() {
 
             {/* About Section - Two Column */}
             <section className="py-32 relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-b from-black via-orange-950/10 to-black" />
+                <div className="absolute inset-0 bg-gradient-to-b from-white via-orange-950/10 to-white" />
 
                 <div className="max-w-7xl mx-auto px-4 relative z-10">
                     <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -219,16 +219,16 @@ export default function Home() {
                 </span>
                             </h2>
 
-                            <p className="text-xl text-white/70 mb-6 leading-relaxed">
+                            <p className="text-xl text-black/70 mb-6 leading-relaxed">
                                 Eesti-NaijaFood isn’t just catering — it’s a culinary experience.
                                 Every menu we create tells a story. Every flavor carries the richness of West African tradition. Every event we serve becomes a celebration of culture and connection.
                             </p>
 
-                            <p className="text-lg text-white/60 mb-8 leading-relaxed">
+                            <p className="text-lg text-black/60 mb-8 leading-relaxed">
                             From our signature Jollof Rice to beautifully crafted, top-quality cakes, we bring the vibrant taste and energy of West Africa to events across Estonia — weddings, corporate functions, private celebrations, and special occasions.
                             </p>
 
-                            <p className="text-lg text-white/60 mb-8 leading-relaxed">
+                            <p className="text-lg text-black/60 mb-8 leading-relaxed">
                                 We don’t just serve food.
                                 We create unforgettable experiences.
                             </p>
@@ -244,7 +244,7 @@ export default function Home() {
                                 </Link>
 
                                 <motion.button
-                                    className="px-8 py-4 bg-white/5 backdrop-blur border border-white/10 rounded-full text-white font-bold hover:bg-white/10 transition-all flex items-center gap-2"
+                                    className="px-8 py-4 bg-white/5 backdrop-blur border border-white/10 rounded-full text-black font-bold hover:bg-white/10 transition-all flex items-center gap-2"
                                     whileHover={{ scale: 1.05 }}
                                 >
                                     <FaPlay className="text-sm" /> Watch Video
@@ -377,7 +377,7 @@ export default function Home() {
             </section>
 
             {/* Order Online Section */}
-            <section className="py-16 bg-black">
+            <section className="py-16 bg-white">
                 <div className="max-w-7xl mx-auto px-4 text-center">
                     <h2 className="text-5xl font-bold mb-8">Order for Takeaway</h2>
                     <p className="text-xl text-gray-400 mb-8">
@@ -411,7 +411,7 @@ export default function Home() {
             </section>
 
             {/* Gallery */}
-            <section className="py-20 bg-black">
+            <section className="py-20 bg-white">
                 <div className="max-w-7xl mx-auto px-4">
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
@@ -525,7 +525,7 @@ export default function Home() {
             </section>
 
             {/* Testimonials Section */}
-            <section className="py-20 bg-black">
+            <section className="py-20 bg-white">
                 <div className="max-w-7xl mx-auto px-4">
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}

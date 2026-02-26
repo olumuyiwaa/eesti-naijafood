@@ -110,7 +110,7 @@ export default function CateringPage() {
 
     if (quoteSuccess) {
         return (
-            <div className="min-h-screen bg-black text-white pt-24 flex items-center justify-center">
+            <div className="min-h-screen bg-white text-zinc-900 flex items-center justify-center">
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
@@ -118,16 +118,18 @@ export default function CateringPage() {
                 >
                     <FaCheckCircle className="text-8xl text-green-500 mx-auto mb-6" />
                     <h1 className="text-5xl font-bold mb-4">Quote Request Received!</h1>
-                    <p className="text-2xl text-gray-400 mb-6">
+                    <p className="text-2xl text-zinc-600 mb-6">
                         We've received your catering quote request.
                     </p>
-                    <div className="bg-gray-900 p-8 rounded-2xl mb-8">
+
+                    <div className="bg-zinc-50 p-8 rounded-2xl mb-8 border border-zinc-200">
                         <p className="text-lg mb-4">Your reference number:</p>
-                        <p className="text-4xl font-bold text-orange-500 mb-4">{quoteRef}</p>
-                        <p className="text-gray-400">
-                            Our team will review your request and get back to you within 24-48 hours with a detailed quote.
+                        <p className="text-4xl font-bold text-orange-600 mb-4">{quoteRef}</p>
+                        <p className="text-zinc-600">
+                            Our team will review your request and get back to you within 24–48 hours with a detailed quote.
                         </p>
                     </div>
+
                     <button
                         onClick={() => setQuoteSuccess(false)}
                         className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-full font-semibold transition-all"
@@ -140,7 +142,7 @@ export default function CateringPage() {
     }
 
     return (
-        <div className="min-h-screen bg-black text-white pt-24">
+        <div className="min-h-screen bg-white text-zinc-900 pt-24">
             {/* Header */}
             <section className="relative py-16 bg-gradient-to-br from-orange-600 to-red-700 text-center overflow-hidden">
 
@@ -163,23 +165,24 @@ export default function CateringPage() {
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-6xl font-bold mb-4"
+                        className="text-6xl font-bold mb-4 text-white"
                     >
                         Catering Services
                     </motion.h1>
+
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
-                        className="text-2xl"
+                        className="text-xl text-white"
                     >
                         Bring authentic African flavors to your special event
                     </motion.p>
                 </div>
             </section>
 
-            {/* Event Types */}
-            <section className="py-20 bg-gray-900">
+            {/* Events */}
+            <section className="py-20 bg-white">
                 <div className="max-w-7xl mx-auto px-4">
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
@@ -205,11 +208,11 @@ export default function CateringPage() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.1 }}
-                                className="bg-gray-800 p-8 rounded-2xl text-center hover:bg-gray-750 transition-all"
+                                className="bg-white p-8 rounded-2xl text-center border border-zinc-200 shadow-sm hover:shadow-md transition"
                             >
                                 <div className="text-6xl mb-4">{event.icon}</div>
                                 <h3 className="text-2xl font-bold mb-2">{event.title}</h3>
-                                <p className="text-gray-400">{event.description}</p>
+                                <p className="text-zinc-600">{event.description}</p>
                             </motion.div>
                         ))}
                     </div>
@@ -217,7 +220,7 @@ export default function CateringPage() {
             </section>
 
             {/* Packages */}
-            <section className="py-20 bg-black">
+            <section className="py-20 bg-zinc-50">
                 <div className="max-w-7xl mx-auto px-4">
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
@@ -236,25 +239,29 @@ export default function CateringPage() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.2 }}
-                                className="bg-gradient-to-br from-gray-900 to-gray-800 p-8 rounded-3xl border-2 border-gray-700 hover:border-orange-500 transition-all"
+                                className="bg-white p-8 rounded-3xl border border-zinc-200 shadow-sm hover:shadow-md transition"
                             >
                                 <h3 className="text-3xl font-bold mb-2">{pkg.name}</h3>
-                                <p className="text-gray-400 mb-4">{pkg.description}</p>
-                                <div className="text-4xl font-bold text-orange-500 mb-4">
+                                <p className="text-zinc-600 mb-4">{pkg.description}</p>
+
+                                <div className="text-4xl font-bold text-orange-600 mb-4">
                                     ${pkg.pricePerPerson}
-                                    <span className="text-lg text-gray-400">/person</span>
+                                    <span className="text-lg text-zinc-500">/person</span>
                                 </div>
-                                <p className="text-gray-400 mb-6">
-                                    {pkg.minGuests} - {pkg.maxGuests} guests
+
+                                <p className="text-zinc-600 mb-6">
+                                    {pkg.minGuests} – {pkg.maxGuests} guests
                                 </p>
+
                                 <div className="space-y-3 mb-8">
                                     {pkg.includes.map((item, i) => (
                                         <div key={i} className="flex items-start gap-2">
                                             <FaCheckCircle className="text-green-500 mt-1 flex-shrink-0" />
-                                            <span className="text-gray-300">{item}</span>
+                                            <span className="text-zinc-700">{item}</span>
                                         </div>
                                     ))}
                                 </div>
+
                                 <button className="w-full bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-full font-semibold transition-all">
                                     Request Quote
                                 </button>
@@ -264,9 +271,8 @@ export default function CateringPage() {
                 </div>
             </section>
 
-
             {/* Gallery */}
-            <section className="py-20 bg-black">
+            <section className="py-20 bg-white">
                 <div className="max-w-7xl mx-auto px-4">
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
@@ -278,27 +284,20 @@ export default function CateringPage() {
                     </motion.h2>
 
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                        {images.map((item, index) => (
+                        {images.map((item) => (
                             <motion.div
                                 key={item.publicId}
                                 initial={{ opacity: 0, scale: 0.8 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}
-                                transition={{ delay: index * 0.05 }}
-                                className="relative h-64 rounded-2xl overflow-hidden cursor-pointer group"
+                                className="relative h-64 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition"
                             >
                                 <Image
                                     src={item.url}
                                     alt=""
                                     fill
-                                    className="object-cover group-hover:scale-110 transition-transform duration-300"
+                                    className="object-cover hover:scale-110 transition duration-300"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                                    {/* <div>
-                                        <h3 className="font-bold">{item.title}</h3>
-                                        <p className="text-sm text-gray-300">{new Date(item.date).toLocaleDateString()}</p>
-                                    </div> */}
-                                </div>
                             </motion.div>
                         ))}
                     </div>
@@ -306,7 +305,7 @@ export default function CateringPage() {
             </section>
 
             {/* Quote Form */}
-            <section className="py-20 bg-gray-900">
+            <section className="py-20 bg-zinc-50">
                 <div className="max-w-4xl mx-auto px-4">
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
@@ -316,12 +315,13 @@ export default function CateringPage() {
                     >
                         Request a Quote
                     </motion.h2>
+
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.2 }}
-                        className="text-xl text-center text-gray-400 mb-12"
+                        className="text-xl text-center text-zinc-600 mb-12"
                     >
                         Fill out the form below and we'll get back to you with a custom quote
                     </motion.p>
@@ -330,7 +330,7 @@ export default function CateringPage() {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="bg-gray-800 rounded-3xl p-8 md:p-12"
+                        className="bg-white rounded-3xl p-8 md:p-12 border border-zinc-200 shadow-sm"
                     >
                         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                             {/* Name */}
@@ -339,7 +339,7 @@ export default function CateringPage() {
                                 <input
                                     type="text"
                                     {...register('name', { required: 'Name is required' })}
-                                    className="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 focus:border-orange-500 focus:outline-none text-white"
+                                    className="w-full px-4 py-3 rounded-lg bg-gray-200 border border-gray-600 focus:border-orange-500 focus:outline-none text-white"
                                     placeholder="John Doe"
                                 />
                                 {errors.name && <p className="text-red-500 mt-1">{errors.name.message}</p>}
@@ -358,7 +358,7 @@ export default function CateringPage() {
                                                 message: 'Invalid email'
                                             }
                                         })}
-                                        className="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 focus:border-orange-500 focus:outline-none text-white"
+                                        className="w-full px-4 py-3 rounded-lg bg-gray-200 border border-gray-600 focus:border-orange-500 focus:outline-none text-white"
                                         placeholder="john@example.com"
                                     />
                                     {errors.email && <p className="text-red-500 mt-1">{errors.email.message}</p>}
@@ -369,7 +369,7 @@ export default function CateringPage() {
                                     <input
                                         type="tel"
                                         {...register('phone', { required: 'Phone is required' })}
-                                        className="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 focus:border-orange-500 focus:outline-none text-white"
+                                        className="w-full px-4 py-3 rounded-lg bg-gray-200 border border-gray-600 focus:border-orange-500 focus:outline-none text-white"
                                         placeholder="+64 21 XXX XXXX"
                                     />
                                     {errors.phone && <p className="text-red-500 mt-1">{errors.phone.message}</p>}
@@ -384,7 +384,7 @@ export default function CateringPage() {
                                         type="date"
                                         {...register('eventDate', { required: 'Event date is required' })}
                                         min={new Date().toISOString().split('T')[0]}
-                                        className="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 focus:border-orange-500 focus:outline-none text-white"
+                                        className="w-full px-4 py-3 rounded-lg bg-gray-200 border border-gray-600 focus:border-orange-500 focus:outline-none text-white"
                                     />
                                     {errors.eventDate && <p className="text-red-500 mt-1">{errors.eventDate.message}</p>}
                                 </div>
@@ -393,7 +393,7 @@ export default function CateringPage() {
                                     <label className="block text-lg font-semibold mb-2">Event Type *</label>
                                     <select
                                         {...register('eventType', { required: 'Event type is required' })}
-                                        className="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 focus:border-orange-500 focus:outline-none text-white"
+                                        className="w-full px-4 py-3 rounded-lg bg-gray-200 border border-gray-600 focus:border-orange-500 focus:outline-none text-white"
                                     >
                                         <option value="">Select event type</option>
                                         <option value="corporate">Corporate Event</option>
@@ -417,7 +417,7 @@ export default function CateringPage() {
                                             required: 'Guest count is required',
                                             min: { value: 10, message: 'Minimum 10 guests' }
                                         })}
-                                        className="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 focus:border-orange-500 focus:outline-none text-white"
+                                        className="w-full px-4 py-3 rounded-lg bg-gray-200 border border-gray-600 focus:border-orange-500 focus:outline-none text-white"
                                         placeholder="50"
                                         min="10"
                                     />
@@ -429,7 +429,7 @@ export default function CateringPage() {
                                     <input
                                         type="text"
                                         {...register('venue', { required: 'Venue is required' })}
-                                        className="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 focus:border-orange-500 focus:outline-none text-white"
+                                        className="w-full px-4 py-3 rounded-lg bg-gray-200 border border-gray-600 focus:border-orange-500 focus:outline-none text-white"
                                         placeholder="Event location"
                                     />
                                     {errors.venue && <p className="text-red-500 mt-1">{errors.venue.message}</p>}
@@ -442,7 +442,7 @@ export default function CateringPage() {
                                 <textarea
                                     {...register('menuPreferences')}
                                     rows={3}
-                                    className="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 focus:border-orange-500 focus:outline-none text-white"
+                                    className="w-full px-4 py-3 rounded-lg bg-gray-200 border border-gray-600 focus:border-orange-500 focus:outline-none text-white"
                                     placeholder="Any specific dishes or dietary requirements?"
                                 />
                             </div>
@@ -453,7 +453,7 @@ export default function CateringPage() {
                                 <textarea
                                     {...register('specialRequirements')}
                                     rows={3}
-                                    className="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 focus:border-orange-500 focus:outline-none text-white"
+                                    className="w-full px-4 py-3 rounded-lg bg-gray-200 border border-gray-600 focus:border-orange-500 focus:outline-none text-white"
                                     placeholder="Setup needs, equipment, timing, etc."
                                 />
                             </div>
@@ -464,7 +464,7 @@ export default function CateringPage() {
                                 <input
                                     type="text"
                                     {...register('budget')}
-                                    className="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 focus:border-orange-500 focus:outline-none text-white"
+                                    className="w-full px-4 py-3 rounded-lg bg-gray-200 border border-gray-600 focus:border-orange-500 focus:outline-none text-white"
                                     placeholder="e.g., $2000 - $3000"
                                 />
                             </div>

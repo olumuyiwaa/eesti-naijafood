@@ -70,7 +70,7 @@ export default function CartPage() {
 
     if (cart.length === 0) {
         return (
-            <div className="min-h-screen bg-black text-white pt-32 pb-20 px-4 flex flex-col items-center justify-center">
+            <div className="min-h-screen bg-white text-black pt-32 pb-20 px-4 flex flex-col items-center justify-center">
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
@@ -94,7 +94,7 @@ export default function CartPage() {
     }
 
     return (
-        <div className="min-h-screen bg-black text-white pt-32 pb-20 px-4">
+        <div className="min-h-screen bg-white text-black pt-32 pb-20 px-4">
             <div className="max-w-7xl mx-auto">
                 <h1 className="text-4xl font-extrabold mb-10 flex items-center gap-4">
                     Your Selection <span className="text-orange-500 text-xl font-normal">({cart.length} items)</span>
@@ -109,7 +109,7 @@ export default function CartPage() {
                                 layout
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                className="bg-zinc-900/50 border border-white/5 rounded-2xl p-4 sm:p-6 flex flex-col sm:flex-row items-center gap-6"
+                                className="bg-zinc-400/50 border border-white/5 rounded-2xl p-4 sm:p-6 flex flex-col sm:flex-row items-center gap-6"
                             >
                                 <div className="relative h-24 w-24 sm:h-32 sm:w-32 flex-shrink-0 rounded-xl overflow-hidden">
                                     <Image src={item.image} alt={item.name} fill className="object-cover" />
@@ -120,7 +120,7 @@ export default function CartPage() {
                                     <p className="text-orange-500 font-bold text-lg mb-4">${item.price.toFixed(2)}</p>
 
                                     <div className="flex items-center justify-center sm:justify-start gap-4">
-                                        <div className="flex items-center bg-black rounded-full border border-white/10 p-1">
+                                        <div className="flex items-center bg-white rounded-full border border-white/10 p-1">
                                             <button
                                                 onClick={() => updateQuantity(item.id, -1)}
                                                 className="p-2 hover:text-orange-500 transition-colors"
@@ -137,7 +137,7 @@ export default function CartPage() {
                                         </div>
                                         <button
                                             onClick={() => removeFromCart(item.id)}
-                                            className="text-gray-500 hover:text-red-500 transition-colors p-2"
+                                            className="text-red-500 hover:text-red-500 transition-colors p-2"
                                         >
                                             <FaTrash />
                                         </button>
@@ -153,7 +153,9 @@ export default function CartPage() {
 
                     {/* Order Summary Card */}
                     <div className="lg:col-span-1">
-                        <div className="bg-zinc-900 border border-white/10 rounded-3xl p-8 sticky top-32">
+                        <div
+                            className="bg-white rounded-3xl p-8 md:p-12 border border-zinc-200 shadow-sm"
+                        >
                             <h2 className="text-2xl font-bold mb-6">Order Summary</h2>
 
                             <div className="space-y-4 mb-8">
@@ -180,7 +182,7 @@ export default function CartPage() {
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
                                     placeholder="Enter your name"
-                                    className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-orange-500"
+                                    className="w-full bg-gray-200 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-orange-500"
                                     required
                                 />
                             </div>
@@ -194,7 +196,7 @@ export default function CartPage() {
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     placeholder="Enter your email"
-                                    className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-orange-500"
+                                    className="w-full bg-gray-200 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-orange-500"
                                     required
                                 />
                             </div>
@@ -208,7 +210,7 @@ export default function CartPage() {
                                     value={phone}
                                     onChange={(e) => setPhone(e.target.value)}
                                     placeholder="Enter your phone number"
-                                    className="w-full bg-black border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-orange-500"
+                                    className="w-full bg-gray-200 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-orange-500"
                                     required
                                 />
                             </div>
