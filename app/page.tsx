@@ -263,7 +263,7 @@ export default function Home() {
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10" />
                                 <div
                                     className="absolute inset-0 bg-cover bg-center"
-                                    style={{ backgroundImage: "url('/images/about-story.webp')" }}
+                                    style={{ backgroundImage: "url('/images/about-story.jpg')" }}
                                 />
 
                                 {/* Stats Overlay */}
