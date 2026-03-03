@@ -41,13 +41,13 @@ export default function ReviewsPage() {
     };
 
     return (
-        <div className="min-h-screen bg-black text-white pt-24">
+        <div className="min-h-screen bg-white text-black pt-24">
             {/* Header */}
             <section className="py-16 bg-gradient-to-br from-orange-600 to-red-700 text-center">
                 <motion.h1
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="text-6xl font-bold mb-4"
+                    className="text-6xl font-bold mb-4 text-white"
                 >
                     Customer Reviews
                 </motion.h1>
@@ -62,7 +62,7 @@ export default function ReviewsPage() {
             </section>
 
             {/* Featured Testimonials Carousel */}
-            <section className="py-20 bg-black">
+            <section className="py-20 bg-white">
                 <div className="max-w-7xl mx-auto px-4">
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
@@ -78,7 +78,7 @@ export default function ReviewsPage() {
 
             {/* Stats Section */}
             {stats && (
-                <section className="py-20 bg-gray-900">
+                <section className="py-20 bg-gray-200">
                     <div className="max-w-7xl mx-auto px-4">
                         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                             {/* Overall Rating */}
@@ -141,7 +141,7 @@ export default function ReviewsPage() {
                             viewport={{ once: true }}
                             className="bg-gray-800 rounded-2xl p-8 mt-8"
                         >
-                            <h3 className="text-2xl font-bold mb-6">Rating Distribution</h3>
+                            <h3 className="text-2xl font-bold mb-6 text-white">Rating Distribution</h3>
                             <div className="space-y-4">
                                 {[5, 4, 3, 2, 1].map((rating) => {
                                     const count = stats.ratingDistribution[rating] || 0;
@@ -175,7 +175,7 @@ export default function ReviewsPage() {
             )}
 
             {/* All Reviews Section */}
-            <section className="py-20 bg-black">
+            <section className="py-20 bg-white">
                 <div className="max-w-7xl mx-auto px-4">
                     <div className="flex items-center justify-between mb-8">
                         <h2 className="text-4xl font-bold">All Reviews</h2>
