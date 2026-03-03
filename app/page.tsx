@@ -75,7 +75,7 @@ export default function Home() {
     }, [menu]);
     return (
         <div className="min-h-screen bg-white text-zinc-900">
-            {/* Hero Section - Full Screen with Video Background Effect */}
+            {/* Hero Section - Full Screen*/}
             <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
                 {/* Background Image */}
                 <div className="absolute inset-0">
@@ -118,12 +118,12 @@ export default function Home() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
                     >
-                        <motion.h1
-                            className="text-7xl md:text-9xl font-black mb-6 leading-tight"
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.8, delay: 0.2 }}
-                        >
+                    <motion.h1
+                        className="text-7xl md:text-9xl font-black mb-6 leading-tight"
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                    >
               <span className="bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 bg-clip-text text-transparent">
                 Eesti NaijaFood
               </span>
