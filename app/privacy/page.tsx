@@ -21,6 +21,9 @@ export default function PrivacyPage() {
                         />
                     </div>
                 </div>
+                <div className="absolute inset-0 bg-black/50" />
+
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(251,146,60,0.1),transparent_50%)]" />
                 <div className="relative z-10">
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
