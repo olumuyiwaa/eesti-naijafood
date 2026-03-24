@@ -249,7 +249,7 @@ export default function CateringPage() {
                                 <p className="text-zinc-600 mb-4">{pkg.description}</p>
 
                                 <div className="text-4xl font-bold text-orange-600 mb-4">
-                                    ${pkg.pricePerPerson}
+                                    €{pkg.pricePerPerson}
                                     <span className="text-lg text-zinc-500">/person</span>
                                 </div>
 
@@ -469,7 +469,7 @@ export default function CateringPage() {
                                     type="text"
                                     {...register('budget')}
                                     className="w-full px-4 py-3 rounded-lg bg-gray-200 border border-gray-600 focus:border-orange-500 focus:outline-none text-white"
-                                    placeholder="e.g., $2000 - $3000"
+                                    placeholder="e.g., €2000 - €3000"
                                 />
                             </div>
 

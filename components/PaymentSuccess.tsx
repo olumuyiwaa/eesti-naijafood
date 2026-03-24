@@ -71,7 +71,7 @@ export default function PaymentSuccessPage() {
                             </div>
                             <div className="flex justify-between">
                                 <span className="text-gray-400">Amount:</span>
-                                <span className="text-white font-bold">${paymentDetails.amount.toFixed(2)} NZD</span>
+                                <span className="text-white font-bold">€{paymentDetails.amount.toFixed(2)} EURO</span>
                             </div>
                             <div className="flex justify-between">
                                 <span className="text-gray-400">Status:</span>

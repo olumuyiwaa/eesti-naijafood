@@ -95,7 +95,7 @@ function CheckoutForm({
                 <div className="flex justify-between items-center">
                     <span className="text-gray-400">Amount:</span>
                     <span className="text-3xl font-bold text-orange-500">
-            ${amount.toFixed(2)} NZD
+            €{amount.toFixed(2)} EURO
           </span>
                 </div>
             </div>
@@ -149,7 +149,7 @@ function CheckoutForm({
                     ) : (
                         <>
                             <FaCreditCard />
-                            Pay ${amount.toFixed(2)}
+                            Pay €{amount.toFixed(2)}
                         </>
                     )}
                 </button>

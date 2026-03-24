@@ -122,7 +122,7 @@ export default function MenuPage() {
                     return [
                         item.name + (badges.length > 0 ? '\n' + badges.join(' ') : ''),
                         item.description,
-                        `${item.price.toFixed(2)}`
+                        `€ ${item.price.toFixed(2)}`
                     ];
                 });
 
@@ -299,7 +299,7 @@ export default function MenuPage() {
 
                                     <div className="flex justify-between items-center">
                   <span className="text-2xl font-bold text-orange-600">
-                    ${item.price.toFixed(2)}
+                    €{item.price.toFixed(2)}
                   </span>
 
                                         <button
@@ -346,7 +346,7 @@ export default function MenuPage() {
                                 </p>
 
                                 <div className="text-3xl font-bold text-orange-600 mb-6">
-                                    ${dishOfTheWeek.price}
+                                    €{dishOfTheWeek.price}
                                 </div>
 
                                 <button

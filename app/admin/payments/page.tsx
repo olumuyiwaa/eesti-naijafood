@@ -176,7 +176,7 @@ export default function AdminPayments() {
                             <FaDollarSign className="text-4xl" />
                         </div>
                         <p className="text-lg opacity-90 mb-1">Total Revenue</p>
-                        <p className="text-4xl font-bold">${stats.totalRevenue.toFixed(2)}</p>
+                        <p className="text-4xl font-bold">€{stats.totalRevenue.toFixed(2)}</p>
                         <p className="text-sm opacity-75 mt-2">Last 30 days</p>
                     </motion.div>
 
@@ -203,7 +203,7 @@ export default function AdminPayments() {
                             <FaDollarSign className="text-4xl" />
                         </div>
                         <p className="text-lg opacity-90 mb-1">Booking Deposits</p>
-                        <p className="text-4xl font-bold">${stats.bookingDeposits.toFixed(2)}</p>
+                        <p className="text-4xl font-bold">€{stats.bookingDeposits.toFixed(2)}</p>
                     </motion.div>
 
                     <motion.div
@@ -216,7 +216,7 @@ export default function AdminPayments() {
                             <FaDollarSign className="text-4xl" />
                         </div>
                         <p className="text-lg opacity-90 mb-1">Catering Deposits</p>
-                        <p className="text-4xl font-bold">${stats.cateringDeposits.toFixed(2)}</p>
+                        <p className="text-4xl font-bold">€{stats.cateringDeposits.toFixed(2)}</p>
                     </motion.div>
                 </div>
             )}
@@ -278,7 +278,7 @@ export default function AdminPayments() {
                     </span>
                                 </td>
                                 <td className="px-6 py-4 text-white font-bold">
-                                    ${payment.amount.toFixed(2)}
+                                    €{payment.amount.toFixed(2)}
                                 </td>
                                 <td className="px-6 py-4">
                                     <div className="flex items-center gap-2">
@@ -343,7 +343,7 @@ export default function AdminPayments() {
                             </div>
                             <div>
                                 <p className="text-gray-400 mb-1">Amount</p>
-                                <p className="text-white text-2xl font-bold">${selectedPayment.amount.toFixed(2)}</p>
+                                <p className="text-white text-2xl font-bold">€{selectedPayment.amount.toFixed(2)}</p>
                             </div>
                             <div>
                                 <p className="text-gray-400 mb-1">Status</p>
@@ -395,7 +395,7 @@ export default function AdminPayments() {
                             </div>
                             <div>
                                 <p className="text-gray-400 mb-1">Original Amount</p>
-                                <p className="text-white text-2xl font-bold">${selectedPayment.amount.toFixed(2)}</p>
+                                <p className="text-white text-2xl font-bold">€{selectedPayment.amount.toFixed(2)}</p>
                             </div>
                             <div>
                                 <p className="text-gray-400 mb-1">Payment ID</p>
@@ -404,7 +404,7 @@ export default function AdminPayments() {
                         </div>
 
                         <div className="mb-6">
-                            <label className="block text-white font-semibold mb-2">Refund Amount ($)</label>
+                            <label className="block text-white font-semibold mb-2">Refund Amount (€)</label>
                             <input
                                 type="number"
                                 value={refundAmount}
