@@ -234,7 +234,9 @@ export default function Home() {
                             </p>
 
                             <div className="flex flex-wrap gap-4">
-                                <Link href="/about">
+                                <Link
+                                    href="https://www.instagram.com/eesti_naijafoods?igsh=MTV6YmhteXJud3lraQ%3D%3D"
+                                >
                                     <motion.button
                                         className="px-8 py-4 bg-gradient-to-r from-orange-500 to-red-600 rounded-full text-white font-bold shadow-lg shadow-orange-500/30"
                                         whileHover={{ scale: 1.05 }}
@@ -243,12 +245,18 @@ export default function Home() {
                                     </motion.button>
                                 </Link>
 
-                                <motion.button
-                                    className="px-8 py-4 bg-white/5 backdrop-blur border border-white/10 rounded-full text-black font-bold hover:bg-white/10 transition-all flex items-center gap-2"
-                                    whileHover={{ scale: 1.05 }}
-                                >
-                                    <FaPlay className="text-sm" /> Watch Video
-                                </motion.button>
+                               <a
+                                   href="https://www.instagram.com/eesti_naijafoods?igsh=MTV6YmhteXJud3lraQ%3D%3D"
+                                   target="_blank"
+                                   rel="noopener noreferrer"
+                                   >
+                                   <motion.button
+                                       className="px-8 py-4 bg-white/5 backdrop-blur border border-white/10 rounded-full text-black font-bold hover:bg-white/10 transition-all flex items-center gap-2"
+                                       whileHover={{ scale: 1.05 }}
+                                   >
+                                       <FaPlay className="text-sm" /> Watch Video
+                                   </motion.button>
+                               </a>
                             </div>
                         </motion.div>
 
