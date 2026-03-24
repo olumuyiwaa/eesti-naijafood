@@ -251,7 +251,7 @@ export default function ContactPage() {
                                     <input
                                         type="text"
                                         {...register('name', { required: 'Name is required' })}
-                                        className="w-full px-4 py-3 rounded-lg bg-gray-200 border border-gray-700 focus:border-orange-500 focus:outline-none text-white"
+                                        className="w-full bg-gray-200 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-orange-500"
                                         placeholder="Your name"
                                     />
                                     {errors.name && <p className="text-red-500 mt-1">{errors.name.message}</p>}
@@ -268,7 +268,7 @@ export default function ContactPage() {
                                                 message: 'Invalid email',
                                             },
                                         })}
-                                        className="w-full px-4 py-3 rounded-lg bg-gray-200 border border-gray-700 focus:border-orange-500 focus:outline-none text-white"
+                                        className="w-full bg-gray-200 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-orange-500"
                                         placeholder="your@email.com"
                                     />
                                     {errors.email && <p className="text-red-500 mt-1">{errors.email.message}</p>}
@@ -279,7 +279,7 @@ export default function ContactPage() {
                                     <input
                                         type="tel"
                                         {...register('phone')}
-                                        className="w-full px-4 py-3 rounded-lg bg-gray-200 border border-gray-700 focus:border-orange-500 focus:outline-none text-white"
+                                        className="w-full bg-gray-200 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-orange-500"
                                         placeholder="+64 21 XXX XXXX"
                                     />
                                 </div>
@@ -289,7 +289,7 @@ export default function ContactPage() {
                                     <input
                                         type="text"
                                         {...register('subject', { required: 'Subject is required' })}
-                                        className="w-full px-4 py-3 rounded-lg bg-gray-200 border border-gray-700 focus:border-orange-500 focus:outline-none text-white"
+                                        className="w-full bg-gray-200 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-orange-500"
                                         placeholder="How can we help?"
                                     />
                                     {errors.subject && <p className="text-red-500 mt-1">{errors.subject.message}</p>}
@@ -303,7 +303,7 @@ export default function ContactPage() {
                                             minLength: { value: 10, message: 'Message must be at least 10 characters' },
                                         })}
                                         rows={6}
-                                        className="w-full px-4 py-3 rounded-lg bg-gray-200 border border-gray-700 focus:border-orange-500 focus:outline-none text-white"
+                                        className="w-full bg-gray-200 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-orange-500"
                                         placeholder="Your message..."
                                     />
                                     {errors.message && <p className="text-red-500 mt-1">{errors.message.message}</p>}
@@ -312,7 +312,7 @@ export default function ContactPage() {
                                 <motion.button
                                     type="submit"
                                     disabled={isSubmitting}
-                                    className="w-full bg-orange-600 hover:bg-orange-700 disabled:bg-gray-600 text-white px-8 py-4 rounded-full text-xl font-semibold transition-all"
+                                    className="w-full bg-orange-600 hover:bg-orange-700 disabled:bg-gray-600 text-white px-8 py-4 rounded-lg text-xl font-semibold transition-all"
                                     whileHover={{ scale: 1.02 }}
                                     whileTap={{ scale: 0.98 }}
                                 >

@@ -117,7 +117,7 @@ export default function CartPage() {
 
                                 <div className="flex-grow text-center sm:text-left">
                                     <h3 className="text-xl font-bold mb-1">{item.name}</h3>
-                                    <p className="text-orange-500 font-bold text-lg mb-4">${item.price.toFixed(2)}</p>
+                                    <p className="text-orange-500 font-bold text-lg mb-4">€{item.price.toFixed(2)}</p>
 
                                     <div className="flex items-center justify-center sm:justify-start gap-4">
                                         <div className="flex items-center bg-white rounded-full border border-white/10 p-1">
@@ -145,7 +145,7 @@ export default function CartPage() {
                                 </div>
 
                                 <div className="text-right hidden sm:block">
-                                    <p className="text-xl font-black">${(item.price * item.quantity).toFixed(2)}</p>
+                                    <p className="text-xl font-black">€{(item.price * item.quantity).toFixed(2)}</p>
                                 </div>
                             </motion.div>
                         ))}
@@ -161,7 +161,7 @@ export default function CartPage() {
                             <div className="space-y-4 mb-8">
                                 <div className="flex justify-between text-gray-400">
                                     <span>Subtotal</span>
-                                    <span>${getCartTotal().toFixed(2)}</span>
+                                    <span>€{getCartTotal().toFixed(2)}</span>
                                 </div>
                                 <div className="flex justify-between text-gray-400">
                                     <span>Delivery Fee</span>
@@ -169,7 +169,7 @@ export default function CartPage() {
                                 </div>
                                 <div className="border-t border-white/10 pt-4 flex justify-between text-xl font-bold">
                                     <span>Total</span>
-                                    <span className="text-orange-500">${getCartTotal().toFixed(2)}</span>
+                                    <span className="text-orange-500">€{getCartTotal().toFixed(2)}</span>
                                 </div>
                             </div>
 

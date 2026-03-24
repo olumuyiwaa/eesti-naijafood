@@ -355,7 +355,7 @@ export default function Home() {
 
                                     <div className="flex items-baseline gap-4 mb-8">
                                     <span className="text-6xl font-black bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">
-                                        ${dishOfTheWeek.price}
+                                        €{dishOfTheWeek.price}
                                     </span>
                                     </div>
 

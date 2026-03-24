@@ -343,7 +343,7 @@ export default function CateringPage() {
                                 <input
                                     type="text"
                                     {...register('name', { required: 'Name is required' })}
-                                    className="w-full px-4 py-3 rounded-lg bg-gray-200 border border-gray-600 focus:border-orange-500 focus:outline-none text-white"
+                                    className="w-full bg-gray-200 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-orange-500"
                                     placeholder="John Doe"
                                 />
                                 {errors.name && <p className="text-red-500 mt-1">{errors.name.message}</p>}
@@ -362,7 +362,7 @@ export default function CateringPage() {
                                                 message: 'Invalid email'
                                             }
                                         })}
-                                        className="w-full px-4 py-3 rounded-lg bg-gray-200 border border-gray-600 focus:border-orange-500 focus:outline-none text-white"
+                                        className="w-full bg-gray-200 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-orange-500"
                                         placeholder="john@example.com"
                                     />
                                     {errors.email && <p className="text-red-500 mt-1">{errors.email.message}</p>}
@@ -373,7 +373,7 @@ export default function CateringPage() {
                                     <input
                                         type="tel"
                                         {...register('phone', { required: 'Phone is required' })}
-                                        className="w-full px-4 py-3 rounded-lg bg-gray-200 border border-gray-600 focus:border-orange-500 focus:outline-none text-white"
+                                        className="w-full bg-gray-200 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-orange-500"
                                         placeholder="+64 21 XXX XXXX"
                                     />
                                     {errors.phone && <p className="text-red-500 mt-1">{errors.phone.message}</p>}
@@ -388,7 +388,7 @@ export default function CateringPage() {
                                         type="date"
                                         {...register('eventDate', { required: 'Event date is required' })}
                                         min={new Date().toISOString().split('T')[0]}
-                                        className="w-full px-4 py-3 rounded-lg bg-gray-200 border border-gray-600 focus:border-orange-500 focus:outline-none text-white"
+                                        className="w-full bg-gray-200 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-orange-500"
                                     />
                                     {errors.eventDate && <p className="text-red-500 mt-1">{errors.eventDate.message}</p>}
                                 </div>
@@ -397,7 +397,7 @@ export default function CateringPage() {
                                     <label className="block text-lg font-semibold mb-2">Event Type *</label>
                                     <select
                                         {...register('eventType', { required: 'Event type is required' })}
-                                        className="w-full px-4 py-3 rounded-lg bg-gray-200 border border-gray-600 focus:border-orange-500 focus:outline-none text-white"
+                                        className="w-full bg-gray-200 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-orange-500"
                                     >
                                         <option value="">Select event type</option>
                                         <option value="corporate">Corporate Event</option>
@@ -421,7 +421,7 @@ export default function CateringPage() {
                                             required: 'Guest count is required',
                                             min: { value: 10, message: 'Minimum 10 guests' }
                                         })}
-                                        className="w-full px-4 py-3 rounded-lg bg-gray-200 border border-gray-600 focus:border-orange-500 focus:outline-none text-white"
+                                        className="w-full bg-gray-200 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-orange-500"
                                         placeholder="50"
                                         min="10"
                                     />
@@ -433,7 +433,7 @@ export default function CateringPage() {
                                     <input
                                         type="text"
                                         {...register('venue', { required: 'Venue is required' })}
-                                        className="w-full px-4 py-3 rounded-lg bg-gray-200 border border-gray-600 focus:border-orange-500 focus:outline-none text-white"
+                                        className="w-full bg-gray-200 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-orange-500"
                                         placeholder="Event location"
                                     />
                                     {errors.venue && <p className="text-red-500 mt-1">{errors.venue.message}</p>}
@@ -446,7 +446,7 @@ export default function CateringPage() {
                                 <textarea
                                     {...register('menuPreferences')}
                                     rows={3}
-                                    className="w-full px-4 py-3 rounded-lg bg-gray-200 border border-gray-600 focus:border-orange-500 focus:outline-none text-white"
+                                    className="w-full bg-gray-200 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-orange-500"
                                     placeholder="Any specific dishes or dietary requirements?"
                                 />
                             </div>
@@ -457,7 +457,7 @@ export default function CateringPage() {
                                 <textarea
                                     {...register('specialRequirements')}
                                     rows={3}
-                                    className="w-full px-4 py-3 rounded-lg bg-gray-200 border border-gray-600 focus:border-orange-500 focus:outline-none text-white"
+                                    className="w-full bg-gray-200 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-orange-500"
                                     placeholder="Setup needs, equipment, timing, etc."
                                 />
                             </div>
@@ -468,7 +468,7 @@ export default function CateringPage() {
                                 <input
                                     type="text"
                                     {...register('budget')}
-                                    className="w-full px-4 py-3 rounded-lg bg-gray-200 border border-gray-600 focus:border-orange-500 focus:outline-none text-white"
+                                    className="w-full bg-gray-200 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-orange-500"
                                     placeholder="e.g., €2000 - €3000"
                                 />
                             </div>
