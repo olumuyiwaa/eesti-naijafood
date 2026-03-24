@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import axios from 'axios';
-import {FaPlus, FaEdit, FaTrash, FaStar, FaLeaf, FaFire} from 'react-icons/fa';
+import {FaPlus, FaEdit, FaTrash,  FaLeaf, FaFire} from 'react-icons/fa';
 import Image from "next/image";
 
 interface MenuItem {
@@ -220,7 +220,7 @@ export default function AdminMenu() {
                         <div className="p-6">
                             <div className="flex items-start justify-between mb-2">
                                 <h3 className="text-xl font-bold text-white">{item.name}</h3>
-                                <span className="text-2xl font-bold text-orange-500">${item.price.toFixed(2)}</span>
+                                <span className="text-2xl font-bold text-orange-500">€{item.price.toFixed(2)}</span>
                             </div>
                             <p className="text-gray-400 mb-4">{item.description}</p>
                             <div className="flex flex-wrap gap-2 mb-4">

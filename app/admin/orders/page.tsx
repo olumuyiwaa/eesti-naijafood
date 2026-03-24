@@ -230,7 +230,7 @@ export default function AdminOrders() {
                                         {item.name} x {item.quantity}
                                     </span>
                                     <span>
-                                        ${item.price * item.quantity}
+                                        €{item.price * item.quantity}
                                     </span>
                                 </div>
                             ))}
@@ -238,7 +238,7 @@ export default function AdminOrders() {
 
                         <div className="border-t border-gray-800 pt-4 mt-4 text-right">
                             <p className="text-2xl font-bold text-green-500">
-                                Total: ${selectedOrder.totalAmount}
+                                Total: €{selectedOrder.totalAmount}
                             </p>
                         </div>
                     </motion.div>

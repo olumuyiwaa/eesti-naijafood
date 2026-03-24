@@ -4,7 +4,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { toast } from 'react-toastify';
-import { FaEye, FaCheck, FaTimes, FaUsers, FaCalendarAlt, FaDollarSign, FaEnvelope, FaPhone } from 'react-icons/fa';
+import { FaEye, FaCheck, FaTimes, FaUsers, FaCalendarAlt, FaEnvelope, FaPhone } from 'react-icons/fa';
 import axios from "axios";
 
 interface CateringRequest {
@@ -217,7 +217,7 @@ export default function AdminCatering() {
                                     <div>
                                         {request.quotedAmount ? (
                                             <p className="text-green-500 font-bold flex items-center gap-1">
-                                                <FaDollarSign/> {request.quotedAmount}
+                                                € {request.quotedAmount}
                                             </p>
                                         ) : (
                                             <p className="text-gray-400 text-sm">{request.budget || 'Not specified'}</p>
@@ -251,7 +251,7 @@ export default function AdminCatering() {
                                                 className="p-2 bg-green-600 hover:bg-green-700 rounded-lg text-white transition-colors"
                                                 title="Send Quote"
                                             >
-                                                <FaDollarSign/>
+                                                €
                                             </button>
                                         )}
                                     </div>
@@ -357,7 +357,7 @@ export default function AdminCatering() {
                             {selectedRequest.quotedAmount && (
                                 <div className="border-t border-gray-800 pt-4">
                                     <h3 className="text-xl font-bold text-white mb-3">Quoted Amount</h3>
-                                    <p className="text-3xl font-bold text-green-500">${selectedRequest.quotedAmount}</p>
+                                    <p className="text-3xl font-bold text-green-500">€{selectedRequest.quotedAmount}</p>
                                 </div>
                             )}
 
@@ -428,7 +428,7 @@ export default function AdminCatering() {
                         </div>
 
                         <div className="mb-6">
-                            <label className="block text-white font-semibold mb-2">Quote Amount ($) *</label>
+                            <label className="block text-white font-semibold mb-2">Quote Amount (€) *</label>
                             <input
                                 type="number"
                                 value={quoteAmount}

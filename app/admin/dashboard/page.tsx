@@ -130,7 +130,7 @@ export default function AdminDashboard() {
                                 <div>
                                     <p className="text-white font-semibold">{order.customerName}</p>
                                     <p className="text-gray-400 text-sm">
-                                        {new Date(order.createdAt).toLocaleDateString()} - ${order.totalAmount}
+                                        {new Date(order.createdAt).toLocaleDateString()} - €{order.totalAmount}
                                     </p>
                                 </div>
                                 <span className={`px-4 py-2 rounded-lg font-semibold capitalize transition-all ${getStatusColor(order.status)}`}>
