@@ -28,7 +28,7 @@ interface MenuData {
     sides: MenuItem[];
     desserts: MenuItem[];
     nonAlcoholic: MenuItem[];
-    alcoholic: MenuItem[];
+    bulk: MenuItem[];
 }
 
 export default function AdminMenu() {
@@ -58,7 +58,7 @@ export default function AdminMenu() {
                 ...(menu.sides || []).map((i: MenuItem) => ({ ...i, category: "sides" })),
                 ...(menu.desserts || []).map((i: MenuItem) => ({ ...i, category: "desserts" })),
                 ...(menu.nonAlcoholic || []).map((i: MenuItem) => ({ ...i, category: "nonAlcoholic" })),
-                ...(menu.alcoholic || []).map((i: MenuItem) => ({ ...i, category: "alcoholic" })),
+                ...(menu.bulk || []).map((i: MenuItem) => ({ ...i, category: "bulk" })),
             ];
 
             setMenuItems(flatMenu);
@@ -152,7 +152,7 @@ export default function AdminMenu() {
     };
 
 
-    const categories = ['all', 'starters', 'mains', 'sides', 'desserts', 'nonAlcoholic', 'alcoholic'];
+    const categories = ['all', 'starters', 'mains', 'sides', 'desserts', 'nonAlcoholic', 'bulk'];
     const filteredItems = selectedCategory === 'all'
         ? menuItems
         : menuItems.filter(item => item.category === selectedCategory);
@@ -314,7 +314,7 @@ export default function AdminMenu() {
                                     <option value="sides">Sides</option>
                                     <option value="desserts">Desserts</option>
                                     <option value="nonAlcoholic">Non-Alcoholic Drinks</option>
-                                    <option value="alcoholic">Alcoholic Drinks</option>
+                                    <option value="bulk">Bulk Orders</option>
                                 </select>
                             </div>
 

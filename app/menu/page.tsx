@@ -30,7 +30,7 @@ interface MenuData {
     sides: MenuItem[];
     desserts: MenuItem[];
     nonAlcoholic: MenuItem[];
-    alcoholic: MenuItem[];
+    bulk: MenuItem[];
 }
 
 export default function MenuPage() {
@@ -93,7 +93,7 @@ export default function MenuPage() {
             { id: 'sides', name: 'Sides' },
             { id: 'desserts', name: 'Desserts' },
             { id: 'nonAlcoholic', name: 'Soft Drinks' },
-            { id: 'alcoholic', name: 'Alcoholic Drinks' },
+            { id: 'bulk', name: 'Bulk Orders' },
         ];
 
         categories.forEach((category) => {
@@ -178,7 +178,7 @@ export default function MenuPage() {
         { id: 'sides', name: 'Sides', icon: '🥗' },
         { id: 'desserts', name: 'Desserts', icon: '🍰' },
         { id: 'nonAlcoholic', name: 'Soft Drinks', icon: '🥤' },
-        { id: 'alcoholic', name: 'Alcoholic Drinks', icon: '🍺' },
+        { id: 'bulk', name: 'Bulk Order', icon: '📦' },
     ];
 
     if (loading) {
