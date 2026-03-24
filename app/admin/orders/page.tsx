@@ -8,12 +8,9 @@ import { toast } from 'react-toastify';
 import {
     FaEye,
     FaTimes,
-    FaDollarSign,
     FaUser,
     FaEnvelope,
-    FaPhone,
-    FaBox
-} from 'react-icons/fa';
+    FaPhone} from 'react-icons/fa';
 
 interface OrderItem {
     name: string;
@@ -153,7 +150,7 @@ export default function AdminOrders() {
                                     {order.items.length} items
                                 </td>
                                 <td className="px-6 py-4 text-green-500 font-bold flex items-center gap-1">
-                                    <FaDollarSign />
+                                    €
                                     {order.totalAmount}
                                 </td>
                                 <td className="px-6 py-4">
