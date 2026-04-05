@@ -398,7 +398,7 @@ export default function AdminSiteDetails() {
                                     {...register('socialMedia.tiktok')}
                                     type="url"
                                     className="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-orange-500 focus:outline-none text-white"
-                                    placeholder="https://tiktok.com/@eestifood"
+                                    placeholder="https://tiktok.com/@Myrofood"
                                 />
                             </div>
 
@@ -410,7 +410,7 @@ export default function AdminSiteDetails() {
                                     {...register('socialMedia.youtube')}
                                     type="url"
                                     className="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-orange-500 focus:outline-none text-white"
-                                    placeholder="https://youtube.com/@eestifood"
+                                    placeholder="https://youtube.com/@Myrofood"
                                 />
                             </div>
                         </div>

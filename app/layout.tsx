@@ -11,7 +11,7 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' });
 
 export const metadata: Metadata = {
-    title: 'Eesti-NaijaFood - Authentic African Cuisine in Estonia',
+    title: 'Myrofood - Authentic African Cuisine in Estonia',
     description: 'Experience authentic African cuisine and cultural events in Estonia.',
 };
 
@@ -24,7 +24,7 @@ export default function RootLayout({
         <html lang="en" className="scroll-smooth">
         <head>
             <link rel="icon" href="/images/eestifood.png" />
-            <title>Eesti NaijaFood</title>
+            <title>Myrofood</title>
         </head>
         <body className={`${inter.variable} ${playfair.variable} font-sans bg-[#050505] text-white antialiased`}>
         {/* Subtle Background Glow */}

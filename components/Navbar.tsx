@@ -53,7 +53,7 @@ export default function Navbar() {
                             {/* Logo Image */}
                             <Image
                                 src="/images/eestifood.png"
-                                alt="Eesti-NaijaFood Logo"
+                                alt="Myrofood Logo"
                                 width={50}
                                 height={50}
                                 className="object-contain"
@@ -62,7 +62,7 @@ export default function Navbar() {
                             {/* Logo Text */}
                             <h1 className="text-2xl md:text-2xl font-black">
             <span className="bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 bg-clip-text text-transparent">
-                Eesti-NaijaFood
+                Myrofood
             </span>
                             </h1>
                         </motion.div>

@@ -151,7 +151,7 @@ export default function CateringPage() {
                     <div className="absolute inset-0">
                         <Image
                             src="/images/background.jpg"
-                            alt="Eesti NaijaFood Background"
+                            alt="Myrofood Background"
                             width={500}
                             height={300}
                             style={{ height: "380px", width: "100%", objectFit: "cover" }}

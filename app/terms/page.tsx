@@ -13,7 +13,7 @@ export default function TermsPage() {
                     <div className="absolute inset-0">
                         <Image
                             src="/images/background.jpg" // Reuse your background image or replace with a suitable one
-                            alt="Eesti NaijaFood Background"
+                            alt="Myrofood Background"
                             width={500}
                             height={300}
                             style={{ height: "380px", width: "100%", objectFit: "cover" }}
@@ -38,7 +38,7 @@ export default function TermsPage() {
                         transition={{ delay: 0.2 }}
                         className="text-2xl mb-8 text-white"
                     >
-                        Guidelines for using Eesti NaijaFood services
+                        Guidelines for using Myrofood services
                     </motion.p>
                 </div>
             </section>
@@ -54,7 +54,7 @@ export default function TermsPage() {
                     >
                         <h2 className="text-3xl font-bold mb-4">Acceptance of Terms</h2>
                         <p className="text-gray-300 mb-6 leading-relaxed">
-                            By accessing or using the Eesti NaijaFood website or services, you acknowledge that you have read,
+                            By accessing or using the Myrofood website or services, you acknowledge that you have read,
                             understood, and agree to be bound by these Terms of Service. If you do not agree with any part of
                             these Terms, you must discontinue use of our website and services immediately.
                         </p>
@@ -70,20 +70,20 @@ export default function TermsPage() {
                         <p className="text-gray-300 mb-6 leading-relaxed">
                             When creating an account or placing an order, you agree to provide accurate, complete, and current
                             information. You are responsible for maintaining the confidentiality of your login details and for all
-                            activities conducted under your account. Eesti NaijaFood is not responsible for unauthorized account use.
+                            activities conducted under your account. Myrofood is not responsible for unauthorized account use.
                         </p>
 
                         <h2 className="text-3xl font-bold mb-4">Orders & Payments</h2>
                         <p className="text-gray-300 mb-6 leading-relaxed">
                             All orders are subject to availability and confirmation. Prices, menu items, and promotions may change
                             without prior notice. Payments are processed securely through third-party providers, and you agree to
-                            provide valid and accurate payment details. Eesti NaijaFood reserves the right to decline or cancel orders
+                            provide valid and accurate payment details. Myrofood reserves the right to decline or cancel orders
                             in cases of suspected fraud, errors, or unavailable items.
                         </p>
 
                         <h2 className="text-3xl font-bold mb-4">Delivery & Fulfillment</h2>
                         <p className="text-gray-300 mb-6 leading-relaxed">
-                            Delivery times are estimates and may vary due to factors beyond our control. Eesti NaijaFood is not liable
+                            Delivery times are estimates and may vary due to factors beyond our control. Myrofood is not liable
                             for delays caused by third-party delivery providers, traffic, weather conditions, or unforeseen
                             circumstances. Once an order is handed over to the delivery provider, responsibility for timely delivery
                             transfers to them.
@@ -92,7 +92,7 @@ export default function TermsPage() {
                         <h2 className="text-3xl font-bold mb-4">Intellectual Property</h2>
                         <p className="text-gray-300 mb-6 leading-relaxed">
                             All content on this website, including logos, images, text, graphics, and design elements, is owned by
-                            or licensed to Eesti NaijaFood. You may not copy, reproduce, distribute, or modify any content without
+                            or licensed to Myrofood. You may not copy, reproduce, distribute, or modify any content without
                             prior written permission.
                         </p>
 
@@ -105,7 +105,7 @@ export default function TermsPage() {
 
                         <h2 className="text-3xl font-bold mb-4">Limitation of Liability</h2>
                         <p className="text-gray-300 mb-6 leading-relaxed">
-                            To the fullest extent permitted by law, Eesti NaijaFood is not liable for any indirect, incidental,
+                            To the fullest extent permitted by law, Myrofood is not liable for any indirect, incidental,
                             or consequential damages arising from your use of the website or services. This includes, but is not
                             limited to, loss of data, loss of profits, service interruptions, or issues caused by third-party
                             providers.
@@ -114,7 +114,7 @@ export default function TermsPage() {
                         <h2 className="text-3xl font-bold mb-4">Third-Party Services</h2>
                         <p className="text-gray-300 mb-6 leading-relaxed">
                             Our platform may integrate or link to third-party tools, delivery partners, or payment processors.
-                            These third parties operate independently and may have their own terms and policies. Eesti NaijaFood is
+                            These third parties operate independently and may have their own terms and policies. Myrofood is
                             not responsible for their actions, content, or privacy practices.
                         </p>
 
@@ -126,7 +126,7 @@ export default function TermsPage() {
 
                         <h2 className="text-3xl font-bold mb-4">Changes to Terms</h2>
                         <p className="text-gray-300 mb-6 leading-relaxed">
-                            Eesti NaijaFood may revise these Terms of Service at any time. Updates will be posted on this page, and
+                            Myrofood may revise these Terms of Service at any time. Updates will be posted on this page, and
                             your continued use of our website after changes are made constitutes acceptance of the revised Terms.
                         </p>
 
