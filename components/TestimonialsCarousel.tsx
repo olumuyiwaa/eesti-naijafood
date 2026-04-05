@@ -28,7 +28,7 @@ export default function TestimonialsCarousel() {
                 name: 'Kristiina L.',
                 rating: 5,
                 title: 'Outstanding Catering Service in Tallinn!',
-                comment: 'We hired Myrofood for our corporate event in Tallinn and the experience was exceptional. The Jollof rice and grilled chicken were a huge hit with our guests. Professional service, beautiful presentation, and unforgettable flavors. Highly recommended!',
+                comment: 'We hired Myrosfood for our corporate event in Tallinn and the experience was exceptional. The Jollof rice and grilled chicken were a huge hit with our guests. Professional service, beautiful presentation, and unforgettable flavors. Highly recommended!',
                 visitDate: '2026-01-18'
             },
             {
@@ -44,7 +44,7 @@ export default function TestimonialsCarousel() {
                 name: 'Aisha T.',
                 rating: 5,
                 title: 'Perfect for Celebrations',
-                comment: 'Myrofood catered my birthday party in Tallinn and everything was perfect — from the flavorful dishes to the beautiful custom cake. My guests are still talking about it!',
+                comment: 'Myrosfood catered my birthday party in Tallinn and everything was perfect — from the flavorful dishes to the beautiful custom cake. My guests are still talking about it!',
                 visitDate: '2025-12-22'
             }
         ]);

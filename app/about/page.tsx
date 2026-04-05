@@ -65,7 +65,7 @@ export default function AboutPage() {
                     <div className="absolute inset-0">
                         <Image
                             src="/images/background.jpg"
-                            alt="Myrofood Background"
+                            alt="Myrosfood Background"
                             width={500}
                             height={300}
                             style={{ height: "380px", width: "100%", objectFit: "cover" }}
@@ -109,7 +109,7 @@ export default function AboutPage() {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                         >
-                            <h2 className="text-5xl font-bold mb-6">Welcome to Myrofood</h2>
+                            <h2 className="text-5xl font-bold mb-6">Welcome to Myrosfood</h2>
                             <p className="text-xl text-gray-800 mb-4 leading-relaxed whitespace-pre-line">
                                 {loading
                                     ? 'Loading story...'
@@ -125,7 +125,7 @@ export default function AboutPage() {
                         >
                             <Image
                                 src={data?.about?.image || '/images/about-story.webp'}
-                                alt="Myrofood Story"
+                                alt="Myrosfood Story"
                                 fill
                                 className="object-cover"
                             />
@@ -171,7 +171,7 @@ export default function AboutPage() {
                 <div className="absolute inset-0">
                     <Image
                         src="/images/experience.jpg"
-                        alt="Myrofood Background"
+                        alt="Myrosfood Background"
                         fill
                         className="object-cover"
                         priority

@@ -1,6 +1,6 @@
-# Myrofood Frontend - Next.js
+# Myrosfood Frontend - Next.js
 
-Modern, responsive frontend for Myrofood African restaurant built with Next.js 14, TypeScript, and Tailwind CSS.
+Modern, responsive frontend for Myrosfood African restaurant built with Next.js 14, TypeScript, and Tailwind CSS.
 
 ## Features
 
@@ -59,7 +59,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 ## Project Structure
 
 ```
-Myrofood-frontend/
+Myrosfood-frontend/
 ├── app/
 │   ├── page.tsx                    # Home page
 │   ├── layout.tsx                  # Root layout
@@ -270,8 +270,8 @@ NEXT_PUBLIC_SITE_URL=http://localhost:3000
 
 ### Production
 ```env
-NEXT_PUBLIC_API_URL=https://api.Myrofood.co.nz
-NEXT_PUBLIC_SITE_URL=https://Myrofood.co.nz
+NEXT_PUBLIC_API_URL=https://api.Myrosfood.co.nz
+NEXT_PUBLIC_SITE_URL=https://Myrosfood.co.nz
 ```
 
 ## Performance Optimization
@@ -356,7 +356,7 @@ npm run lint     # Run ESLint
 
 For issues or questions:
 - Email: oladoyinemmanuel@gmail.com
-- Documentation: [Docs](https://docs.Myrofood.co.nz)
+- Documentation: [Docs](https://docs.Myrosfood.co.nz)
 
 ## License
 
@@ -364,4 +364,4 @@ MIT License
 
 ---
 
-**Built with ❤️ for Myrofood - Taste Africa in Estonia**# Emnac Tech
+**Built with ❤️ for Myrosfood - Taste Africa in Estonia**# Emnac Tech

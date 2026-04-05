@@ -59,7 +59,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                     <div className="flex items-center justify-between mb-8">
                         {isSidebarOpen && (
                             <h1 className="text-2xl font-bold bg-gradient-to-r from-orange-400 to-red-600 bg-clip-text text-transparent">
-                                Myrofood
+                                Myrosfood
                             </h1>
                         )}
                         <button

@@ -72,7 +72,7 @@ export default function Footer() {
                                 {/* Logo Image */}
                                 <Image
                                     src="/images/eestifood.png"
-                                    alt="Myrofood Logo"
+                                    alt="Myrosfood Logo"
                                     width={50}
                                     height={50}
                                     className="object-contain"
@@ -81,7 +81,7 @@ export default function Footer() {
                                 {/* Logo Text */}
                                 <h1 className="text-2xl md:text-2xl font-black">
             <span className="bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 bg-clip-text text-transparent">
-                Myrofood
+                Myrosfood
             </span>
                                 </h1>
                             </motion.div>
@@ -184,7 +184,7 @@ export default function Footer() {
                 <div className="pt-8 border-t border-white/5">
                     <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-white/40 text-sm">
                         <p className="flex items-center gap-2">
-                            © 2025 Myrofood. Made with <FaHeart className="text-red-500" /> in {data?.location || 'Talin'}
+                            © 2025 Myrosfood. Made with <FaHeart className="text-red-500" /> in {data?.location || 'Talin'}
                         </p>
                         <div className="flex gap-6">
                             <Link href="/privacy" className="hover:text-orange-500">Privacy Policy</Link>

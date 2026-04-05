@@ -13,7 +13,7 @@ export default function PrivacyPage() {
                     <div className="absolute inset-0">
                         <Image
                             src="/images/background.jpg" // Reuse your background image or replace with a suitable one
-                            alt="Myrofood Background"
+                            alt="Myrosfood Background"
                             width={500}
                             height={300}
                             style={{ height: "380px", width: "100%", objectFit: "cover" }}
@@ -38,7 +38,7 @@ export default function PrivacyPage() {
                         transition={{ delay: 0.2 }}
                         className="text-2xl mb-8 text-white"
                     >
-                        Protecting your privacy at Myrofood
+                        Protecting your privacy at Myrosfood
                     </motion.p>
                 </div>
             </section>
@@ -54,7 +54,7 @@ export default function PrivacyPage() {
                     >
                         <h2 className="text-3xl font-bold mb-4">Introduction</h2>
                         <p className="text-gray-300 mb-6 leading-relaxed">
-                            Myrofood (“we,” “our,” or “us”) is committed to safeguarding your personal information.
+                            Myrosfood (“we,” “our,” or “us”) is committed to safeguarding your personal information.
                             This Privacy Policy explains how we collect, use, disclose, and protect the information you provide
                             when you visit our website, place an order, or interact with our services. By using our platform,
                             you agree to the practices outlined in this Policy.
@@ -101,8 +101,8 @@ export default function PrivacyPage() {
                         <p className="text-gray-300 mb-6 leading-relaxed">
                             You have the right to access, update, or request deletion of your personal information. You may also
                             withdraw consent to marketing communications at any time. To exercise your rights, please contact us at
-                            <strong> <a href="mailto:info@myrofood.com" className="hover:text-orange-500 transition-colors">
-                                info@myrofood.com
+                            <strong> <a href="mailto:info@Myrosfood.com" className="hover:text-orange-500 transition-colors">
+                                info@Myrosfood.com
                             </a> </strong>.
                         </p>
 

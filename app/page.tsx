@@ -81,7 +81,7 @@ export default function Home() {
                 <div className="absolute inset-0">
                     <Image
                         src="/images/hero-bg.png"
-                        alt="Myrofood Background"
+                        alt="Myrosfood Background"
                         fill
                         className="object-cover"
                         priority
@@ -125,7 +125,7 @@ export default function Home() {
                         transition={{ duration: 0.8, delay: 0.2 }}
                     >
               <span className="bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 bg-clip-text text-transparent">
-                Myrofood
+                Myrosfood
               </span>
                         </motion.h1>
 
@@ -220,7 +220,7 @@ export default function Home() {
                             </h2>
 
                             <p className="text-xl text-black/70 mb-6 leading-relaxed">
-                                Myrofood isn’t just catering — it’s a culinary experience.
+                                Myrosfood isn’t just catering — it’s a culinary experience.
                                 Every menu we create tells a story. Every flavor carries the richness of West African tradition. Every event we serve becomes a celebration of culture and connection.
                             </p>
 
@@ -464,7 +464,7 @@ export default function Home() {
                 <div className="absolute inset-0">
                     <Image
                         src="/images/experience.jpg"
-                        alt="Myrofood Background"
+                        alt="Myrosfood Background"
                         fill
                         className="object-cover"
                         priority
