@@ -119,7 +119,7 @@ export default function Home() {
                         transition={{ duration: 0.8 }}
                     >
                     <motion.h1
-                        className="text-7xl md:text-9xl font-black mb-6 leading-tight"
+                        className="text-7xl md:text-9xl font-black mb-6 mt-12 leading-tight"
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
