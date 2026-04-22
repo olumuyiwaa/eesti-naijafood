@@ -164,7 +164,7 @@ export default function CartPage() {
                                     <span>€{getCartTotal().toFixed(2)}</span>
                                 </div>
                                 <div className="flex justify-between text-gray-400">
-                                    <span>Delivery Fee</span>
+                                    <span>Pickup Fee</span>
                                     <span className="text-green-500">Free</span>
                                 </div>
                                 <div className="border-t border-white/10 pt-4 flex justify-between text-xl font-bold">
