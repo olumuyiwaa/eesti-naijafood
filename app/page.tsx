@@ -8,6 +8,7 @@ import TestimonialsCarousel from '@/components/TestimonialsCarousel';
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {toast} from "react-toastify";
+import {useCart} from "@/context/CartContext";
 interface MenuItem {
     id: number;
     name: string;
@@ -39,6 +40,8 @@ export default function Home() {
         const [images, setImages] = useState<GalleryImage[]>([]);
     const [loading, setLoading] = useState(true);
     const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+    const { addToCart } = useCart();
+
 
 
     useEffect(() => {
@@ -414,14 +417,12 @@ export default function Home() {
                                     </span>
                                     </div>
 
-                                    <Link href="/menu">
-                                        <motion.button
-                                            className="px-10 py-5 bg-gradient-to-r from-orange-500 to-red-600 rounded-full text-white text-lg font-bold shadow-lg shadow-orange-500/30 w-fit"
-                                            whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(251, 146, 60, 0.4)" }}
-                                        >
-                                            Order Now →
-                                        </motion.button>
-                                    </Link>
+                                    <button
+                                        onClick={() => addToCart(dishOfTheWeek)}
+                                        className="px-6 py-3 bg-gradient-to-r from-orange-500 to-red-600 text-white rounded-full shadow-md hover:scale-105 transition"
+                                    >
+                                        Add To Cart →
+                                    </button>
                                 </div>
                             </div>
                         ) : (

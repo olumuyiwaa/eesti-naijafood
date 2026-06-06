@@ -280,18 +280,6 @@ export default function AdminSiteDetails() {
                                     placeholder="+1 (555) 123-4567"
                                 />
                             </div>
-
-                            <div>
-                                <label className="block text-white font-semibold mb-2 flex items-center gap-2">
-                                    <FaEnvelope className="text-orange-500" /> Email *
-                                </label>
-                                <input
-                                    {...register('email', { required: true })}
-                                    type="email"
-                                    className="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-orange-500 focus:outline-none text-white"
-                                    placeholder="contact@eestifood.com"
-                                />
-                            </div>
                             <div>
                                 <label className="block text-white font-semibold mb-2 flex items-center gap-2">
                                     <FaEnvelope className="text-orange-500" /> Email (separate with commas) *
