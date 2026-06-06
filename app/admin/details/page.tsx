@@ -42,7 +42,7 @@ export default function AdminSiteDetails() {
     const [previewImage, setPreviewImage] = useState<string | null>(null);
     const [currentImage, setCurrentImage] = useState<string | null>(null);
 
-    const { register, handleSubmit, reset, setValue } = useForm<SiteDetailsForm>({
+    const { register, handleSubmit, reset, setValue, formState: { errors, isSubmitting }, } = useForm<SiteDetailsForm>({
         defaultValues: {
             about: { text: '' },
             missionStatement: '',
@@ -291,6 +291,39 @@ export default function AdminSiteDetails() {
                                     className="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-orange-500 focus:outline-none text-white"
                                     placeholder="contact@eestifood.com"
                                 />
+                            </div>
+                            <div>
+                                <label className="block text-white font-semibold mb-2 flex items-center gap-2">
+                                    <FaEnvelope className="text-orange-500" /> Email (separate with commas) *
+                                </label>
+                                <input
+                                    {...register('email', {
+                                        required: 'Email is required',
+                                        validate: (value) => {
+                                            // Split by comma, trim whitespace, and filter out empty strings
+                                            const emails = value.split(',').map(e => e.trim()).filter(e => e !== '');
+
+                                            if (emails.length === 0) return 'At least one email is required';
+
+                                            // Email Regex
+                                            const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+
+                                            // Check if every email is valid
+                                            const allValid = emails.every(email => emailRegex.test(email));
+
+                                            return allValid || 'One or more email addresses are invalid';
+                                        }
+                                    })}
+                                    type="text" // Changed from "email" to "text"
+                                    className={`w-full px-4 py-3 rounded-lg bg-gray-800 border focus:outline-none text-white ${
+                                        errors.email ? 'border-red-500' : 'border-gray-700 focus:border-orange-500'
+                                    }`}
+                                    placeholder="email1@test.com, email2@test.com"
+                                />
+                                {/* Add error message display if you haven't already */}
+                                {errors.email && (
+                                    <p className="text-red-500 text-sm mt-1">{errors.email.message as string}</p>
+                                )}
                             </div>
                         </div>
 

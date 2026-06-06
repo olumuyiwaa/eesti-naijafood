@@ -152,29 +152,56 @@ export default function Footer() {
                         <h4 className="text-xl font-bold mb-6 text-white">Contact Us</h4>
 
                         <ul className="space-y-4 text-white/60">
+                            {/* Location */}
                             <li className="flex items-start gap-3">
                                 <div className="w-10 h-10 bg-orange-500/10 rounded-xl flex items-center justify-center flex-shrink-0">
                                     <FaMapMarkerAlt className="text-orange-500" />
                                 </div>
-                                <span>{data?.location || 'Location coming soon'}</span>
+                                <span className="pt-2">{data?.location || 'Location coming soon'}</span>
                             </li>
 
-                            <li className="flex items-center gap-3">
-                                <div className="w-10 h-10 bg-orange-500/10 rounded-xl flex items-center justify-center">
+                            {/* Phone Numbers */}
+                            <li className="flex items-start gap-3">
+                                <div className="w-10 h-10 bg-orange-500/10 rounded-xl flex items-center justify-center flex-shrink-0">
                                     <FaPhone className="text-orange-500" />
                                 </div>
-                                <a href={`tel:${data?.phoneNumber || ''}`} className="hover:text-orange-500 transition-colors">
-                                    {data?.phoneNumber || 'Phone coming soon'}
-                                </a>
+                                <div className="flex flex-col pt-2">
+                                    {data?.phoneNumber ? (
+                                        data.phoneNumber.split(',').map((num, index) => (
+                                            <a
+                                                key={index}
+                                                href={`tel:${num.trim()}`}
+                                                className="hover:text-orange-500 transition-colors"
+                                            >
+                                                {num.trim()}
+                                            </a>
+                                        ))
+                                    ) : (
+                                        <span>Phone coming soon</span>
+                                    )}
+                                </div>
                             </li>
 
-                            <li className="flex items-center gap-3">
-                                <div className="w-10 h-10 bg-orange-500/10 rounded-xl flex items-center justify-center">
+                            {/* Emails */}
+                            <li className="flex items-start gap-3">
+                                <div className="w-10 h-10 bg-orange-500/10 rounded-xl flex items-center justify-center flex-shrink-0">
                                     <FaEnvelope className="text-orange-500" />
                                 </div>
-                                <a href={`mailto:${data?.email || ''}`} className="hover:text-orange-500 transition-colors">
-                                    {data?.email || 'Email coming soon'}
-                                </a>
+                                <div className="flex flex-col pt-2">
+                                    {data?.email ? (
+                                        data.email.split(',').map((mail, index) => (
+                                            <a
+                                                key={index}
+                                                href={`mailto:${mail.trim()}`}
+                                                className="hover:text-orange-500 transition-colors break-all"
+                                            >
+                                                {mail.trim()}
+                                            </a>
+                                        ))
+                                    ) : (
+                                        <span>Email coming soon</span>
+                                    )}
+                                </div>
                             </li>
                         </ul>
                     </div>

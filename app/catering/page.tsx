@@ -1,12 +1,11 @@
-// app/catering/page.tsx
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import {FaUsers, FaUtensils, FaCheckCircle, FaUpload, FaDownload} from 'react-icons/fa';
+import { FaUsers, FaUtensils, FaCheckCircle, FaUpload, FaTimes } from 'react-icons/fa';
 import Image from "next/image";
 
 interface CateringFormData {
@@ -36,6 +35,7 @@ interface GalleryImage {
     url: string;
     publicId: string;
 }
+
 export default function CateringPage() {
     const [packages, setPackages] = useState<Package[]>([]);
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -43,13 +43,60 @@ export default function CateringPage() {
     const [quoteRef, setQuoteRef] = useState('');
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [images, setImages] = useState<GalleryImage[]>([]);
-
-    const { register, handleSubmit, formState: { errors }, reset } = useForm<CateringFormData>();
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+    const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm<CateringFormData>();
 
     useEffect(() => {
         fetchPackages();
         fetchGallery();
     }, []);
+
+    const currentImage =
+        selectedImageIndex !== null
+            ? images[selectedImageIndex]
+            : null;
+
+    const nextImage = () => {
+        if (selectedImageIndex === null) return;
+
+        setSelectedImageIndex(
+            (selectedImageIndex + 1) % images.length
+        );
+    };
+
+    const previousImage = () => {
+        if (selectedImageIndex === null) return;
+
+        setSelectedImageIndex(
+            selectedImageIndex === 0
+                ? images.length - 1
+                : selectedImageIndex - 1
+        );
+    };
+
+    useEffect(() => {
+        const handleKey = (e: KeyboardEvent) => {
+            if (selectedImageIndex === null) return;
+
+            if (e.key === "Escape") {
+                setSelectedImageIndex(null);
+            }
+
+            if (e.key === "ArrowRight") {
+                nextImage();
+            }
+
+            if (e.key === "ArrowLeft") {
+                previousImage();
+            }
+        };
+
+        window.addEventListener("keydown", handleKey);
+
+        return () =>
+            window.removeEventListener("keydown", handleKey);
+    }, [selectedImageIndex]);
 
     const fetchPackages = async () => {
         try {
@@ -69,6 +116,19 @@ export default function CateringPage() {
         }
     };
 
+    const openModal = (packageName?: string) => {
+        if (packageName) {
+            setValue('specialRequirements', `Interested in the ${packageName} package.`);
+        }
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+        setQuoteSuccess(false);
+        reset();
+    };
+
     const onSubmit = async (data: CateringFormData) => {
         setIsSubmitting(true);
         try {
@@ -84,19 +144,16 @@ export default function CateringPage() {
             const response = await axios.post(
                 `${process.env.NEXT_PUBLIC_API_URL}/api/catering/quote`,
                 formData,
-                {
-                    headers: { 'Content-Type': 'multipart/form-data' }
-                }
+                { headers: { 'Content-Type': 'multipart/form-data' } }
             );
 
             setQuoteRef(response.data.quoteRef);
             setQuoteSuccess(true);
-            toast.success('Quote request submitted! We\'ll contact you within 24-48 hours.');
+            toast.success('Quote request submitted!');
             reset();
             setSelectedFile(null);
         } catch (error: any) {
             toast.error(error.response?.data?.message || 'Failed to submit quote request');
-            console.error(error);
         } finally {
             setIsSubmitting(false);
         }
@@ -108,155 +165,30 @@ export default function CateringPage() {
         }
     };
 
-    if (quoteSuccess) {
-        return (
-            <div className="min-h-screen bg-white text-zinc-900 flex items-center justify-center">
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="max-w-2xl mx-auto px-4 text-center"
-                >
-                    <FaCheckCircle className="text-8xl text-green-500 mx-auto mb-6" />
-                    <h1 className="text-5xl font-bold mb-4">Quote Request Received!</h1>
-                    <p className="text-2xl text-zinc-600 mb-6">
-                        We've received your catering quote request.
-                    </p>
-
-                    <div className="bg-zinc-50 p-8 rounded-2xl mb-8 border border-zinc-200">
-                        <p className="text-lg mb-4">Your reference number:</p>
-                        <p className="text-4xl font-bold text-orange-600 mb-4">{quoteRef}</p>
-                        <p className="text-zinc-600">
-                            Our team will review your request and get back to you within 24–48 hours with a detailed quote.
-                        </p>
-                    </div>
-
-                    <button
-                        onClick={() => setQuoteSuccess(false)}
-                        className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-full font-semibold transition-all"
-                    >
-                        Submit Another Request
-                    </button>
-                </motion.div>
-            </div>
-        );
-    }
-
     return (
         <div className="min-h-screen bg-white text-zinc-900 pt-24">
             {/* Header */}
-            <section className="relative py-16 bg-gradient-to-br from-orange-600 to-red-700 text-center overflow-hidden">
-
-                {/* Background Image */}
-                <div className="absolute inset-0 h-full">
-                    <div className="absolute inset-0">
-                        <Image
-                            src="/images/background.jpg"
-                            alt="Myrosfood Background"
-                            width={500}
-                            height={300}
-                            style={{ height: "380px", width: "100%", objectFit: "cover" }}
-                            priority
-                        />
-
-                    </div>
+            <section className="relative py-32 bg-zinc-900 text-center overflow-hidden">
+                <div className="absolute inset-0">
+                    <Image src="/images/background.jpg" alt="Background" fill className="object-cover opacity-40" priority />
                 </div>
-
-                <div className="absolute inset-0 bg-black/50" />
-
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(251,146,60,0.1),transparent_50%)]" />
-
                 <div className="relative z-10">
-                    <motion.h1
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="text-6xl font-bold mb-4 text-white"
-                    >
-                        Catering Services
-                    </motion.h1>
-
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
-                        className="text-2xl text-white"
-                    >
-                        Bring authentic African flavors to your special event
-                    </motion.p>
+                    <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-6xl font-bold mb-4 text-white">Catering Services</motion.h1>
+                    <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="text-2xl text-white">Bring authentic African flavors to your special event</motion.p>
+                    <button onClick={() => openModal()} className="mt-8 bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-full font-bold transition-all">Request Custom Quote</button>
                 </div>
             </section>
 
-            {/* Events */}
-            <section className="py-20 bg-white">
-                <div className="max-w-7xl mx-auto px-4">
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-5xl font-bold text-center mb-16"
-                    >
-                        Events We Cater
-                    </motion.h2>
-
-                    <div className="grid md:grid-cols-3 gap-8">
-                        {[
-                            { icon: '🏢', title: 'Corporate Events', description: 'Office parties, team building, conferences' },
-                            { icon: '💍', title: 'Weddings', description: 'Make your special day unforgettable' },
-                            { icon: '🎂', title: 'Birthdays', description: 'Celebrate with authentic African cuisine' },
-                            { icon: '🎪', title: 'Festivals', description: 'Community events and cultural celebrations' },
-                            { icon: '🎓', title: 'Graduations', description: 'Honor achievements with great food' },
-                            { icon: '🎉', title: 'Private Events', description: 'Any occasion worth celebrating' }
-                        ].map((event, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.1 }}
-                                className="bg-white p-8 rounded-2xl text-center border border-zinc-200 shadow-sm hover:shadow-md transition"
-                            >
-                                <div className="text-6xl mb-4">{event.icon}</div>
-                                <h3 className="text-2xl font-bold mb-2">{event.title}</h3>
-                                <p className="text-zinc-600">{event.description}</p>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Packages */}
+            {/* Packages Section */}
             <section className="py-20 bg-zinc-50">
-                <div className="max-w-7xl mx-auto px-4">
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-5xl font-bold text-center mb-16"
-                    >
-                        Catering Packages
-                    </motion.h2>
-
-                    <div className="grid md:grid-cols-3 gap-8">
+                <div className="max-w-7xl mx-auto px-4 text-center">
+                    <h2 className="text-5xl font-bold mb-16">Catering Packages</h2>
+                    <div className="grid md:grid-cols-3 gap-8 text-left">
                         {packages.map((pkg, index) => (
-                            <motion.div
-                                key={pkg.id}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.2 }}
-                                className="bg-white p-8 rounded-3xl border border-zinc-200 shadow-sm hover:shadow-md transition"
-                            >
+                            <motion.div key={pkg.id} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.2 }} className="bg-white p-8 rounded-3xl border border-zinc-200 shadow-sm">
                                 <h3 className="text-3xl font-bold mb-2">{pkg.name}</h3>
                                 <p className="text-zinc-600 mb-4">{pkg.description}</p>
-
-                                <div className="text-4xl font-bold text-orange-600 mb-4">
-                                    €{pkg.pricePerPerson}
-                                    <span className="text-lg text-zinc-500">/person</span>
-                                </div>
-
-                                <p className="text-zinc-600 mb-6">
-                                    {pkg.minGuests} – {pkg.maxGuests} guests
-                                </p>
-
+                                <div className="text-4xl font-bold text-orange-600 mb-4">€{pkg.pricePerPerson}<span className="text-lg text-zinc-500">/person</span></div>
                                 <div className="space-y-3 mb-8">
                                     {pkg.includes.map((item, i) => (
                                         <div key={i} className="flex items-start gap-2">
@@ -265,9 +197,8 @@ export default function CateringPage() {
                                         </div>
                                     ))}
                                 </div>
-
-                                <button className="w-full bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-full font-semibold transition-all">
-                                    Request Quote
+                                <button onClick={() => openModal(pkg.name)} className="w-full bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-full font-semibold transition-all">
+                                    Select {pkg.name}
                                 </button>
                             </motion.div>
                         ))}
@@ -275,241 +206,250 @@ export default function CateringPage() {
                 </div>
             </section>
 
-            {/* Gallery */}
+            {/* Modal Overlay */}
+            <AnimatePresence>
+                {isModalOpen && (
+                    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={closeModal}
+                            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+                        />
+
+                        <motion.div
+                            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                            animate={{ scale: 1, opacity: 1, y: 0 }}
+                            exit={{ scale: 0.9, opacity: 0, y: 20 }}
+                            className="relative bg-white w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl shadow-2xl p-8 md:p-12"
+                        >
+                            <button onClick={closeModal} className="absolute right-6 top-6 text-zinc-400 hover:text-zinc-900 transition-colors">
+                                <FaTimes size={24} />
+                            </button>
+
+                            {quoteSuccess ? (
+                                <div className="text-center py-12">
+                                    <FaCheckCircle className="text-8xl text-green-500 mx-auto mb-6" />
+                                    <h2 className="text-4xl font-bold mb-4">Quote Received!</h2>
+                                    <div className="bg-zinc-50 p-6 rounded-2xl mb-8 border border-zinc-200">
+                                        <p className="text-lg mb-2">Reference Number:</p>
+                                        <p className="text-4xl font-bold text-orange-600">{quoteRef}</p>
+                                    </div>
+                                    <button onClick={closeModal} className="bg-zinc-900 text-white px-8 py-3 rounded-full font-bold">Close</button>
+                                </div>
+                            ) : (
+                                <>
+                                    <h2 className="text-4xl font-bold mb-2">Request a Quote</h2>
+                                    <p className="text-zinc-600 mb-8">Tell us about your event and we'll prepare a custom menu for you.</p>
+
+                                    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                                        <div>
+                                            <label className="block text-sm font-bold mb-2 text-zinc-700">Full Name *</label>
+                                            <input type="text" {...register('name', { required: 'Name is required' })} className="w-full bg-zinc-100 rounded-xl px-4 py-3 focus:ring-2 focus:ring-orange-500 outline-none" placeholder="John Doe" />
+                                            {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>}
+                                        </div>
+
+                                        <div className="grid md:grid-cols-2 gap-6">
+                                            <div>
+                                                <label className="block text-sm font-bold mb-2 text-zinc-700">Email *</label>
+                                                <input type="email" {...register('email', { required: 'Email is required' })} className="w-full bg-zinc-100 rounded-xl px-4 py-3 outline-none" placeholder="john@example.com" />
+                                            </div>
+                                            <div>
+                                                <label className="block text-sm font-bold mb-2 text-zinc-700">Phone *</label>
+                                                <input type="tel" {...register('phone', { required: 'Phone is required' })} className="w-full bg-zinc-100 rounded-xl px-4 py-3 outline-none" placeholder="+353 ..." />
+                                            </div>
+                                        </div>
+
+                                        <div className="grid md:grid-cols-2 gap-6">
+                                            <div>
+                                                <label className="block text-sm font-bold mb-2 text-zinc-700">Event Date *</label>
+                                                <input type="date" {...register('eventDate', { required: 'Date is required' })} className="w-full bg-zinc-100 rounded-xl px-4 py-3 outline-none" min={new Date().toISOString().split('T')[0]} />
+                                            </div>
+                                            <div>
+                                                <label className="block text-sm font-bold mb-2 text-zinc-700">Guest Count *</label>
+                                                <input type="number" {...register('guestCount', { required: 'Required', min: 10 })} className="w-full bg-zinc-100 rounded-xl px-4 py-3 outline-none" placeholder="Min 10" />
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <label className="block text-sm font-bold mb-2 text-zinc-700">Venue / Location *</label>
+                                            <input type="text" {...register('venue', { required: 'Required' })} className="w-full bg-zinc-100 rounded-xl px-4 py-3 outline-none" placeholder="Address or City" />
+                                        </div>
+
+                                        <div>
+                                            <label className="block text-sm font-bold mb-2 text-zinc-700">Special Requirements</label>
+                                            <textarea {...register('specialRequirements')} rows={3} className="w-full bg-zinc-100 rounded-xl px-4 py-3 outline-none" placeholder="Dietary needs, specific package interest, setup timing..." />
+                                        </div>
+
+                                        <div className="border-2 border-dashed border-zinc-300 rounded-2xl p-6 text-center">
+                                            <input type="file" onChange={handleFileChange} className="hidden" id="modal-file" />
+                                            <label htmlFor="modal-file" className="cursor-pointer">
+                                                <FaUpload className="text-2xl text-zinc-400 mx-auto mb-2" />
+                                                <p className="text-zinc-500 text-sm">{selectedFile ? selectedFile.name : 'Upload event brief or floor plan (Optional)'}</p>
+                                            </label>
+                                        </div>
+
+                                        <button type="submit" disabled={isSubmitting} className="w-full bg-orange-600 hover:bg-orange-700 text-white py-4 rounded-xl font-bold text-lg transition-all shadow-lg shadow-orange-200">
+                                            {isSubmitting ? 'Sending Request...' : 'Send Quote Request'}
+                                        </button>
+                                    </form>
+                                </>
+                            )}
+                        </motion.div>
+                    </div>
+                )}
+            </AnimatePresence>
+
+            {/* Event Types Grid */}
             <section className="py-20 bg-white">
                 <div className="max-w-7xl mx-auto px-4">
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-5xl font-bold text-center mb-16"
-                    >
-                        Experience Gallery
-                    </motion.h2>
-
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                        {images.map((item) => (
-                            <motion.div
-                                key={item.publicId}
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
-                                className="relative h-64 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition"
-                            >
-                                <Image
-                                    src={item.url}
-                                    alt=""
-                                    fill
-                                    className="object-cover hover:scale-110 transition duration-300"
-                                />
-                            </motion.div>
+                    <h2 className="text-5xl font-bold text-center mb-16">Events We Cater</h2>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
+                        {[
+                            { icon: '🏢', title: 'Corporate' }, { icon: '💍', title: 'Weddings' },
+                            { icon: '🎂', title: 'Birthdays' }, { icon: '🎓', title: 'Graduations' },
+                            { icon: '🎪', title: 'Festivals' }, { icon: '🎉', title: 'Private' }
+                        ].map((event, i) => (
+                            <div key={i} className="text-center p-8 border border-zinc-100 rounded-2xl hover:bg-zinc-50 transition">
+                                <div className="text-5xl mb-4">{event.icon}</div>
+                                <h3 className="text-xl font-bold">{event.title}</h3>
+                            </div>
                         ))}
                     </div>
                 </div>
             </section>
 
-            {/* Quote Form */}
+            {/* Gallery */}
             <section className="py-20 bg-zinc-50">
-                <div className="max-w-4xl mx-auto px-4">
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-5xl font-bold text-center mb-8"
-                    >
-                        Request a Quote
-                    </motion.h2>
-
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2 }}
-                        className="text-xl text-center text-zinc-600 mb-12"
-                    >
-                        Fill out the form below and we'll get back to you with a custom quote
-                    </motion.p>
-
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="bg-white rounded-3xl p-8 md:p-12 border border-zinc-200 shadow-sm"
-                    >
-                        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                            {/* Name */}
-                            <div>
-                                <label className="block text-lg font-semibold mb-2">Full Name *</label>
-                                <input
-                                    type="text"
-                                    {...register('name', { required: 'Name is required' })}
-                                    className="w-full bg-gray-200 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-orange-500"
-                                    placeholder="John Doe"
-                                />
-                                {errors.name && <p className="text-red-500 mt-1">{errors.name.message}</p>}
-                            </div>
-
-                            {/* Email & Phone */}
-                            <div className="grid md:grid-cols-2 gap-6">
-                                <div>
-                                    <label className="block text-lg font-semibold mb-2">Email *</label>
-                                    <input
-                                        type="email"
-                                        {...register('email', {
-                                            required: 'Email is required',
-                                            pattern: {
-                                                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                                                message: 'Invalid email'
-                                            }
-                                        })}
-                                        className="w-full bg-gray-200 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-orange-500"
-                                        placeholder="john@example.com"
-                                    />
-                                    {errors.email && <p className="text-red-500 mt-1">{errors.email.message}</p>}
-                                </div>
-
-                                <div>
-                                    <label className="block text-lg font-semibold mb-2">Phone *</label>
-                                    <input
-                                        type="tel"
-                                        {...register('phone', { required: 'Phone is required' })}
-                                        className="w-full bg-gray-200 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-orange-500"
-                                        placeholder="+64 21 XXX XXXX"
-                                    />
-                                    {errors.phone && <p className="text-red-500 mt-1">{errors.phone.message}</p>}
-                                </div>
-                            </div>
-
-                            {/* Event Date & Type */}
-                            <div className="grid md:grid-cols-2 gap-6">
-                                <div>
-                                    <label className="block text-lg font-semibold mb-2">Event Date *</label>
-                                    <input
-                                        type="date"
-                                        {...register('eventDate', { required: 'Event date is required' })}
-                                        min={new Date().toISOString().split('T')[0]}
-                                        className="w-full bg-gray-200 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-orange-500"
-                                    />
-                                    {errors.eventDate && <p className="text-red-500 mt-1">{errors.eventDate.message}</p>}
-                                </div>
-
-                                <div>
-                                    <label className="block text-lg font-semibold mb-2">Event Type *</label>
-                                    <select
-                                        {...register('eventType', { required: 'Event type is required' })}
-                                        className="w-full bg-gray-200 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-orange-500"
-                                    >
-                                        <option value="">Select event type</option>
-                                        <option value="corporate">Corporate Event</option>
-                                        <option value="wedding">Wedding</option>
-                                        <option value="birthday">Birthday</option>
-                                        <option value="festival">Festival</option>
-                                        <option value="community">Community Event</option>
-                                        <option value="other">Other</option>
-                                    </select>
-                                    {errors.eventType && <p className="text-red-500 mt-1">{errors.eventType.message}</p>}
-                                </div>
-                            </div>
-
-                            {/* Guest Count & Venue */}
-                            <div className="grid md:grid-cols-2 gap-6">
-                                <div>
-                                    <label className="block text-lg font-semibold mb-2">Number of Guests *</label>
-                                    <input
-                                        type="number"
-                                        {...register('guestCount', {
-                                            required: 'Guest count is required',
-                                            min: { value: 10, message: 'Minimum 10 guests' }
-                                        })}
-                                        className="w-full bg-gray-200 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-orange-500"
-                                        placeholder="50"
-                                        min="10"
-                                    />
-                                    {errors.guestCount && <p className="text-red-500 mt-1">{errors.guestCount.message}</p>}
-                                </div>
-
-                                <div>
-                                    <label className="block text-lg font-semibold mb-2">Venue *</label>
-                                    <input
-                                        type="text"
-                                        {...register('venue', { required: 'Venue is required' })}
-                                        className="w-full bg-gray-200 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-orange-500"
-                                        placeholder="Event location"
-                                    />
-                                    {errors.venue && <p className="text-red-500 mt-1">{errors.venue.message}</p>}
-                                </div>
-                            </div>
-
-                            {/* Menu Preferences */}
-                            <div>
-                                <label className="block text-lg font-semibold mb-2">Menu Preferences (Optional)</label>
-                                <textarea
-                                    {...register('menuPreferences')}
-                                    rows={3}
-                                    className="w-full bg-gray-200 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-orange-500"
-                                    placeholder="Any specific dishes or dietary requirements?"
-                                />
-                            </div>
-
-                            {/* Special Requirements */}
-                            <div>
-                                <label className="block text-lg font-semibold mb-2">Special Requirements (Optional)</label>
-                                <textarea
-                                    {...register('specialRequirements')}
-                                    rows={3}
-                                    className="w-full bg-gray-200 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-orange-500"
-                                    placeholder="Setup needs, equipment, timing, etc."
-                                />
-                            </div>
-
-                            {/* Budget */}
-                            <div>
-                                <label className="block text-lg font-semibold mb-2">Budget Range (Optional)</label>
-                                <input
-                                    type="text"
-                                    {...register('budget')}
-                                    className="w-full bg-gray-200 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-orange-500"
-                                    placeholder="e.g., €2000 - €3000"
-                                />
-                            </div>
-
-                            {/* File Upload */}
-                            <div>
-                                <label className="block text-lg font-semibold mb-2">Attach File (Optional)</label>
-                                <div className="border-2 border-dashed border-gray-600 rounded-lg p-6 text-center hover:border-orange-500 transition-all">
-                                    <input
-                                        type="file"
-                                        onChange={handleFileChange}
-                                        accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
-                                        className="hidden"
-                                        id="file-upload"
-                                    />
-                                    <label htmlFor="file-upload" className="cursor-pointer">
-                                        <FaUpload className="text-4xl text-gray-500 mx-auto mb-2" />
-                                        <p className="text-gray-400">
-                                            {selectedFile ? selectedFile.name : 'Click to upload or drag and drop'}
-                                        </p>
-                                        <p className="text-sm text-gray-500 mt-2">
-                                            PDF, DOC, DOCX, JPG, PNG (Max 5MB)
-                                        </p>
-                                    </label>
-                                </div>
-                            </div>
-
-                            {/* Submit */}
-                            <motion.button
-                                type="submit"
-                                disabled={isSubmitting}
-                                className="w-full bg-orange-600 hover:bg-orange-700 disabled:bg-gray-600 text-white px-8 py-4 rounded-full text-xl font-semibold transition-all"
-                                whileHover={{ scale: 1.02 }}
-                                whileTap={{ scale: 0.98 }}
+                <div className="max-w-7xl mx-auto px-4 text-center">
+                    <h2 className="text-5xl font-bold mb-16">Experience Gallery</h2>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        {images.map((img, index) => (
+                            <div
+                                key={img.publicId}
+                                onClick={() => setSelectedImageIndex(index)}
+                                className="group relative h-64 overflow-hidden rounded-2xl cursor-pointer"
                             >
-                                {isSubmitting ? 'Submitting...' : 'Request Quote'}
-                            </motion.button>
-                        </form>
-                    </motion.div>
+                                <Image
+                                    src={img.url}
+                                    alt="Gallery"
+                                    fill
+                                    className="object-cover transition duration-700 group-hover:scale-110"
+                                />
+
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+                                <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-all duration-300 group-hover:opacity-100">
+                                    <div className="rounded-full bg-white/20 p-4 backdrop-blur-md">
+                                        🔍
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </section>
+
+            {/* Image Lightbox Modal */}
+            <AnimatePresence>
+                {currentImage && (
+                    <div className="fixed inset-0 z-[120] flex items-center justify-center p-4">
+                        {/* Backdrop */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setSelectedImageIndex(null)}
+                            className="absolute inset-0 bg-black/95 backdrop-blur-xl"
+                        />
+
+                        {/* Previous */}
+                        <button
+                            onClick={previousImage}
+                            className="absolute left-4 z-20 flex h-14 w-14 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-md transition hover:bg-white/20"
+                        >
+                            ❮
+                        </button>
+
+                        {/* Next */}
+                        <button
+                            onClick={nextImage}
+                            className="absolute right-4 z-20 flex h-14 w-14 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-md transition hover:bg-white/20"
+                        >
+                            ❯
+                        </button>
+
+                        <motion.div
+                            key={currentImage.publicId}
+                            initial={{
+                                opacity: 0,
+                                scale: 0.9,
+                            }}
+                            animate={{
+                                opacity: 1,
+                                scale: 1,
+                            }}
+                            exit={{
+                                opacity: 0,
+                                scale: 0.9,
+                            }}
+                            transition={{
+                                type: "spring",
+                                damping: 25,
+                                stiffness: 250,
+                            }}
+                            className="relative w-full max-w-6xl"
+                        >
+                            <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-[0_25px_80px_rgba(0,0,0,0.6)] backdrop-blur-md">
+                                <div className="relative h-[80vh] w-full">
+                                    <Image
+                                        src={currentImage.url}
+                                        alt="Gallery"
+                                        fill
+                                        priority
+                                        className="object-contain"
+                                    />
+                                </div>
+                            </div>
+
+                            {/* Top Controls */}
+                            <div className="absolute left-0 right-0 top-4 flex items-center justify-between px-4">
+                                <div className="rounded-full bg-black/40 px-4 py-2 text-sm text-white backdrop-blur-md">
+                                    {selectedImageIndex! + 1} / {images.length}
+                                </div>
+
+                                <button
+                                    onClick={() => setSelectedImageIndex(null)}
+                                    className="flex h-12 w-12 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-md transition hover:bg-orange-500"
+                                >
+                                    <FaTimes />
+                                </button>
+                            </div>
+                        </motion.div>
+                        <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2 overflow-x-auto">
+                            {images.map((img, index) => (
+                                <button
+                                    key={img.publicId}
+                                    onClick={() => setSelectedImageIndex(index)}
+                                    className={`relative h-14 w-20 overflow-hidden rounded-lg border-2 ${
+                                        index === selectedImageIndex
+                                            ? "border-orange-500"
+                                            : "border-transparent"
+                                    }`}
+                                >
+                                    <Image
+                                        src={img.url}
+                                        alt=""
+                                        fill
+                                        className="object-cover"
+                                    />
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                )}
+            </AnimatePresence>
         </div>
     );
 }

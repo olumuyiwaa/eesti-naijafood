@@ -1,9 +1,9 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import {AnimatePresence, motion} from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
-import {FaCalendarAlt, FaUtensils, FaMusic, FaTruck, FaStar, FaPlay, FaLeaf, FaFire} from 'react-icons/fa';
+import {FaCalendarAlt, FaUtensils, FaMusic, FaTruck, FaStar, FaPlay, FaLeaf, FaFire, FaTimes} from 'react-icons/fa';
 import TestimonialsCarousel from '@/components/TestimonialsCarousel';
 import {useEffect, useState} from "react";
 import axios from "axios";
@@ -38,11 +38,58 @@ export default function Home() {
     const [activeCategory, setActiveCategory] = useState('starters');
         const [images, setImages] = useState<GalleryImage[]>([]);
     const [loading, setLoading] = useState(true);
+    const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+
 
     useEffect(() => {
         fetchMenu();
         fetchGallery();
     }, []);
+    const currentImage =
+        selectedImageIndex !== null
+            ? images[selectedImageIndex]
+            : null;
+
+    const nextImage = () => {
+        if (selectedImageIndex === null) return;
+
+        setSelectedImageIndex(
+            (selectedImageIndex + 1) % images.length
+        );
+    };
+
+    const previousImage = () => {
+        if (selectedImageIndex === null) return;
+
+        setSelectedImageIndex(
+            selectedImageIndex === 0
+                ? images.length - 1
+                : selectedImageIndex - 1
+        );
+    };
+
+    useEffect(() => {
+        const handleKey = (e: KeyboardEvent) => {
+            if (selectedImageIndex === null) return;
+
+            if (e.key === "Escape") {
+                setSelectedImageIndex(null);
+            }
+
+            if (e.key === "ArrowRight") {
+                nextImage();
+            }
+
+            if (e.key === "ArrowLeft") {
+                previousImage();
+            }
+        };
+
+        window.addEventListener("keydown", handleKey);
+
+        return () =>
+            window.removeEventListener("keydown", handleKey);
+    }, [selectedImageIndex]);
 
     const fetchMenu = async () => {
         try {
@@ -419,44 +466,136 @@ export default function Home() {
             </section>
 
             {/* Gallery */}
-            <section className="py-20 bg-white">
-                <div className="max-w-7xl mx-auto px-4">
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-5xl font-bold text-center mb-16"
-                    >
-                        Experience Gallery
-                    </motion.h2>
-
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                        {images.map((item, index) => (
-                            <motion.div
-                                key={item.publicId}
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.05 }}
-                                className="relative h-64 rounded-2xl overflow-hidden cursor-pointer group"
+            {/* Gallery */}
+            <section className="py-20 bg-zinc-50">
+                <div className="max-w-7xl mx-auto px-4 text-center">
+                    <h2 className="text-5xl font-bold mb-16">Experience Gallery</h2>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        {images.map((img, index) => (
+                            <div
+                                key={img.publicId}
+                                onClick={() => setSelectedImageIndex(index)}
+                                className="group relative h-64 overflow-hidden rounded-2xl cursor-pointer"
                             >
                                 <Image
-                                    src={item.url}
-                                    alt=""
+                                    src={img.url}
+                                    alt="Gallery"
                                     fill
-                                    className="object-cover group-hover:scale-110 transition-transform duration-300"
+                                    className="object-cover transition duration-700 group-hover:scale-110"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                                    {/* <div>
-                                        <h3 className="font-bold">{item.title}</h3>
-                                        <p className="text-sm text-gray-300">{new Date(item.date).toLocaleDateString()}</p>
-                                    </div> */}
+
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+                                <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-all duration-300 group-hover:opacity-100">
+                                    <div className="rounded-full bg-white/20 p-4 backdrop-blur-md">
+                                        🔍
+                                    </div>
                                 </div>
-                            </motion.div>
+                            </div>
                         ))}
                     </div>
                 </div>
             </section>
+
+            {/* Image Lightbox Modal */}
+            <AnimatePresence>
+                {currentImage && (
+                    <div className="fixed inset-0 z-[120] flex items-center justify-center p-4">
+                        {/* Backdrop */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setSelectedImageIndex(null)}
+                            className="absolute inset-0 bg-black/95 backdrop-blur-xl"
+                        />
+
+                        {/* Previous */}
+                        <button
+                            onClick={previousImage}
+                            className="absolute left-4 z-20 flex h-14 w-14 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-md transition hover:bg-white/20"
+                        >
+                            ❮
+                        </button>
+
+                        {/* Next */}
+                        <button
+                            onClick={nextImage}
+                            className="absolute right-4 z-20 flex h-14 w-14 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-md transition hover:bg-white/20"
+                        >
+                            ❯
+                        </button>
+
+                        <motion.div
+                            key={currentImage.publicId}
+                            initial={{
+                                opacity: 0,
+                                scale: 0.9,
+                            }}
+                            animate={{
+                                opacity: 1,
+                                scale: 1,
+                            }}
+                            exit={{
+                                opacity: 0,
+                                scale: 0.9,
+                            }}
+                            transition={{
+                                type: "spring",
+                                damping: 25,
+                                stiffness: 250,
+                            }}
+                            className="relative w-full max-w-6xl"
+                        >
+                            <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-[0_25px_80px_rgba(0,0,0,0.6)] backdrop-blur-md">
+                                <div className="relative h-[80vh] w-full">
+                                    <Image
+                                        src={currentImage.url}
+                                        alt="Gallery"
+                                        fill
+                                        priority
+                                        className="object-contain"
+                                    />
+                                </div>
+                            </div>
+
+                            {/* Top Controls */}
+                            <div className="absolute left-0 right-0 top-4 flex items-center justify-between px-4">
+                                <div className="rounded-full bg-black/40 px-4 py-2 text-sm text-white backdrop-blur-md">
+                                    {selectedImageIndex! + 1} / {images.length}
+                                </div>
+
+                                <button
+                                    onClick={() => setSelectedImageIndex(null)}
+                                    className="flex h-12 w-12 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-md transition hover:bg-orange-500"
+                                >
+                                    <FaTimes />
+                                </button>
+                            </div>
+                        </motion.div>
+                        <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2 overflow-x-auto">
+                            {images.map((img, index) => (
+                                <button
+                                    key={img.publicId}
+                                    onClick={() => setSelectedImageIndex(index)}
+                                    className={`relative h-14 w-20 overflow-hidden rounded-lg border-2 ${
+                                        index === selectedImageIndex
+                                            ? "border-orange-500"
+                                            : "border-transparent"
+                                    }`}
+                                >
+                                    <Image
+                                        src={img.url}
+                                        alt=""
+                                        fill
+                                        className="object-cover"
+                                    />
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                )}
+            </AnimatePresence>
 
             {/* Final CTA */}
             <section className="py-32 relative overflow-hidden">
