@@ -185,7 +185,7 @@ export default function Home() {
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.2 }}
                         >
-                            Catering Beyond Expectations
+                            Catering Beyond Expectations. Inspired by West Africa
                         </motion.p>
 
                         <motion.p
@@ -194,7 +194,7 @@ export default function Home() {
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.4 }}
                         >
-                            Crafting culinary masterpieces for your most distinguished events. From intimate gatherings to grand celebrations, we bring refined flavors, artistic presentation, and seamless service to your table, ensuring an unforgettable dining experience.
+                            Whether you need a delicious meal for today or catering for your next big event, we bring authentic flavors, fresh ingredients, and warm hospitality of West Africa to your table
                         </motion.p>
 
                         <motion.div
